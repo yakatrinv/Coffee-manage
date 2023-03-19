@@ -1,5 +1,6 @@
 package it.academy.util;
 
+import it.academy.utils.HibernateUtil;
 import org.hibernate.internal.SessionImpl;
 import org.junit.jupiter.api.Test;
 
