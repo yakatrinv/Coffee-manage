@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-model" author="Katerina">
+        <createTable tableName="model">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="brand" type="varchar(255)"/>
+            <column name="name_model" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="insert-models" author="Katerina">
+        <insert tableName="model">
+            <column name="brand">Saeco</column>
+            <column name="name_model">Cristallo 600</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">Saeco</column>
+            <column name="name_model">Rubino 200</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">Saeco</column>
+            <column name="name_model">Rubino 200</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">Unicum</column>
+            <column name="name_model">Rosso Touch</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">Canto</column>
+            <column name="name_model">LB</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">OPERA</column>
+            <column name="name_model">TO GO</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">Kikko</column>
+            <column name="name_model">ES-6</column>
+        </insert>
+        <insert tableName="model">
+            <column name="brand">Solista</column>
+            <column name="name_model">ES6</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
