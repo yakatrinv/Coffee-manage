@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-address" author="Katerina">
+        <createTable tableName="address">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="city" type="varchar(100)"/>
+            <column name="street" type="varchar(100)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="insert-address" author="Katerina">
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Притыцкого</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Проспект Пушкина</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Независимости</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Кирова</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Сурганова</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Немига</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">площадь Якуба Коласа</column>
+        </insert>
+        <insert tableName="address">
+            <column name="city">Минск</column>
+            <column name="street">Кальварийская</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
