@@ -2,6 +2,7 @@ package it.academy.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +19,10 @@ import java.io.Serializable;
 @Builder
 @Getter
 @Setter
-@ToString
+@ToString(of = {"city", "street"})
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"id"})
 @Entity
 @Table
 public class Address implements Serializable {

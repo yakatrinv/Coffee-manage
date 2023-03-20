@@ -1,18 +1,20 @@
 package it.academy.services.impl;
 
 import it.academy.dto.AddressDto;
-import it.academy.mappers.Mapper;
+import it.academy.mappers.IAddressMapper;
 import it.academy.mappers.impl.AddressMapper;
 import it.academy.models.Address;
 import it.academy.repositories.IAddressRepository;
 import it.academy.repositories.impl.AddressRepository;
 import it.academy.services.IAddressService;
+import it.academy.services.Pageable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.List;
 
 public class AddressService implements IAddressService {
-    private final Mapper<Address, AddressDto> addressMapper = new AddressMapper();
+    private final IAddressMapper addressMapper = new AddressMapper();
 
     private final IAddressRepository addressRepository = new AddressRepository();
 
@@ -48,5 +50,12 @@ public class AddressService implements IAddressService {
     @Override
     public void deleteAddressById(Serializable id) {
         addressRepository.delete(id);
+    }
+
+    @Override
+    public Pageable<AddressDto> getDataPage(HttpServletRequest request) {
+        Pageable<Address> pageable = addressMapper.getPageable(request);
+        addressRepository.fillPageable(pageable);
+        return addressMapper.pageableToDto(pageable);
     }
 }

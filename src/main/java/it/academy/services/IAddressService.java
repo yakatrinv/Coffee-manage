@@ -2,6 +2,7 @@ package it.academy.services;
 
 import it.academy.dto.AddressDto;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface IAddressService {
     List<AddressDto> findAllAddresses();
 
     void deleteAddressById(Serializable id);
+
+    Pageable<AddressDto> getDataPage(HttpServletRequest request);
 }
