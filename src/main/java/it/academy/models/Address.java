@@ -22,7 +22,7 @@ import java.io.Serializable;
 @ToString(of = {"city", "street"})
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode
 @Entity
 @Table
 public class Address implements Serializable {

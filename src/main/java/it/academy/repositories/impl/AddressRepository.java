@@ -1,8 +1,8 @@
 package it.academy.repositories.impl;
 
 import it.academy.models.Address;
+import it.academy.models.pageable.Pageable;
 import it.academy.repositories.IAddressRepository;
-import it.academy.services.Pageable;
 import it.academy.utils.HibernateUtil;
 
 import javax.persistence.EntityManager;
@@ -17,12 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 import static it.academy.utils.Data.ADDRESS_CLASS;
+import static it.academy.utils.Data.ATTR_ID;
 import static it.academy.utils.Data.LONG_CLASS;
 import static it.academy.utils.Data.PERCENT_STRING;
-import static it.academy.utils.DataUI.AND_FOR_PARAM;
-import static it.academy.utils.DataUI.EQUALS;
-import static it.academy.utils.DataUI.FIRST_PAGE;
-import static it.academy.utils.Utils.isEmpty;
 
 public class AddressRepository extends CrudRepository<Address>
         implements IAddressRepository {
@@ -33,8 +30,17 @@ public class AddressRepository extends CrudRepository<Address>
     }
 
     @Override
-    public Pageable<Address> fillPageable(Pageable<Address> pageable) {
-        getCountRecords(pageable);
+    public Pageable<Address> getPageableRecords(Pageable<Address> pageable) {
+        //count records
+        Long countRecords = getCountRecords(pageable);
+        int lastPage = getPages(countRecords, pageable.getPageSize());
+        pageable.setLastPageNumber(lastPage);
+
+        if (pageable.getPageNumber() > lastPage) {
+            pageable.setPageNumber(lastPage);
+        }
+
+        //data for pageable
         try {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
@@ -46,30 +52,21 @@ public class AddressRepository extends CrudRepository<Address>
             List<Predicate> predicates = new ArrayList<>();
 
             //filtered
-            StringBuilder paramPage = new StringBuilder();
             HashMap<String, Object> filteredFields
-                    = pageable.getFilteredFields();
+                    = pageable.getSearchFields();
             for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
                 String key = pair.getKey();
                 Object value = pair.getValue();
 
-                if (!isEmpty(key) && value != null) {
+                if (isNotEmpty(key) && value != null) {
                     if (value.getClass() == String.class) {
                         if (!((String) value).isEmpty()) {
                             predicates.add(criteriaBuilder
                                     .like(root.get(key), value + PERCENT_STRING));
-
-                            paramPage.append(AND_FOR_PARAM)
-                                    .append(key)
-                                    .append(EQUALS).append(value);
                         }
                     } else {
                         predicates.add(criteriaBuilder
                                 .equal(root.get(key), value));
-
-                        paramPage.append(AND_FOR_PARAM)
-                                .append(key)
-                                .append(EQUALS).append(value);
                     }
                 }
             }
@@ -81,18 +78,18 @@ public class AddressRepository extends CrudRepository<Address>
                 query.where(predicate);
             }
 
-            //order
+            //order by
             String sortField = pageable.getSortField();
-            if (!isEmpty(sortField)) {
+            if (isNotEmpty(sortField)) {
                 query.orderBy(criteriaBuilder.asc(root.get(sortField)));
             } else {
-                query.orderBy(criteriaBuilder.asc(root.get("id")));
+                query.orderBy(criteriaBuilder.asc(root.get(ATTR_ID)));
             }
 
-            pageable.setParamPage(String.valueOf(paramPage));
-
+            int offset = (pageable.getPageNumber() - 1) *
+                    pageable.getPageSize();
             TypedQuery<Address> resultQuery = entityManager.createQuery(query);
-            resultQuery.setFirstResult(pageable.getOffset());
+            resultQuery.setFirstResult(offset);
             resultQuery.setMaxResults(pageable.getPageSize());
 
             pageable.setRecords(resultQuery.getResultList());
@@ -125,12 +122,12 @@ public class AddressRepository extends CrudRepository<Address>
 
             //filtered
             HashMap<String, Object> filteredFields
-                    = pageable.getFilteredFields();
+                    = pageable.getSearchFields();
             for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
                 String key = pair.getKey();
                 Object value = pair.getValue();
 
-                if (!isEmpty(key) && value != null) {
+                if (isNotEmpty(key) && value != null) {
                     if (value.getClass() == String.class) {
                         if (!((String) value).isEmpty()) {
                             predicates.add(cbCount
@@ -156,20 +153,7 @@ public class AddressRepository extends CrudRepository<Address>
                     .createQuery(queryCount)
                     .getSingleResult();
 
-            int lastPage = getPages(countRecords, pageable.getPageSize());
-            pageable.setTotalRecords(countRecords);
-            pageable.setLastPageNumber(lastPage);
-
-            if (pageable.getPageNumber() > pageable.getLastPageNumber()) {
-                pageable.setPageNumber(FIRST_PAGE);
-            }
-
-            int offset = (pageable.getPageNumber() - 1) *
-                    pageable.getPageSize();
-            pageable.setOffset(offset);
-
             entityManager.getTransaction().commit();
-
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
@@ -183,5 +167,9 @@ public class AddressRepository extends CrudRepository<Address>
     private int getPages(Long countRecords, int pageSize) {
         long pages = countRecords / pageSize;
         return (int) ((countRecords % pageSize == 0) ? pages : pages + 1);
+    }
+
+    private boolean isNotEmpty(String value) {
+        return (value != null && !value.isEmpty());
     }
 }
