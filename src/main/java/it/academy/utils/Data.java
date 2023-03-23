@@ -3,6 +3,17 @@ package it.academy.utils;
 import it.academy.models.Address;
 
 public class Data {
+    //auth
+    public static final String USER_ROLE ="user_role";
+
+    public static final String ATTR_LOGIN ="login";
+
+    public static final String ATTR_PASSWORD ="password";
+
+    public static final String ATTR_USER_ID ="user_id";
+
+    public static final String ATTR_ROLE_ID ="role_id";
+
     //general
     public static final String PERSISTENCE_NAME = "property";
 
