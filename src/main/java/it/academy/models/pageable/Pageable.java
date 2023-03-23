@@ -1,4 +1,4 @@
-package it.academy.services;
+package it.academy.models.pageable;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -12,23 +12,15 @@ import java.util.List;
 @Getter
 @Setter
 public class Pageable<TEntity> implements Serializable {
-    private String nameCommand;
-
-    private String paramPage;
-
     private int pageNumber;
 
     private int pageSize;
 
-    private int offset;
-
-    int lastPageNumber;
-
-    long totalRecords;
+    private int lastPageNumber;
 
     private String sortField;
 
-    private HashMap<String, Object> filteredFields;
+    private HashMap<String, Object> searchFields;
 
     private List<TEntity> records;
 }
