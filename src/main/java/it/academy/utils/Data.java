@@ -1,9 +1,12 @@
 package it.academy.utils;
 
 import it.academy.models.Address;
+import it.academy.models.auth.Role;
+import it.academy.models.auth.User;
 
 public class Data {
     //auth
+    public static final String ROLE = "role";
     public static final String USER_ROLE ="user_role";
 
     public static final String ATTR_LOGIN ="login";
@@ -13,6 +16,14 @@ public class Data {
     public static final String ATTR_USER_ID ="user_id";
 
     public static final String ATTR_ROLE_ID ="role_id";
+
+    public static final String ROLE_NAME = "roleName";
+
+    public static final Class<Role> ROLE_CLASS = Role.class;
+
+    public static final Class<User> USER_CLASS = User.class;
+
+    public static final int FIRST_INDEX = 0;
 
     //general
     public static final String PERSISTENCE_NAME = "property";
