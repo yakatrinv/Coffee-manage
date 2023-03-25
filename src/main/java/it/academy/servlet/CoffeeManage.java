@@ -15,7 +15,7 @@ import static it.academy.utils.Data.ATTR_COMMAND;
 
 @WebServlet(urlPatterns = {"/coffee-manage"})
 public class CoffeeManage extends HttpServlet {
-    CommandFactory receiver = CommandFactory.getInstance();
+    private final CommandFactory receiver = CommandFactory.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

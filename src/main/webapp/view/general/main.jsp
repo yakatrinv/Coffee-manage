@@ -5,6 +5,8 @@
     <title>Coffee manage project</title>
 </head>
 <body>
+<jsp:include page="../general/head.jsp"/>
+<br>
 
 <h3>Coffee manage project</h3>
 <br>

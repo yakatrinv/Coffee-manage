@@ -11,24 +11,28 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="login" type="varchar(30)"/>
-            <column name="password" type="varchar(30)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="salt" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
     <changeSet id="insert-default-users" author="Katerina">
         <insert tableName="user">
             <column name="login">Administrator</column>
-            <column name="password">1</column>
+            <column name="password">70dea293e996e328491f5fd703efd40b</column>
+            <column name="salt">a4e114068feac475017a4fb7eb1c55c9</column>
         </insert>
 
         <insert tableName="user">
             <column name="login">Manager</column>
-            <column name="password">1</column>
+            <column name="password">243ca8363d6e64bc2a0a0b90bdcdc47c</column>
+            <column name="salt">8451b1c6efd3bcda81f8d20d93f86119</column>
         </insert>
 
         <insert tableName="user">
             <column name="login">Customer</column>
-            <column name="password">1</column>
+            <column name="password">bbcae8b0f11a7c383862b307244fa822</column>
+            <column name="salt">7bd3dbf015bbdc7f49d60ea76912f0bc</column>
         </insert>
     </changeSet>
 

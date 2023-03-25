@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 public class AddressService implements IAddressService {
     private final Mapper<Address, AddressDto> mapper = new AddressMapper();
+
     private final Mapper<Pageable<Address>, Pageable<AddressDto>> pageMapper =
             new PageableMapper<>(mapper);
 
@@ -23,20 +24,20 @@ public class AddressService implements IAddressService {
     @Override
     public AddressDto createAddress(AddressDto addressDto) {
         Address entity = mapper.dtoToEntity(addressDto);
-        Address address = repository.save(entity).orElse(null);
+        Address address = repository.save(entity);
         return mapper.entityToDto(address);
     }
 
     @Override
     public AddressDto updateAddress(AddressDto addressDto) {
         Address entity = mapper.dtoToEntity(addressDto);
-        Address customer = repository.update(entity).orElse(null);
+        Address customer = repository.update(entity);
         return mapper.entityToDto(customer);
     }
 
     @Override
     public AddressDto findAddressById(Serializable id) {
-        Address customer = repository.getById(id).orElse(null);
+        Address customer = repository.getById(id);
         return mapper.entityToDto(customer);
     }
 

@@ -7,7 +7,6 @@
 </head>
 <body>
 
-<%--<c:redirect url="/coffee-manage?command=getLoginPage"></c:redirect>--%>
-<c:redirect url="main.jsp"/>
+<c:redirect url="/coffee-manage?command=getLoginPage"></c:redirect>
 </body>
 </html>

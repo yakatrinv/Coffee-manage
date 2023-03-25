@@ -16,7 +16,7 @@
     <title>Coffee manage project</title>
 </head>
 <body>
-<jsp:include page="../head.jsp"/>
+<jsp:include page="../general/head.jsp"/>
 <br>
 <header>
     <h3 class="h1">Список адресов</h3>
@@ -96,7 +96,7 @@
 
 <br>
 
-<jsp:include page="../pagination.jsp"/>
+<jsp:include page="../general/pagination.jsp"/>
 
 </body>
 </html>
