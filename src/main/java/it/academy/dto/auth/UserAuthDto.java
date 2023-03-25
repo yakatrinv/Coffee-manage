@@ -14,8 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class UserAuthDto {
-    private Integer id;
-
     private String login;
 
     private Set<RoleDto> roles;

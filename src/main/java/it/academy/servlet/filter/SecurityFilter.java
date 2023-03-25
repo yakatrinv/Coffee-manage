@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import static it.academy.utils.Data.ATTR_COMMAND;
 import static it.academy.utils.Data.ATTR_LOGGED_USER;
@@ -60,20 +58,13 @@ public class SecurityFilter implements Filter {
             ((HttpServletResponse) servletResponse).sendRedirect(LOGIN_JSP);
         } else {
             UserAuthDto authUser = null;
-            try {
-                authUser = userAuthService.findAuthUser(login, password);
-            } catch (NoSuchAlgorithmException
-                     | RuntimeException
-                     | InvalidKeySpecException e) {
-                e.printStackTrace();
-            }
-
+            authUser = userAuthService.findAuthUser(login, password);
             session.setAttribute(ATTR_LOGGED_USER, authUser);
 
             if (authUser == null) {
-                session.setAttribute(ATTR_USER_ROLES, authUser.getRoles());
                 ((HttpServletResponse) servletResponse).sendRedirect(ERROR_JSP);
             } else {
+                session.setAttribute(ATTR_USER_ROLES, authUser.getRoles());
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         }

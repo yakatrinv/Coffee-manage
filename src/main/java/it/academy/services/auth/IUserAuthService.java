@@ -7,4 +7,5 @@ import java.security.spec.InvalidKeySpecException;
 
 public interface IUserAuthService {
 
+    void createUser(String login, String password);
 }

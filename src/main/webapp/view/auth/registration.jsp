@@ -19,7 +19,7 @@
             </p>
             <p>
                 <label for="password">Введите пароль:</label>
-                <input name="password" id="password" placeholder="пароль">
+                <input type="password" name="password" id="password" placeholder="пароль">
             </p>
             <br>
 
