@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import static it.academy.utils.Data.ATTR_LOGIN;
@@ -21,7 +20,7 @@ import static it.academy.utils.Data.USER_CLASS;
 
 public class UserRepository extends CrudRepository<User>
         implements IUserRepository {
-    EncryptService encryptService = new EncryptService();
+    private final EncryptService encryptService = new EncryptService();
 
     private EntityManager entityManager;
 
@@ -124,7 +123,7 @@ public class UserRepository extends CrudRepository<User>
     }
 
     @Override
-    public Optional<User> save(User user) {
+    public User save(User user) {
         setEncryptData(user);
         return super.save(user);
     }

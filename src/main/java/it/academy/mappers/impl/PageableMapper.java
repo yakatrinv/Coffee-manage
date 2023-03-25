@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PageableMapper<TEntity, TDto> implements Mapper<Pageable<TEntity>, Pageable<TDto>> {
-    Mapper<TEntity, TDto> mapper;
+    private final Mapper<TEntity, TDto> mapper;
 
     public PageableMapper(Mapper<TEntity, TDto> mapper) {
         this.mapper = mapper;

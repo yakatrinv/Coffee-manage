@@ -16,6 +16,8 @@ import java.io.IOException;
 
 import static it.academy.utils.Data.ATTR_COMMAND;
 import static it.academy.utils.Data.ATTR_LOGGED_USER;
+import static it.academy.utils.Data.ATTR_LOGIN;
+import static it.academy.utils.Data.ATTR_PASSWORD;
 import static it.academy.utils.Data.ATTR_USER_ROLES;
 import static it.academy.utils.Data.ERROR_JSP;
 import static it.academy.utils.Data.GET_LOGIN_PAGE;
@@ -26,10 +28,13 @@ import static it.academy.utils.Data.MAIN_JSP;
 
 @WebFilter(urlPatterns = {"/*"})
 public class SecurityFilter implements Filter {
-    UserAuthService userAuthService = new UserAuthService();
+    private final UserAuthService userAuthService = new UserAuthService();
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse,
+                         FilterChain filterChain)
+            throws ServletException, IOException {
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         final HttpServletResponse res = (HttpServletResponse) servletResponse;
         final HttpSession session = req.getSession();
@@ -45,11 +50,16 @@ public class SecurityFilter implements Filter {
         }
     }
 
-    private void loginFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain, HttpServletRequest req, HttpSession session) throws IOException, ServletException {
+    private void loginFilter(ServletRequest servletRequest,
+                             ServletResponse servletResponse,
+                             FilterChain filterChain,
+                             HttpServletRequest req,
+                             HttpSession session)
+            throws IOException, ServletException {
         UserAuthDto userDto = (UserAuthDto) session.getAttribute(ATTR_LOGGED_USER);
 
-        final String login = req.getParameter("login");
-        final String password = req.getParameter("password");
+        final String login = req.getParameter(ATTR_LOGIN);
+        final String password = req.getParameter(ATTR_PASSWORD);
 
         if (userDto != null) {
             ((HttpServletResponse) servletResponse).sendRedirect(MAIN_JSP);
@@ -57,7 +67,7 @@ public class SecurityFilter implements Filter {
                 || password == null || password.isEmpty()) {
             ((HttpServletResponse) servletResponse).sendRedirect(LOGIN_JSP);
         } else {
-            UserAuthDto authUser = null;
+            UserAuthDto authUser;
             authUser = userAuthService.findAuthUser(login, password);
             session.setAttribute(ATTR_LOGGED_USER, authUser);
 
@@ -70,7 +80,11 @@ public class SecurityFilter implements Filter {
         }
     }
 
-    private static void getLoginOrRegPage(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain, HttpSession session) throws IOException, ServletException {
+    private void getLoginOrRegPage(ServletRequest servletRequest,
+                                   ServletResponse servletResponse,
+                                   FilterChain filterChain,
+                                   HttpSession session)
+            throws IOException, ServletException {
         UserAuthDto userDto = (UserAuthDto) session.getAttribute(ATTR_LOGGED_USER);
         if (userDto != null) {
             ((HttpServletResponse) servletResponse).sendRedirect(MAIN_JSP);

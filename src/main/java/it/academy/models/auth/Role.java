@@ -9,21 +9,13 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_ROLE_ID;
-import static it.academy.utils.Data.ATTR_USER_ID;
-import static it.academy.utils.Data.USER_ROLE;
+import static it.academy.utils.Data.COL_ROLE_NAME;
 
 @Builder
 @Getter
@@ -34,10 +26,11 @@ import static it.academy.utils.Data.USER_ROLE;
 @Entity
 @Table
 public class Role implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "role_name")
+    @Column(name = COL_ROLE_NAME)
     private String roleName;
 }

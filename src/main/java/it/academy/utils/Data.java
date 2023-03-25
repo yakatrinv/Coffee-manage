@@ -22,7 +22,7 @@ public class Data {
 
     public static final String ATTR_USER_ROLES = "userRoles";
 
-    public static final String ATTR_USERS = "users";
+    public static final String COL_ROLES = "roles";
 
     public static final String MAIN_JSP = "view/general/main.jsp";
 
@@ -44,6 +44,7 @@ public class Data {
 
     //general
     public static final String ATTR_COMMAND = "command";
+
     public static final String PERSISTENCE_NAME = "property";
 
     public static final String STRING_FROM = "FROM ";
@@ -64,13 +65,9 @@ public class Data {
 
 
     //users and roles
-    public static final String ROLE_ADMIN = "Administrator";
-
-    public static final String ROLE_MANAGER = "Manager";
-
     public static final String ROLE_CUSTOMER = "Customer";
 
-    public static final String ROLE = "role";
+    public static final String COL_ROLE_NAME = "role_name";
 
     public static final String USER_ROLE = "user_role";
 
@@ -109,6 +106,7 @@ public class Data {
     public static final String ATTR_SEARCH_STREET = "searchStreet";
 
     public static final String COMMAND_ADDRESSES = "addresses";
+
     public static final String ATTR_ADDRESS = "address";
 
     public static final String ADD_ADDRESS = "createAddress";

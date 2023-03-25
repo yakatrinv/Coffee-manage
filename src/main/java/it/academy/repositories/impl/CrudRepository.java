@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 import static it.academy.utils.Data.STRING_FROM;
 
@@ -21,37 +20,37 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
     }
 
     @Override
-    public Optional<TEntity> save(TEntity entity) {
+    public TEntity save(TEntity entity) {
         try {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(entity);
             entityManager.getTransaction().commit();
-            return Optional.of(entity);
+            return entity;
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         } finally {
             entityManager.close();
         }
-        return Optional.empty();
+        return null;
     }
 
     @Override
-    public Optional<TEntity> update(TEntity entity) {
+    public TEntity update(TEntity entity) {
         try {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.merge(entity);
             entityManager.getTransaction().commit();
-            return Optional.of(entity);
+            return entity;
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         } finally {
             entityManager.close();
         }
-        return Optional.empty();
+        return null;
     }
 
     @Override
@@ -73,11 +72,11 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
     }
 
     @Override
-    public Optional<TEntity> getById(Serializable id) {
+    public TEntity getById(Serializable id) {
         entityManager = HibernateUtil.getEntityManager();
         TEntity entity = entityManager.find(cls, id);
         entityManager.close();
-        return entity != null ? Optional.of(entity) : Optional.empty();
+        return entity;
     }
 
     @Override

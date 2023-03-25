@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,9 +22,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_PASSWORD;
 import static it.academy.utils.Data.ATTR_ROLE_ID;
 import static it.academy.utils.Data.ATTR_USER_ID;
 import static it.academy.utils.Data.USER_ROLE;
@@ -37,7 +33,7 @@ import static it.academy.utils.Data.USER_ROLE;
 @Setter
 @Entity
 @ToString(exclude = "roles")
-@EqualsAndHashCode(exclude = "roles")//(of = {ATTR_ID, ATTR_LOGIN, ATTR_PASSWORD})
+@EqualsAndHashCode(of = {"id", "login"})
 @Table
 public class User implements Serializable {
     @Id

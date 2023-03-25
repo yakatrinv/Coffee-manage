@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class UserAuthMapper implements Mapper<User, UserAuthDto> {
-    Mapper<Role, RoleDto> roleMapper = new RoleMapper();
+    private final Mapper<Role, RoleDto> roleMapper = new RoleMapper();
 
     @Override
     public User dtoToEntity(UserAuthDto userAuthDto) {

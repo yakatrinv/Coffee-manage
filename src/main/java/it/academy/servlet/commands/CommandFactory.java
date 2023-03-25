@@ -28,6 +28,7 @@ import static it.academy.utils.Data.UPDATE_ADDRESS;
 
 public final class CommandFactory {
     private static CommandFactory instance;
+
     private static final HashMap<String, Command> commands = new HashMap<>();
 
     private CommandFactory() {

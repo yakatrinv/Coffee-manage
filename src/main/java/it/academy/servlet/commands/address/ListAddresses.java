@@ -23,8 +23,10 @@ import static it.academy.utils.Data.PAGEABLE;
 
 
 public class ListAddresses implements Command {
-    IConverter<Pageable<AddressDto>> converter = new PageableConverter<>();
-    IAddressConverter addressConverter = new AddressConverter();
+    private final IConverter<Pageable<AddressDto>> converter = new PageableConverter<>();
+
+    private final IAddressConverter addressConverter = new AddressConverter();
+
     private final IAddressService addressService = new AddressService();
 
     @Override

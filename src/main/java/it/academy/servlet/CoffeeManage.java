@@ -10,14 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import static it.academy.utils.Data.ATTR_COMMAND;
 
 @WebServlet(urlPatterns = {"/coffee-manage"})
 public class CoffeeManage extends HttpServlet {
-    CommandFactory receiver = CommandFactory.getInstance();
+    private final CommandFactory receiver = CommandFactory.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,13 +30,7 @@ public class CoffeeManage extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String value = request.getParameter(ATTR_COMMAND);
         Command command = receiver.getCommand(value);
-        String path = null;
-        try {
-            path = command.execute(request, response);
-        } catch (NoSuchAlgorithmException
-                 | InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
+        String path = command.execute(request, response);
         request.getRequestDispatcher(path).forward(request, response);
     }
 }

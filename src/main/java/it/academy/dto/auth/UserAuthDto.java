@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Builder
@@ -13,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserAuthDto {
+public class UserAuthDto implements Serializable {
     private String login;
 
     private Set<RoleDto> roles;

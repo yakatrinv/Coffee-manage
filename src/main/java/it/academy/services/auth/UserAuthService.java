@@ -17,12 +17,14 @@ import static it.academy.utils.Data.ROLE_CUSTOMER;
 
 public class UserAuthService implements IUserAuthService {
     private final IUserRepository userRepo = new UserRepository();
+
     private final IRoleRepository roleRepository = new RoleRepository();
+
     private final Mapper<User, UserAuthDto> mapper = new UserAuthMapper();
 
     public UserAuthDto findAuthUser(String login, String password) {
         User user = userRepo.findAuthUser(login, password);
-        return user==null?null:mapper.entityToDto(user);
+        return user == null ? null : mapper.entityToDto(user);
     }
 
     @Override
@@ -42,7 +44,7 @@ public class UserAuthService implements IUserAuthService {
                     .build();
 
             userRepo.save(findUser);
-        } else if (findUser.getRoles() ==null || findUser.getRoles().isEmpty()) {
+        } else if (findUser.getRoles() == null || findUser.getRoles().isEmpty()) {
             findUser.setRoles(roles);
             userRepo.update(findUser);
         } else if (!findUser.getRoles().contains(role)) {

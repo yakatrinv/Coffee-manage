@@ -19,7 +19,6 @@ public class DeleteAddress implements Command {
         if (id != null) {
             addressService.deleteAddressById(Integer.valueOf(id));
         }
-
         return request.getParameter(PREV_URL);
     }
 }
