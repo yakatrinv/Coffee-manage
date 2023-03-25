@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import static it.academy.utils.Data.ATTR_COMMAND;
 
@@ -30,7 +32,13 @@ public class CoffeeManage extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String value = request.getParameter(ATTR_COMMAND);
         Command command = receiver.getCommand(value);
-        String path = command.execute(request, response);
+        String path = null;
+        try {
+            path = command.execute(request, response);
+        } catch (NoSuchAlgorithmException
+                 | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
         request.getRequestDispatcher(path).forward(request, response);
     }
 }

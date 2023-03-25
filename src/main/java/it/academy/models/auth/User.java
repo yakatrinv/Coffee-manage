@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,8 +36,8 @@ import static it.academy.utils.Data.USER_ROLE;
 @Getter
 @Setter
 @Entity
-@ToString
-@EqualsAndHashCode(of = {ATTR_ID, ATTR_LOGIN, ATTR_PASSWORD})
+@ToString(exclude = "roles")
+@EqualsAndHashCode(exclude = "roles")//(of = {ATTR_ID, ATTR_LOGIN, ATTR_PASSWORD})
 @Table
 public class User implements Serializable {
     @Id
@@ -48,7 +50,10 @@ public class User implements Serializable {
     @Column
     private String password;
 
-    @ManyToMany
+    @Column
+    private String salt;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = USER_ROLE,
             joinColumns = {@JoinColumn(name = ATTR_USER_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_ROLE_ID)})

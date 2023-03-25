@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Set;
 
 import static it.academy.utils.Data.FIRST_INDEX;
 import static it.academy.utils.Data.ROLE_CLASS;
