@@ -17,8 +17,10 @@ import java.io.IOException;
 import static it.academy.utils.Data.ATTR_COMMAND;
 import static it.academy.utils.Data.ATTR_LOGGED_USER;
 import static it.academy.utils.Data.ATTR_LOGIN;
+import static it.academy.utils.Data.ATTR_MESSAGE;
 import static it.academy.utils.Data.ATTR_PASSWORD;
 import static it.academy.utils.Data.ATTR_USER_ROLES;
+import static it.academy.utils.Data.ERROR_AUTH;
 import static it.academy.utils.Data.ERROR_JSP;
 import static it.academy.utils.Data.GET_LOGIN_PAGE;
 import static it.academy.utils.Data.GET_REG_PAGE;
@@ -72,6 +74,7 @@ public class SecurityFilter implements Filter {
             session.setAttribute(ATTR_LOGGED_USER, authUser);
 
             if (authUser == null) {
+                req.setAttribute(ATTR_MESSAGE,ERROR_AUTH);
                 ((HttpServletResponse) servletResponse).sendRedirect(ERROR_JSP);
             } else {
                 session.setAttribute(ATTR_USER_ROLES, authUser.getRoles());

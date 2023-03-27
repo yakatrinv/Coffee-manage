@@ -7,4 +7,6 @@ public interface IUserRepository extends ICrudRepository<User> {
     User findAuthUser(String login, String pass);
 
     User findByLogin(String login);
+
+    User updatePass(User user, String newPassword);
 }

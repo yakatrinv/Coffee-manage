@@ -54,7 +54,14 @@
                 <th colspan="2">Действие</th>
             </tr>
 
-            <c:set var="lastCount" value="${(pageNumber-1)*pageSize}"/>
+            <c:choose>
+                <c:when test="${pageNumber ne 0}">
+                    <c:set var="lastCount" value="${(pageNumber-1)*pageSize}"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="lastCount" value="0"/>
+                </c:otherwise>
+            </c:choose>
             <c:forEach var="address" items="${addresses}" varStatus="status">
                 <tr>
                     <td>${lastCount+status.count}</td>

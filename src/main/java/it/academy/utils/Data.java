@@ -1,6 +1,9 @@
 package it.academy.utils;
 
 import it.academy.models.Address;
+import it.academy.models.Customer;
+import it.academy.models.Model;
+import it.academy.models.Product;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
@@ -22,7 +25,9 @@ public class Data {
 
     public static final String ATTR_USER_ROLES = "userRoles";
 
-    public static final String COL_ROLES = "roles";
+    public static final String ATTR_MESSAGE = "message";
+
+    public static final String ERROR_AUTH = "Ошибка авторизации";
 
     public static final String MAIN_JSP = "view/general/main.jsp";
 
@@ -55,6 +60,8 @@ public class Data {
 
     public static final Class<Address> ADDRESS_CLASS = Address.class;
 
+    public static final Class<Model> MODEL_CLASS = Model.class;
+
     public static final String UTF_8 = "UTF-8";
 
     public static final String ATTR_ID = "id";
@@ -75,15 +82,23 @@ public class Data {
 
     public static final String ATTR_PASSWORD = "password";
 
+    public static final String ATTR_OLD_PASSWORD = "oldPassword";
+
+    public static final String ATTR_ROLES = "roles";
+
     public static final String ATTR_USER_ID = "user_id";
 
     public static final String ATTR_ROLE_ID = "role_id";
 
-    public static final String ROLE_NAME = "roleName";
+    public static final String ATTR_ROLE_NAME = "roleName";
 
     public static final Class<Role> ROLE_CLASS = Role.class;
 
+    public static final Class<Customer> CUSTOMER_CLASS = Customer.class;
+
     public static final Class<User> USER_CLASS = User.class;
+
+    public static final Class<Product> PRODUCT_CLASS = Product.class;
 
     public static final int FIRST_INDEX = 0;
 
@@ -95,6 +110,51 @@ public class Data {
     public static final String PAGE_SIZE = "pageSize";
 
     public static final String PREV_URL = "prevURL";
+
+    //user entity
+    public static final String COMMAND_USERS = "users";
+
+    public static final String ADD_USERS = "createUser";
+
+    public static final String SAVE_USERS = "saveUser";
+
+    public static final String EDIT_PASS_USERS = "editPassUser";
+
+    public static final String UPDATE_PASS_USERS = "updatePassUser";
+
+    public static final String ATTR_SEARCH_LOGIN = "searchLogin";
+
+    public static final String ATTR_USER = "user";
+
+    public static final String USERS_JSP = "view/user/users.jsp";
+
+    public static final String ADD_USER_JSP = "view/user/addUser.jsp";
+
+    public static final String EDIT_PASS_USER_JSP = "view/user/editPassUser.jsp";
+
+    //role entity
+    public static final String COMMAND_ROLES = "roles";
+
+    public static final String ATTR_ROLE = "role";
+
+    public static final String ATTR_SEARCH_ROLE_NAME = "searchRoleName";
+
+    public static final String ADD_ROLE = "createRole";
+
+    public static final String SAVE_ROLE = "saveRole";
+
+    public static final String EDIT_ROLE = "editRole";
+
+    public static final String UPDATE_ROLE = "updateRole";
+
+    public static final String DELETE_ROLE = "deleteRole";
+
+    public static final String ROLES_JSP = "view/role/roles.jsp";
+
+    public static final String ADD_ROLE_JSP = "view/role/addRole.jsp";
+
+    public static final String EDIT_ROLE_JSP = "view/role/editRole.jsp";
+
 
     //addresses entity
     public static final String ATTR_CITY = "city";
@@ -124,4 +184,96 @@ public class Data {
     public static final String ADD_ADDRESS_JSP = "view/address/addAddress.jsp";
 
     public static final String EDIT_ADDRESS_JSP = "view/address/editAddress.jsp";
+
+    //customer entity
+    public static final String ATTR_NAME = "name";
+
+    public static final String ATTR_SURNAME = "surname";
+
+    public static final String ATTR_PHONE = "phone";
+
+    public static final String ATTR_EMAIL = "email";
+
+    public static final String ATTR_SEARCH_NAME = "searchName";
+
+    public static final String ATTR_SEARCH_SURNAME = "searchSurname";
+    public static final String ATTR_SEARCH_PHONE = "searchPhone";
+
+    public static final String ATTR_SEARCH_EMAIL = "searchEmail";
+
+    public static final String COMMAND_CUSTOMERS = "customers";
+
+    public static final String ATTR_CUSTOMER = "customer";
+
+    public static final String ADD_CUSTOMER = "createCustomer";
+
+    public static final String SAVE_CUSTOMER = "saveCustomer";
+
+    public static final String EDIT_CUSTOMER = "editCustomer";
+
+    public static final String UPDATE_CUSTOMER = "updateCustomer";
+
+    public static final String DELETE_CUSTOMER = "deleteCustomer";
+
+    public static final String CUSTOMERS_JSP = "view/customer/customers.jsp";
+
+    public static final String ADD_CUSTOMER_JSP = "view/customer/addCustomer.jsp";
+
+    public static final String EDIT_CUSTOMER_JSP = "view/customer/editCustomer.jsp";
+
+    //model entity
+    public static final String COL_NAME_MODEL = "name_model";
+
+    public static final String ATTR_BRAND = "brand";
+
+    public static final String ATTR_NAME_MODEL = "nameModel";
+
+    public static final String ATTR_SEARCH_BRAND = "searchBrand";
+
+    public static final String ATTR_SEARCH_NAME_MODEL = "searchNameModel";
+
+    public static final String COMMAND_MODELS = "models";
+
+    public static final String ATTR_MODEL = "model";
+
+    public static final String ADD_MODEL = "createModel";
+
+    public static final String SAVE_MODEL = "saveModel";
+
+    public static final String EDIT_MODEL = "editModel";
+
+    public static final String UPDATE_MODEL = "updateModel";
+
+    public static final String DELETE_MODEL = "deleteModel";
+
+    public static final String MODELS_JSP = "view/model/models.jsp";
+
+    public static final String ADD_MODEL_JSP = "view/model/addModel.jsp";
+
+    public static final String EDIT_MODEL_JSP = "view/model/editModel.jsp";
+
+    //product entity
+    public static final String ATTR_PRICE = "price";
+
+    public static final String ATTR_SEARCH_PRICE = "searchPrice";
+
+    public static final String COMMAND_PRODUCTS = "products";
+
+    public static final String ATTR_PRODUCT = "product";
+
+    public static final String ADD_PRODUCT = "createProduct";
+
+    public static final String SAVE_PRODUCT = "saveProduct";
+
+    public static final String EDIT_PRODUCT = "editProduct";
+
+    public static final String UPDATE_PRODUCT = "updateProduct";
+
+    public static final String DELETE_PRODUCT = "deleteProduct";
+
+    public static final String PRODUCTS_JSP = "view/product/products.jsp";
+
+    public static final String ADD_PRODUCT_JSP = "view/product/addProduct.jsp";
+
+    public static final String EDIT_PRODUCT_JSP = "view/product/editProduct.jsp";
 }

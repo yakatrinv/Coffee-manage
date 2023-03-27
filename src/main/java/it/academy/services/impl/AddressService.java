@@ -22,23 +22,23 @@ public class AddressService implements IAddressService {
             = new AddressRepository();
 
     @Override
-    public AddressDto createAddress(AddressDto addressDto) {
-        Address entity = mapper.dtoToEntity(addressDto);
-        Address address = repository.save(entity);
-        return mapper.entityToDto(address);
+    public AddressDto createAddress(AddressDto entityDto) {
+        Address entity = mapper.dtoToEntity(entityDto);
+        entity = repository.save(entity);
+        return mapper.entityToDto(entity);
     }
 
     @Override
-    public AddressDto updateAddress(AddressDto addressDto) {
-        Address entity = mapper.dtoToEntity(addressDto);
-        Address customer = repository.update(entity);
-        return mapper.entityToDto(customer);
+    public AddressDto updateAddress(AddressDto entityDto) {
+        Address entity = mapper.dtoToEntity(entityDto);
+        entity = repository.update(entity);
+        return mapper.entityToDto(entity);
     }
 
     @Override
     public AddressDto findAddressById(Serializable id) {
-        Address customer = repository.getById(id);
-        return mapper.entityToDto(customer);
+        Address entity = repository.getById(id);
+        return mapper.entityToDto(entity);
     }
 
     @Override

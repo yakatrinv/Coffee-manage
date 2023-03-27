@@ -6,7 +6,9 @@
 </head>
 <body>
 
-<h3>Error log in</h3>
+<h3>Стараница ошибки</h3>
+
+${message}
 
 <a href="${pageContext.request.contextPath}/coffee-manage?command=getLoginPage">Home page</a>
 </body>
