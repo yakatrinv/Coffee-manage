@@ -49,7 +49,7 @@ public class User implements Serializable {
     @Column
     private String salt;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = USER_ROLE,
             joinColumns = {@JoinColumn(name = ATTR_USER_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_ROLE_ID)})

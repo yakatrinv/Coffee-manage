@@ -12,7 +12,7 @@ import java.util.List;
 
 import static it.academy.utils.Data.FIRST_INDEX;
 import static it.academy.utils.Data.ROLE_CLASS;
-import static it.academy.utils.Data.ROLE_NAME;
+import static it.academy.utils.Data.ATTR_ROLE_NAME;
 
 public class RoleRepository extends CrudRepository<Role>
         implements IRoleRepository {
@@ -34,7 +34,7 @@ public class RoleRepository extends CrudRepository<Role>
             Root<Role> roleRoot = criteria.from(ROLE_CLASS);
 
             criteria.select(roleRoot)
-                    .where(builder.equal(roleRoot.get(ROLE_NAME), roleName));
+                    .where(builder.equal(roleRoot.get(ATTR_ROLE_NAME), roleName));
 
             List<Role> resultList = entityManager.createQuery(criteria).getResultList();
             if (!resultList.isEmpty()) {

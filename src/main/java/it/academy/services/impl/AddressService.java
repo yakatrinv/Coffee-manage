@@ -24,21 +24,21 @@ public class AddressService implements IAddressService {
     @Override
     public AddressDto createAddress(AddressDto addressDto) {
         Address entity = mapper.dtoToEntity(addressDto);
-        Address address = repository.save(entity);
-        return mapper.entityToDto(address);
+        entity = repository.save(entity);
+        return mapper.entityToDto(entity);
     }
 
     @Override
     public AddressDto updateAddress(AddressDto addressDto) {
         Address entity = mapper.dtoToEntity(addressDto);
-        Address customer = repository.update(entity);
-        return mapper.entityToDto(customer);
+        entity = repository.update(entity);
+        return mapper.entityToDto(entity);
     }
 
     @Override
     public AddressDto findAddressById(Serializable id) {
-        Address customer = repository.getById(id);
-        return mapper.entityToDto(customer);
+        Address entity = repository.getById(id);
+        return mapper.entityToDto(entity);
     }
 
     @Override

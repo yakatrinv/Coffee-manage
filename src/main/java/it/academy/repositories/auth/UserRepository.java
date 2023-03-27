@@ -128,6 +128,16 @@ public class UserRepository extends CrudRepository<User>
         return super.save(user);
     }
 
+    @Override
+    public User updatePass(User user, String newPassword) {
+        byte[] salt = encryptService.fromHex(user.getSalt());
+        byte[] encryptedPassword = encryptService
+                .getEncryptedPassword(newPassword, salt);
+        user.setPassword(encryptService.toHex(encryptedPassword));
+
+        return super.update(user);
+    }
+
     private void setEncryptData(User user) {
         byte[] salt = encryptService.generateSalt();
         byte[] encryptedPassword = encryptService

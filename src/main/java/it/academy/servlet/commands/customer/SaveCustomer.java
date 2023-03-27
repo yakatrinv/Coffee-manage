@@ -1,4 +1,4 @@
-package it.academy.servlet.commands.auth;
+package it.academy.servlet.commands.customer;
 
 import it.academy.converter.IConverter;
 import it.academy.converter.impl.CustomerConverter;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import static it.academy.utils.Data.ATTR_LOGIN;
 import static it.academy.utils.Data.ATTR_PASSWORD;
-import static it.academy.utils.Data.LOGIN_JSP;
+import static it.academy.utils.Data.PREV_URL;
 
-public class Registration implements Command {
+public class SaveCustomer implements Command {
     private final ICustomerService customerService = new CustomerService();
 
     private final IConverter<CustomerDto> converter = new CustomerConverter();
@@ -27,6 +27,6 @@ public class Registration implements Command {
         CustomerDto customerDto = converter.convertToDto(request);
         customerService.createCustomer(login, password, customerDto);
 
-        return LOGIN_JSP;
+        return request.getParameter(PREV_URL);
     }
 }

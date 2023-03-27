@@ -10,7 +10,11 @@
 
 <h3>Coffee manage project</h3>
 <br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=users">Пользователи</a>
+<br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=addresses">Адреса</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=customers">Покупатели</a>
 
 </body>
 </html>

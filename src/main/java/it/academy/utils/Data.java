@@ -1,6 +1,7 @@
 package it.academy.utils;
 
 import it.academy.models.Address;
+import it.academy.models.Customer;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
@@ -22,7 +23,9 @@ public class Data {
 
     public static final String ATTR_USER_ROLES = "userRoles";
 
-    public static final String COL_ROLES = "roles";
+    public static final String ATTR_MESSAGE = "message";
+
+    public static final String ERROR_AUTH = "Ошибка авторизации";
 
     public static final String MAIN_JSP = "view/general/main.jsp";
 
@@ -75,13 +78,19 @@ public class Data {
 
     public static final String ATTR_PASSWORD = "password";
 
+    public static final String ATTR_OLD_PASSWORD = "oldPassword";
+
+    public static final String ATTR_ROLES = "roles";
+
     public static final String ATTR_USER_ID = "user_id";
 
     public static final String ATTR_ROLE_ID = "role_id";
 
-    public static final String ROLE_NAME = "roleName";
+    public static final String ATTR_ROLE_NAME = "roleName";
 
     public static final Class<Role> ROLE_CLASS = Role.class;
+
+    public static final Class<Customer> CUSTOMER_CLASS = Customer.class;
 
     public static final Class<User> USER_CLASS = User.class;
 
@@ -95,6 +104,27 @@ public class Data {
     public static final String PAGE_SIZE = "pageSize";
 
     public static final String PREV_URL = "prevURL";
+
+    //user entity
+    public static final String COMMAND_USERS = "users";
+
+    public static final String ADD_USERS = "createUser";
+
+    public static final String SAVE_USERS = "saveUser";
+
+    public static final String EDIT_PASS_USERS = "editPassUser";
+
+    public static final String UPDATE_PASS_USERS = "updatePassUser";
+
+    public static final String ATTR_SEARCH_LOGIN = "searchLogin";
+
+    public static final String ATTR_USER = "user";
+
+    public static final String USERS_JSP = "view/user/users.jsp";
+
+    public static final String ADD_USER_JSP = "view/user/addUser.jsp";
+
+    public static final String EDIT_PASS_USER_JSP = "view/user/editPassUser.jsp";
 
     //addresses entity
     public static final String ATTR_CITY = "city";
@@ -124,4 +154,40 @@ public class Data {
     public static final String ADD_ADDRESS_JSP = "view/address/addAddress.jsp";
 
     public static final String EDIT_ADDRESS_JSP = "view/address/editAddress.jsp";
+
+    //customer entity
+    public static final String ATTR_NAME = "name";
+
+    public static final String ATTR_SURNAME = "surname";
+
+    public static final String ATTR_PHONE = "phone";
+
+    public static final String ATTR_EMAIL = "email";
+
+    public static final String ATTR_SEARCH_NAME = "searchName";
+
+    public static final String ATTR_SEARCH_SURNAME = "searchSurname";
+    public static final String ATTR_SEARCH_PHONE = "searchPhone";
+
+    public static final String ATTR_SEARCH_EMAIL = "searchEmail";
+
+    public static final String COMMAND_CUSTOMERS = "customers";
+
+    public static final String ATTR_CUSTOMER = "customer";
+
+    public static final String ADD_CUSTOMER = "createCustomer";
+
+    public static final String SAVE_CUSTOMER = "saveCustomer";
+
+    public static final String EDIT_CUSTOMER = "editCustomer";
+
+    public static final String UPDATE_CUSTOMER = "updateCustomer";
+
+    public static final String DELETE_CUSTOMER = "deleteCustomer";
+
+    public static final String CUSTOMERS_JSP = "view/customer/customers.jsp";
+
+    public static final String ADD_CUSTOMER_JSP = "view/customer/addCustomer.jsp";
+
+    public static final String EDIT_CUSTOMER_JSP = "view/customer/editCustomer.jsp";
 }
