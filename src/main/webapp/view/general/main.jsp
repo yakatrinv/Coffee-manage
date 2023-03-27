@@ -12,6 +12,8 @@
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=users">Пользователи</a>
 <br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=roles">Роли</a>
+<br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=addresses">Адреса</a>
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=customers">Покупатели</a>

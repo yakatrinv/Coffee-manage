@@ -24,7 +24,7 @@
 
 <form action="coffee-manage">
     <input type="hidden" name="prevURL" value="/coffee-manage?${pageContext.request.queryString}"/>
-    <button type="submit" name="command" value="createUser" class="buttonClass">ДОБАВИТЬ Пользователя</button>
+    <button type="submit" name="command" value="createUser" class="buttonClass">ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ</button>
 </form>
 <br>
 

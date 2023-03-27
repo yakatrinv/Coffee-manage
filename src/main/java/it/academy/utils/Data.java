@@ -126,6 +126,30 @@ public class Data {
 
     public static final String EDIT_PASS_USER_JSP = "view/user/editPassUser.jsp";
 
+    //role entity
+    public static final String COMMAND_ROLES = "roles";
+
+    public static final String ATTR_ROLE = "role";
+
+    public static final String ATTR_SEARCH_ROLE_NAME = "searchRoleName";
+
+    public static final String ADD_ROLE = "createRole";
+
+    public static final String SAVE_ROLE = "saveRole";
+
+    public static final String EDIT_ROLE = "editRole";
+
+    public static final String UPDATE_ROLE = "updateRole";
+
+    public static final String DELETE_ROLE = "deleteRole";
+
+    public static final String ROLES_JSP = "view/role/roles.jsp";
+
+    public static final String ADD_ROLE_JSP = "view/role/addRole.jsp";
+
+    public static final String EDIT_ROLE_JSP = "view/role/editRole.jsp";
+
+
     //addresses entity
     public static final String ATTR_CITY = "city";
 
