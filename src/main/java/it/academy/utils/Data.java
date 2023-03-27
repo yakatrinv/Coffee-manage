@@ -3,6 +3,7 @@ package it.academy.utils;
 import it.academy.models.Address;
 import it.academy.models.Customer;
 import it.academy.models.Model;
+import it.academy.models.Product;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
@@ -63,7 +64,6 @@ public class Data {
 
     public static final String UTF_8 = "UTF-8";
 
-
     public static final String ATTR_ID = "id";
 
     public static final int FIRST_PAGE = 1;
@@ -97,6 +97,8 @@ public class Data {
     public static final Class<Customer> CUSTOMER_CLASS = Customer.class;
 
     public static final Class<User> USER_CLASS = User.class;
+
+    public static final Class<Product> PRODUCT_CLASS = Product.class;
 
     public static final int FIRST_INDEX = 0;
 
@@ -220,6 +222,8 @@ public class Data {
     public static final String EDIT_CUSTOMER_JSP = "view/customer/editCustomer.jsp";
 
     //model entity
+    public static final String COL_NAME_MODEL = "name_model";
+
     public static final String ATTR_BRAND = "brand";
 
     public static final String ATTR_NAME_MODEL = "nameModel";
@@ -247,4 +251,29 @@ public class Data {
     public static final String ADD_MODEL_JSP = "view/model/addModel.jsp";
 
     public static final String EDIT_MODEL_JSP = "view/model/editModel.jsp";
+
+    //product entity
+    public static final String ATTR_PRICE = "price";
+
+    public static final String ATTR_SEARCH_PRICE = "searchPrice";
+
+    public static final String COMMAND_PRODUCTS = "products";
+
+    public static final String ATTR_PRODUCT = "product";
+
+    public static final String ADD_PRODUCT = "createProduct";
+
+    public static final String SAVE_PRODUCT = "saveProduct";
+
+    public static final String EDIT_PRODUCT = "editProduct";
+
+    public static final String UPDATE_PRODUCT = "updateProduct";
+
+    public static final String DELETE_PRODUCT = "deleteProduct";
+
+    public static final String PRODUCTS_JSP = "view/product/products.jsp";
+
+    public static final String ADD_PRODUCT_JSP = "view/product/addProduct.jsp";
+
+    public static final String EDIT_PRODUCT_JSP = "view/product/editProduct.jsp";
 }

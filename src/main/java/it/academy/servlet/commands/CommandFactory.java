@@ -23,6 +23,12 @@ import it.academy.servlet.commands.model.EditModel;
 import it.academy.servlet.commands.model.ListModels;
 import it.academy.servlet.commands.model.SaveModel;
 import it.academy.servlet.commands.model.UpdateModel;
+import it.academy.servlet.commands.product.CreateProduct;
+import it.academy.servlet.commands.product.DeleteProduct;
+import it.academy.servlet.commands.product.EditProduct;
+import it.academy.servlet.commands.product.ListProducts;
+import it.academy.servlet.commands.product.SaveProduct;
+import it.academy.servlet.commands.product.UpdateProduct;
 import it.academy.servlet.commands.role.CreateRole;
 import it.academy.servlet.commands.role.DeleteRole;
 import it.academy.servlet.commands.role.EditRole;
@@ -40,21 +46,25 @@ import java.util.HashMap;
 import static it.academy.utils.Data.ADD_ADDRESS;
 import static it.academy.utils.Data.ADD_CUSTOMER;
 import static it.academy.utils.Data.ADD_MODEL;
+import static it.academy.utils.Data.ADD_PRODUCT;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
 import static it.academy.utils.Data.COMMAND_CUSTOMERS;
 import static it.academy.utils.Data.COMMAND_MODELS;
+import static it.academy.utils.Data.COMMAND_PRODUCTS;
 import static it.academy.utils.Data.COMMAND_ROLES;
 import static it.academy.utils.Data.COMMAND_USERS;
 import static it.academy.utils.Data.DELETE_ADDRESS;
 import static it.academy.utils.Data.DELETE_CUSTOMER;
 import static it.academy.utils.Data.DELETE_MODEL;
+import static it.academy.utils.Data.DELETE_PRODUCT;
 import static it.academy.utils.Data.DELETE_ROLE;
 import static it.academy.utils.Data.EDIT_ADDRESS;
 import static it.academy.utils.Data.EDIT_CUSTOMER;
 import static it.academy.utils.Data.EDIT_MODEL;
 import static it.academy.utils.Data.EDIT_PASS_USERS;
+import static it.academy.utils.Data.EDIT_PRODUCT;
 import static it.academy.utils.Data.EDIT_ROLE;
 import static it.academy.utils.Data.GET_LOGIN_PAGE;
 import static it.academy.utils.Data.GET_REG_PAGE;
@@ -64,12 +74,14 @@ import static it.academy.utils.Data.REGISTRATION;
 import static it.academy.utils.Data.SAVE_ADDRESS;
 import static it.academy.utils.Data.SAVE_CUSTOMER;
 import static it.academy.utils.Data.SAVE_MODEL;
+import static it.academy.utils.Data.SAVE_PRODUCT;
 import static it.academy.utils.Data.SAVE_ROLE;
 import static it.academy.utils.Data.SAVE_USERS;
 import static it.academy.utils.Data.UPDATE_ADDRESS;
 import static it.academy.utils.Data.UPDATE_CUSTOMER;
 import static it.academy.utils.Data.UPDATE_MODEL;
 import static it.academy.utils.Data.UPDATE_PASS_USERS;
+import static it.academy.utils.Data.UPDATE_PRODUCT;
 import static it.academy.utils.Data.UPDATE_ROLE;
 
 public final class CommandFactory {
@@ -123,6 +135,14 @@ public final class CommandFactory {
         commands.put(EDIT_MODEL, new EditModel());
         commands.put(UPDATE_MODEL, new UpdateModel());
         commands.put(DELETE_MODEL, new DeleteModel());
+
+        //product
+        commands.put(COMMAND_PRODUCTS, new ListProducts());
+        commands.put(ADD_PRODUCT, new CreateProduct());
+        commands.put(SAVE_PRODUCT, new SaveProduct());
+        commands.put(EDIT_PRODUCT, new EditProduct());
+        commands.put(UPDATE_PRODUCT, new UpdateProduct());
+        commands.put(DELETE_PRODUCT, new DeleteProduct());
     }
 
     public static CommandFactory getInstance() {

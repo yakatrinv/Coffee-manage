@@ -2,6 +2,7 @@ package it.academy.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,24 +16,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-import static it.academy.utils.Data.COL_NAME_MODEL;
-
 @Builder
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(of = {"id", "name", "price"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
-public class Model implements Serializable {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
     @Column
-    private String brand;
+    private String name;
 
-    @Column(name = COL_NAME_MODEL)
-    private String nameModel;
+    @Column
+    private float price;
 }

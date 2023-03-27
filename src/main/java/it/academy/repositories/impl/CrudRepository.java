@@ -140,6 +140,11 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                                             PERCENT_STRING + value +
                                                     PERCENT_STRING));
                         }
+                    } else if (value.getClass() == Float.class) {
+                        if ((Float) value != 0) {
+                            predicates.add(criteriaBuilder
+                                    .ge(root.get(key), (Number) value));
+                        }
                     } else {
                         predicates.add(criteriaBuilder
                                 .equal(root.get(key), value));
@@ -212,6 +217,11 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                                                     PERCENT_STRING + value +
                                                             PERCENT_STRING));
                         }
+                    } else if (value.getClass() == Float.class) {
+                        if ((Float) value != 0) {
+                            predicates.add(cbCount
+                                    .ge(rootCount.get(key), (Number) value));
+                        }
                     } else {
                         predicates.add(cbCount
                                 .equal(rootCount.get(key), value));
@@ -233,7 +243,8 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                     .getSingleResult();
 
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         } finally {

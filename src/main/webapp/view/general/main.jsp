@@ -19,6 +19,7 @@
 <a href="${pageContext.request.contextPath}/coffee-manage?command=customers">Покупатели</a>
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=models">Модели</a>
-
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=products">Продукция</a>
 </body>
 </html>
