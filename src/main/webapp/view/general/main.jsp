@@ -21,5 +21,8 @@
 <a href="${pageContext.request.contextPath}/coffee-manage?command=models">Модели</a>
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=products">Продукция</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=machines">Аппараты</a>
+
 </body>
 </html>

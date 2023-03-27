@@ -11,6 +11,7 @@ import it.academy.repositories.impl.ModelRepository;
 import it.academy.services.IModelService;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ModelService implements IModelService {
     private final Mapper<Model, ModelDto> mapper = new ModelMapper();
@@ -50,5 +51,14 @@ public class ModelService implements IModelService {
     public Pageable<ModelDto> getPageableRecords(Pageable<ModelDto> pageableDto) {
         Pageable<Model> pageable = pageMapper.dtoToEntity(pageableDto);
         return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+    }
+
+    @Override
+    public List<ModelDto> findAllModels() {
+        List<Model> entities = repository.getAll();
+        return entities
+                .stream()
+                .map(mapper::entityToDto)
+                .toList();
     }
 }

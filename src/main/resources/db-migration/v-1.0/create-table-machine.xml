@@ -9,54 +9,54 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="serialNumber" type="varchar(50)"/>
+            <column name="serial_number" type="varchar(50)"/>
             <column name="address_id" type="int">
-                <constraints foreignKeyName="machine_address_id_fk" references="address(id)" nullable="false"/>
+                <constraints foreignKeyName="machine_address_id_fk" references="address(id)"/>
             </column>
             <column name="model_id" type="int">
-                <constraints foreignKeyName="machine_model_id_fk" references="model(id)" nullable="false"/>
+                <constraints foreignKeyName="machine_model_id_fk" references="model(id)"/>
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="insert-machines" author="Katerina">
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y1</column>
+            <column name="serial_number">1N123Y1</column>
             <column name="address_id">1</column>
             <column name="model_id">1</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y2</column>
+            <column name="serial_number">1N123Y2</column>
             <column name="address_id">2</column>
             <column name="model_id">2</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y3</column>
+            <column name="serial_number">1N123Y3</column>
             <column name="address_id">3</column>
             <column name="model_id">3</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y4</column>
+            <column name="serial_number">1N123Y4</column>
             <column name="address_id">4</column>
             <column name="model_id">4</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y5</column>
+            <column name="serial_number">1N123Y5</column>
             <column name="address_id">5</column>
             <column name="model_id">5</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y6</column>
+            <column name="serial_number">1N123Y6</column>
             <column name="address_id">6</column>
             <column name="model_id">6</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y7</column>
+            <column name="serial_number">1N123Y7</column>
             <column name="address_id">7</column>
             <column name="model_id">7</column>
         </insert>
         <insert tableName="machine">
-            <column name="serialNumber">1N123Y8</column>
+            <column name="serial_number">1N123Y8</column>
             <column name="address_id">8</column>
             <column name="model_id">8</column>
         </insert>

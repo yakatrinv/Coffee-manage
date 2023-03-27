@@ -17,6 +17,12 @@ import it.academy.servlet.commands.customer.EditCustomer;
 import it.academy.servlet.commands.customer.ListCustomers;
 import it.academy.servlet.commands.customer.SaveCustomer;
 import it.academy.servlet.commands.customer.UpdateCustomer;
+import it.academy.servlet.commands.machine.CreateMachine;
+import it.academy.servlet.commands.machine.DeleteMachine;
+import it.academy.servlet.commands.machine.EditMachine;
+import it.academy.servlet.commands.machine.ListMachines;
+import it.academy.servlet.commands.machine.SaveMachine;
+import it.academy.servlet.commands.machine.UpdateMachine;
 import it.academy.servlet.commands.model.CreateModel;
 import it.academy.servlet.commands.model.DeleteModel;
 import it.academy.servlet.commands.model.EditModel;
@@ -45,23 +51,27 @@ import java.util.HashMap;
 
 import static it.academy.utils.Data.ADD_ADDRESS;
 import static it.academy.utils.Data.ADD_CUSTOMER;
+import static it.academy.utils.Data.ADD_MACHINE;
 import static it.academy.utils.Data.ADD_MODEL;
 import static it.academy.utils.Data.ADD_PRODUCT;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
 import static it.academy.utils.Data.COMMAND_CUSTOMERS;
+import static it.academy.utils.Data.COMMAND_MACHINES;
 import static it.academy.utils.Data.COMMAND_MODELS;
 import static it.academy.utils.Data.COMMAND_PRODUCTS;
 import static it.academy.utils.Data.COMMAND_ROLES;
 import static it.academy.utils.Data.COMMAND_USERS;
 import static it.academy.utils.Data.DELETE_ADDRESS;
 import static it.academy.utils.Data.DELETE_CUSTOMER;
+import static it.academy.utils.Data.DELETE_MACHINE;
 import static it.academy.utils.Data.DELETE_MODEL;
 import static it.academy.utils.Data.DELETE_PRODUCT;
 import static it.academy.utils.Data.DELETE_ROLE;
 import static it.academy.utils.Data.EDIT_ADDRESS;
 import static it.academy.utils.Data.EDIT_CUSTOMER;
+import static it.academy.utils.Data.EDIT_MACHINE;
 import static it.academy.utils.Data.EDIT_MODEL;
 import static it.academy.utils.Data.EDIT_PASS_USERS;
 import static it.academy.utils.Data.EDIT_PRODUCT;
@@ -73,12 +83,14 @@ import static it.academy.utils.Data.LOGOUT_COMMAND;
 import static it.academy.utils.Data.REGISTRATION;
 import static it.academy.utils.Data.SAVE_ADDRESS;
 import static it.academy.utils.Data.SAVE_CUSTOMER;
+import static it.academy.utils.Data.SAVE_MACHINE;
 import static it.academy.utils.Data.SAVE_MODEL;
 import static it.academy.utils.Data.SAVE_PRODUCT;
 import static it.academy.utils.Data.SAVE_ROLE;
 import static it.academy.utils.Data.SAVE_USERS;
 import static it.academy.utils.Data.UPDATE_ADDRESS;
 import static it.academy.utils.Data.UPDATE_CUSTOMER;
+import static it.academy.utils.Data.UPDATE_MACHINE;
 import static it.academy.utils.Data.UPDATE_MODEL;
 import static it.academy.utils.Data.UPDATE_PASS_USERS;
 import static it.academy.utils.Data.UPDATE_PRODUCT;
@@ -143,6 +155,14 @@ public final class CommandFactory {
         commands.put(EDIT_PRODUCT, new EditProduct());
         commands.put(UPDATE_PRODUCT, new UpdateProduct());
         commands.put(DELETE_PRODUCT, new DeleteProduct());
+
+        //machines
+        commands.put(COMMAND_MACHINES, new ListMachines());
+        commands.put(ADD_MACHINE, new CreateMachine());
+        commands.put(SAVE_MACHINE, new SaveMachine());
+        commands.put(EDIT_MACHINE, new EditMachine());
+        commands.put(UPDATE_MACHINE, new UpdateMachine());
+        commands.put(DELETE_MACHINE, new DeleteMachine());
     }
 
     public static CommandFactory getInstance() {

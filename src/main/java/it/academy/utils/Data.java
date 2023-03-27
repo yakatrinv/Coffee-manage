@@ -2,6 +2,7 @@ package it.academy.utils;
 
 import it.academy.models.Address;
 import it.academy.models.Customer;
+import it.academy.models.Machine;
 import it.academy.models.Model;
 import it.academy.models.Product;
 import it.academy.models.auth.Role;
@@ -61,6 +62,8 @@ public class Data {
     public static final Class<Address> ADDRESS_CLASS = Address.class;
 
     public static final Class<Model> MODEL_CLASS = Model.class;
+
+    public static final Class<Machine> MACHINE_CLASS = Machine.class;
 
     public static final String UTF_8 = "UTF-8";
 
@@ -276,4 +279,45 @@ public class Data {
     public static final String ADD_PRODUCT_JSP = "view/product/addProduct.jsp";
 
     public static final String EDIT_PRODUCT_JSP = "view/product/editProduct.jsp";
+
+    //machine entity
+    public static final String MACHINE_PRODUCT = "machine_product";
+
+    public static final String ATTR_ADDRESS_ID = "address_id";
+
+    public static final String ATTR_MODEL_ID = "model_id";
+
+    public static final String ATTR_PRODUCT_ID = "product_id";
+
+    public static final String ATTR_MACHINE_ID = "machine_id";
+
+    public static final String COL_SERIAL_NUMBER = "serial_number";
+
+    public static final String ATTR_SERIAL_NUMBER = "serialNumber";
+
+    public static final String ATTR_SEARCH_SERIAL_NUMBER = "searchSerialNumber";
+
+    public static final String COMMAND_MACHINES = "machines";
+
+    public static final String ATTR_MACHINE = "machine";
+
+    public static final String ATTR_MODELS = "models";
+
+    public static final String ATTR_ADDRESSES = "addresses";
+
+    public static final String ADD_MACHINE = "createMachine";
+
+    public static final String SAVE_MACHINE = "saveMachine";
+
+    public static final String EDIT_MACHINE = "editMachine";
+
+    public static final String UPDATE_MACHINE = "updateMachine";
+
+    public static final String DELETE_MACHINE = "deleteMachine";
+
+    public static final String MACHINES_JSP = "view/machine/machines.jsp";
+
+    public static final String ADD_MACHINE_JSP = "view/machine/addMachine.jsp";
+
+    public static final String EDIT_MACHINE_JSP = "view/machine/editMachine.jsp";
 }
