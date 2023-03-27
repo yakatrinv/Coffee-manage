@@ -17,6 +17,12 @@ import it.academy.servlet.commands.customer.EditCustomer;
 import it.academy.servlet.commands.customer.ListCustomers;
 import it.academy.servlet.commands.customer.SaveCustomer;
 import it.academy.servlet.commands.customer.UpdateCustomer;
+import it.academy.servlet.commands.model.CreateModel;
+import it.academy.servlet.commands.model.DeleteModel;
+import it.academy.servlet.commands.model.EditModel;
+import it.academy.servlet.commands.model.ListModels;
+import it.academy.servlet.commands.model.SaveModel;
+import it.academy.servlet.commands.model.UpdateModel;
 import it.academy.servlet.commands.role.CreateRole;
 import it.academy.servlet.commands.role.DeleteRole;
 import it.academy.servlet.commands.role.EditRole;
@@ -33,17 +39,21 @@ import java.util.HashMap;
 
 import static it.academy.utils.Data.ADD_ADDRESS;
 import static it.academy.utils.Data.ADD_CUSTOMER;
+import static it.academy.utils.Data.ADD_MODEL;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
 import static it.academy.utils.Data.COMMAND_CUSTOMERS;
+import static it.academy.utils.Data.COMMAND_MODELS;
 import static it.academy.utils.Data.COMMAND_ROLES;
 import static it.academy.utils.Data.COMMAND_USERS;
 import static it.academy.utils.Data.DELETE_ADDRESS;
 import static it.academy.utils.Data.DELETE_CUSTOMER;
+import static it.academy.utils.Data.DELETE_MODEL;
 import static it.academy.utils.Data.DELETE_ROLE;
 import static it.academy.utils.Data.EDIT_ADDRESS;
 import static it.academy.utils.Data.EDIT_CUSTOMER;
+import static it.academy.utils.Data.EDIT_MODEL;
 import static it.academy.utils.Data.EDIT_PASS_USERS;
 import static it.academy.utils.Data.EDIT_ROLE;
 import static it.academy.utils.Data.GET_LOGIN_PAGE;
@@ -53,10 +63,12 @@ import static it.academy.utils.Data.LOGOUT_COMMAND;
 import static it.academy.utils.Data.REGISTRATION;
 import static it.academy.utils.Data.SAVE_ADDRESS;
 import static it.academy.utils.Data.SAVE_CUSTOMER;
+import static it.academy.utils.Data.SAVE_MODEL;
 import static it.academy.utils.Data.SAVE_ROLE;
 import static it.academy.utils.Data.SAVE_USERS;
 import static it.academy.utils.Data.UPDATE_ADDRESS;
 import static it.academy.utils.Data.UPDATE_CUSTOMER;
+import static it.academy.utils.Data.UPDATE_MODEL;
 import static it.academy.utils.Data.UPDATE_PASS_USERS;
 import static it.academy.utils.Data.UPDATE_ROLE;
 
@@ -103,6 +115,14 @@ public final class CommandFactory {
         commands.put(EDIT_CUSTOMER, new EditCustomer());
         commands.put(UPDATE_CUSTOMER, new UpdateCustomer());
         commands.put(DELETE_CUSTOMER, new DeleteCustomer());
+
+        //model
+        commands.put(COMMAND_MODELS, new ListModels());
+        commands.put(ADD_MODEL, new CreateModel());
+        commands.put(SAVE_MODEL, new SaveModel());
+        commands.put(EDIT_MODEL, new EditModel());
+        commands.put(UPDATE_MODEL, new UpdateModel());
+        commands.put(DELETE_MODEL, new DeleteModel());
     }
 
     public static CommandFactory getInstance() {

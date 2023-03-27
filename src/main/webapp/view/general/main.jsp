@@ -17,6 +17,8 @@
 <a href="${pageContext.request.contextPath}/coffee-manage?command=addresses">Адреса</a>
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=customers">Покупатели</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=models">Модели</a>
 
 </body>
 </html>

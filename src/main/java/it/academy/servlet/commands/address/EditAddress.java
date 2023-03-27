@@ -14,14 +14,14 @@ import static it.academy.utils.Data.EDIT_ADDRESS_JSP;
 import static it.academy.utils.Data.PREV_URL;
 
 public class EditAddress implements Command {
-    private final IAddressService addressService = new AddressService();
+    private final IAddressService service = new AddressService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         AddressDto address;
         String id = request.getParameter(ATTR_ID);
         if (id != null) {
-            address = addressService.findAddressById(Integer.valueOf(id));
+            address = service.findAddressById(Integer.valueOf(id));
             request.setAttribute(ATTR_ADDRESS, address);
         }
 

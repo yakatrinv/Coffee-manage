@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import static it.academy.utils.Data.PREV_URL;
 
 public class SaveAddress implements Command {
-    private final IAddressService addressService = new AddressService();
+    private final IAddressService service = new AddressService();
 
     private final IConverter<AddressDto> converter = new AddressConverter();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         AddressDto addressDto = converter.convertToDto(request);
-        addressService.createAddress(addressDto);
+        service.createAddress(addressDto);
 
         return request.getParameter(PREV_URL);
     }
