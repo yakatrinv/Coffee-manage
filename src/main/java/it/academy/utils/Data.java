@@ -320,4 +320,23 @@ public class Data {
     public static final String ADD_MACHINE_JSP = "view/machine/addMachine.jsp";
 
     public static final String EDIT_MACHINE_JSP = "view/machine/editMachine.jsp";
+
+    //machine products entity
+    public static final String COMMAND_MACHINE_PRODUCTS = "machineProducts";
+
+    public static final String ADD_MACHINE_PRODUCT = "createMachineProduct";
+
+    public static final String SAVE_MACHINE_PRODUCT = "saveMachineProduct";
+
+    public static final String DELETE_MACHINE_PRODUCT = "deleteMachineProduct";
+
+    public static final String LIST_MACHINES = "machines";
+
+    public static final String ATTR_MACHINES = "machines";
+
+    public static final String ATTR_PRODUCTS = "products";
+
+    public static final String MACHINE_PRODUCTS_JSP = "view/machineProduct/machineProducts.jsp";
+
+    public static final String ADD_MACHINE_PRODUCTS_JSP = "view/machineProduct/addMachineProduct.jsp";
 }

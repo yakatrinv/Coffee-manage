@@ -11,6 +11,7 @@ import it.academy.repositories.impl.ProductRepository;
 import it.academy.services.IProductService;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ProductService implements IProductService {
     private final Mapper<Product, ProductDto> mapper = new ProductMapper();
@@ -50,5 +51,14 @@ public class ProductService implements IProductService {
     public Pageable<ProductDto> getPageableRecords(Pageable<ProductDto> pageableDto) {
         Pageable<Product> pageable = pageMapper.dtoToEntity(pageableDto);
         return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+    }
+
+    @Override
+    public List<ProductDto> findAllProducts() {
+        List<Product> entities = repository.getAll();
+        return entities
+                .stream()
+                .map(mapper::entityToDto)
+                .toList();
     }
 }

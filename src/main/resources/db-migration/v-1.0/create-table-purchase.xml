@@ -15,7 +15,7 @@
                 <constraints foreignKeyName="order_customer_id_fk" references="customer(id)" nullable="false"/>
             </column>
             <column name="discount_id" type="int">
-                <constraints foreignKeyName="order_discount_id_fk" references="discount(id)" nullable="false"/>
+                <constraints foreignKeyName="order_discount_id_fk" references="discount(id)"/>
             </column>
             <column name="machine_id" type="int">
                 <constraints foreignKeyName="order_machine_id_fk" references="machine(id)" nullable="false"/>

@@ -23,6 +23,8 @@
 <a href="${pageContext.request.contextPath}/coffee-manage?command=products">Продукция</a>
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=machines">Аппараты</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=machineProducts">Продукция аппарата</a>
 
 </body>
 </html>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import static it.academy.utils.Data.ADD_MACHINE_JSP;
+import static it.academy.utils.Data.ATTR_ADDRESSES;
+import static it.academy.utils.Data.ATTR_MODELS;
 import static it.academy.utils.Data.PREV_URL;
 
 public class CreateMachine implements Command {
@@ -30,8 +32,8 @@ public class CreateMachine implements Command {
 
         List<ModelDto> models = modelService.findAllModels();
 
-        request.setAttribute("models", models);
-        request.setAttribute("addresses", addresses);
+        request.setAttribute(ATTR_MODELS, models);
+        request.setAttribute(ATTR_ADDRESSES, addresses);
 
         return ADD_MACHINE_JSP;
     }
