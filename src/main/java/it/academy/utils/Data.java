@@ -2,8 +2,11 @@ package it.academy.utils;
 
 import it.academy.models.Address;
 import it.academy.models.Customer;
+import it.academy.models.Discount;
+import it.academy.models.Machine;
 import it.academy.models.Model;
 import it.academy.models.Product;
+import it.academy.models.Purchase;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
@@ -48,6 +51,8 @@ public class Data {
     public static final String REGISTRATION = "registration";
 
     //general
+    public static final int VALUE_ZERO = 0;
+
     public static final String ATTR_COMMAND = "command";
 
     public static final String PERSISTENCE_NAME = "property";
@@ -61,6 +66,12 @@ public class Data {
     public static final Class<Address> ADDRESS_CLASS = Address.class;
 
     public static final Class<Model> MODEL_CLASS = Model.class;
+
+    public static final Class<Machine> MACHINE_CLASS = Machine.class;
+
+    public static final Class<Discount> DISCOUNT_CLASS = Discount.class;
+
+    public static final Class<Purchase> PURCHASE_CLASS = Purchase.class;
 
     public static final String UTF_8 = "UTF-8";
 
@@ -276,4 +287,123 @@ public class Data {
     public static final String ADD_PRODUCT_JSP = "view/product/addProduct.jsp";
 
     public static final String EDIT_PRODUCT_JSP = "view/product/editProduct.jsp";
+
+    //machine entity
+    public static final String MACHINE_PRODUCT = "machine_product";
+
+    public static final String ATTR_ADDRESS_ID = "address_id";
+
+    public static final String ATTR_MODEL_ID = "model_id";
+
+    public static final String ATTR_PRODUCT_ID = "product_id";
+
+    public static final String ATTR_MACHINE_ID = "machine_id";
+
+    public static final String COL_SERIAL_NUMBER = "serial_number";
+
+    public static final String ATTR_SERIAL_NUMBER = "serialNumber";
+
+    public static final String ATTR_SEARCH_SERIAL_NUMBER = "searchSerialNumber";
+
+    public static final String COMMAND_MACHINES = "machines";
+
+    public static final String ATTR_MACHINE = "machine";
+
+    public static final String ATTR_MODELS = "models";
+
+    public static final String ATTR_ADDRESSES = "addresses";
+
+    public static final String ADD_MACHINE = "createMachine";
+
+    public static final String SAVE_MACHINE = "saveMachine";
+
+    public static final String EDIT_MACHINE = "editMachine";
+
+    public static final String UPDATE_MACHINE = "updateMachine";
+
+    public static final String DELETE_MACHINE = "deleteMachine";
+
+    public static final String MACHINES_JSP = "view/machine/machines.jsp";
+
+    public static final String ADD_MACHINE_JSP = "view/machine/addMachine.jsp";
+
+    public static final String EDIT_MACHINE_JSP = "view/machine/editMachine.jsp";
+
+    //machine products entity
+    public static final String COMMAND_MACHINE_PRODUCTS = "machineProducts";
+
+    public static final String ADD_MACHINE_PRODUCT = "createMachineProduct";
+
+    public static final String SAVE_MACHINE_PRODUCT = "saveMachineProduct";
+
+    public static final String DELETE_MACHINE_PRODUCT = "deleteMachineProduct";
+
+    public static final String LIST_MACHINES = "machines";
+
+    public static final String ATTR_MACHINES = "machines";
+
+    public static final String ATTR_PRODUCTS = "products";
+
+    public static final String MACHINE_PRODUCTS_JSP = "view/machineProduct/machineProducts.jsp";
+
+    public static final String ADD_MACHINE_PRODUCTS_JSP = "view/machineProduct/addMachineProduct.jsp";
+
+    //discount entity
+    public static final String ATTR_SUM = "sum";
+
+    public static final String ATTR_PERCENT = "percent";
+
+    public static final String ATTR_SEARCH_SUM = "searchSum";
+
+    public static final String ATTR_SEARCH_PERCENT = "searchPercent";
+
+    public static final String COMMAND_DISCOUNTS = "discounts";
+
+    public static final String ATTR_DISCOUNT = "discount";
+
+    public static final String ADD_DISCOUNT = "createDiscount";
+
+    public static final String SAVE_DISCOUNT = "saveDiscount";
+
+    public static final String EDIT_DISCOUNT = "editDiscount";
+
+    public static final String UPDATE_DISCOUNT = "updateDiscount";
+
+    public static final String DELETE_DISCOUNT = "deleteDiscount";
+
+    public static final String DISCOUNTS_JSP = "view/discount/discounts.jsp";
+
+    public static final String ADD_DISCOUNT_JSP = "view/discount/addDiscount.jsp";
+
+    public static final String EDIT_DISCOUNT_JSP = "view/discount/editDiscount.jsp";
+
+    //purchase entity
+    public static final String ATTR_DISCOUNT_ID = "discount_id";
+
+    public static final String ATTR_CUSTOMER_ID = "customer_id";
+
+    public static final String COMMAND_PURCHASES = "purchases";
+
+    public static final String ATTR_PURCHASE = "purchase";
+
+    public static final String ATTR_CUSTOMERS = "customers";
+
+    public static final String ATTR_DISCOUNTS = "discounts";
+
+    public static final String ADD_PURCHASE = "createPurchase";
+
+    public static final String SAVE_PURCHASE = "savePurchase";
+
+    public static final String EDIT_PURCHASE = "editPurchase";
+
+    public static final String UPDATE_PURCHASE = "updatePurchase";
+
+    public static final String DELETE_PURCHASE = "deletePurchase";
+
+    public static final String PURCHASES_JSP = "view/purchase/purchases.jsp";
+
+    public static final String ADD_PURCHASE_JSP = "view/purchase/addPurchase.jsp";
+
+    public static final String EDIT_PURCHASE_JSP = "view/purchase/editPurchase.jsp";
+
 }

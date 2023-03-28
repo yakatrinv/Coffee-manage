@@ -4,6 +4,7 @@ import it.academy.dto.AddressDto;
 import it.academy.models.pageable.Pageable;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface IAddressService {
     AddressDto createAddress(AddressDto addressDto);
@@ -15,4 +16,6 @@ public interface IAddressService {
     void deleteAddressById(Serializable id);
 
     Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageable);
+
+    List<AddressDto> findAllAddresses();
 }

@@ -10,46 +10,55 @@
 <%--@elvariable id="filterParam" type="java.lang.String"--%>
 
 <nav>
+    <c:choose>
+    <c:when test="${nameCommand eq 'machineProducts'}">
+        <c:set var="paramMachine" value="&machine_id=${requestScope.machine.id}"/>
+    </c:when>
+        <c:otherwise>
+            <c:set var="paramMachine" value=""/>
+        </c:otherwise>
+    </c:choose>
+
     <label>
         <select name="pageSize" onchange="document.location=this.options[this.selectedIndex].value">
             <c:choose>
 
                 <c:when test="${pageSize eq 3}">
                     <option selected hidden>3</option>
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=5&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=5&pageNumber=${pageNumber}${paramMachine}">
                         5
                     </option>
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=10&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=10&pageNumber=${pageNumber}${paramMachine}">
                         10
                     </option>
                 </c:when>
                 <c:when test="${pageSize eq 5}">
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=3&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=3&pageNumber=${pageNumber}${paramMachine}">
                         3
                     </option>
                     <option selected hidden>5</option>
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=10&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=10&pageNumber=${pageNumber}${paramMachine}">
                         10
                     </option>
                 </c:when>
                 <c:when test="${pageSize eq 10}">
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=3&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=3&pageNumber=${pageNumber}${paramMachine}">
                         3
                     </option>
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=5&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=5&pageNumber=${pageNumber}${paramMachine}">
                         5
                     </option>
                     <option selected hidden>10</option>
                 </c:when>
                 <c:otherwise>
                     <option selected
-                            value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=3&pageNumber=${pageNumber}">
+                            value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=3&pageNumber=${pageNumber}${paramMachine}">
                         3
                     </option>
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=5&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=5&pageNumber=${pageNumber}${paramMachine}">
                         5
                     </option>
-                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=10&pageNumber=${pageNumber}">
+                    <option value="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=10&pageNumber=${pageNumber}${paramMachine}">
                         10
                     </option>
                 </c:otherwise>
@@ -61,7 +70,7 @@
 
         <c:if test="${pageNumber ne 1}">
             <li>
-                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber-1}">предыдущая</a>
+                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber-1}${paramMachine}">предыдущая</a>
             </li>
         </c:if>
 
@@ -75,7 +84,7 @@
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}">${i}</a>
+                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}${paramMachine}">${i}</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
@@ -91,29 +100,29 @@
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}">${i}</a>
+                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}${paramMachine}">${i}</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
 
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=6">...</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=6${paramMachine}">...</a>
                 </li>
 
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${lastPageNumber}">${lastPageNumber}</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${lastPageNumber}${paramMachine}">${lastPageNumber}</a>
                 </li>
 
             </c:when>
 
             <c:when test="${pageNumber ge lastPageNumber-5}">
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=1">1</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=1${paramMachine}">1</a>
                 </li>
 
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${lastPageNumber-6}">...</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${lastPageNumber-6}${paramMachine}">...</a>
                 </li>
 
                 <c:forEach begin="${lastPageNumber-5}" end="${lastPageNumber}" var="i">
@@ -123,7 +132,7 @@
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}">${i}</a>
+                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}${paramMachine}">${i}</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
@@ -133,11 +142,11 @@
 
             <c:otherwise>
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=1">1</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=1${paramMachine}">1</a>
                 </li>
 
                 <li style="margin-right: 5px">
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber-3}">...</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber-3}${paramMachine}">...</a>
                 </li>
 
                 <c:forEach begin="${pageNumber-2}" end="${pageNumber+2}" var="i">
@@ -147,18 +156,18 @@
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}">${i}</a>
+                                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${i}${paramMachine}">${i}</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
 
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber+3}">...</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber+3}${paramMachine}">...</a>
                 </li>
 
                 <li>
-                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${lastPageNumber}">${lastPageNumber}</a>
+                    <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${lastPageNumber}${paramMachine}">${lastPageNumber}</a>
                 </li>
             </c:otherwise>
 
@@ -166,7 +175,7 @@
 
         <c:if test="${pageNumber lt lastPageNumber}">
             <li>
-                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber+1}">следующая</a>
+                <a href="coffee-manage?command=${nameCommand}${sortParam}${filterParam}&pageSize=${pageSize}&pageNumber=${pageNumber+1}${paramMachine}">следующая</a>
             </li>
         </c:if>
     </ul>

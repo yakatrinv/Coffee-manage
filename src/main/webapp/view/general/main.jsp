@@ -21,5 +21,14 @@
 <a href="${pageContext.request.contextPath}/coffee-manage?command=models">Модели</a>
 <br>
 <a href="${pageContext.request.contextPath}/coffee-manage?command=products">Продукция</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=machines">Аппараты</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=machineProducts">Продукция аппарата</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=discounts">Скидки</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=purchases">Покупки</a>
+
 </body>
 </html>

@@ -173,7 +173,8 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
             resultQuery.setFirstResult(offset);
             resultQuery.setMaxResults(pageable.getPageSize());
 
-            pageable.setRecords(resultQuery.getResultList());
+            List<TEntity> resultList = resultQuery.getResultList();
+            pageable.setRecords(resultList);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {

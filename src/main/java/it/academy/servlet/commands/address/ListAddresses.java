@@ -27,7 +27,7 @@ public class ListAddresses implements Command {
 
     private final IAddressConverter addressConverter = new AddressConverter();
 
-    private final IAddressService addressService = new AddressService();
+    private final IAddressService service = new AddressService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -38,7 +38,7 @@ public class ListAddresses implements Command {
         //добавить возможность сортировки по полям
         pageableDto.setSortField(ATTR_ID);
 
-        pageableDto = addressService.getPageableRecords(pageableDto);
+        pageableDto = service.getPageableRecords(pageableDto);
         request.setAttribute(PAGEABLE, pageableDto);
 
         if (pageableDto.getSearchFields().containsKey(ATTR_CITY)) {

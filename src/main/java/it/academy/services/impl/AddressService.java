@@ -11,6 +11,7 @@ import it.academy.repositories.impl.AddressRepository;
 import it.academy.services.IAddressService;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class AddressService implements IAddressService {
     private final Mapper<Address, AddressDto> mapper = new AddressMapper();
@@ -50,5 +51,14 @@ public class AddressService implements IAddressService {
     public Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageableDto) {
         Pageable<Address> pageable = pageMapper.dtoToEntity(pageableDto);
         return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+    }
+
+    @Override
+    public List<AddressDto> findAllAddresses() {
+        List<Address> entities = repository.getAll();
+        return entities
+                .stream()
+                .map(mapper::entityToDto)
+                .toList();
     }
 }
