@@ -12,16 +12,16 @@
             <column name="price" type="float"/>
             <column name="sum" type="float"/>
             <column name="customer_id" type="int">
-                <constraints foreignKeyName="order_customer_id_fk" references="customer(id)" nullable="false"/>
+                <constraints foreignKeyName="purchase_customer_id_fk" references="customer(id)" nullable="false"/>
             </column>
             <column name="discount_id" type="int">
-                <constraints foreignKeyName="order_discount_id_fk" references="discount(id)"/>
+                <constraints foreignKeyName="purchase_discount_id_fk" references="discount(id)"/>
             </column>
             <column name="machine_id" type="int">
-                <constraints foreignKeyName="order_machine_id_fk" references="machine(id)" nullable="false"/>
+                <constraints foreignKeyName="purchase_machine_id_fk" references="machine(id)" nullable="false"/>
             </column>
             <column name="product_id" type="int">
-                <constraints foreignKeyName="order_product_id_fk" references="product(id)" nullable="false"/>
+                <constraints foreignKeyName="purchase_product_id_fk" references="product(id)" nullable="false"/>
             </column>
         </createTable>
     </changeSet>

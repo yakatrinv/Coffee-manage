@@ -33,16 +33,14 @@ public class MachineConverter implements IMachineConverter {
         AddressDto addressDto = null;
         ModelDto modelDto = null;
 
-
-        if (addressId != null && !addressId.isEmpty()) {
+        if (!isEmpty(addressId)) {
             addressDto = addressService.findAddressById(Integer.valueOf(addressId));
         }
 
 
-        if (modelId != null && !modelId.isEmpty()) {
+        if (!isEmpty(modelId)) {
             modelDto = modelService.findModelById(Integer.valueOf(modelId));
         }
-
 
         return MachineDto.builder()
                 .id(isEmpty(id) ? null : Integer.valueOf(id))

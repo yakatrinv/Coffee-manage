@@ -6,6 +6,7 @@ import it.academy.models.Discount;
 import it.academy.models.Machine;
 import it.academy.models.Model;
 import it.academy.models.Product;
+import it.academy.models.Purchase;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
@@ -69,6 +70,8 @@ public class Data {
     public static final Class<Machine> MACHINE_CLASS = Machine.class;
 
     public static final Class<Discount> DISCOUNT_CLASS = Discount.class;
+
+    public static final Class<Purchase> PURCHASE_CLASS = Purchase.class;
 
     public static final String UTF_8 = "UTF-8";
 
@@ -373,4 +376,34 @@ public class Data {
     public static final String ADD_DISCOUNT_JSP = "view/discount/addDiscount.jsp";
 
     public static final String EDIT_DISCOUNT_JSP = "view/discount/editDiscount.jsp";
+
+    //purchase entity
+    public static final String ATTR_DISCOUNT_ID = "discount_id";
+
+    public static final String ATTR_CUSTOMER_ID = "customer_id";
+
+    public static final String COMMAND_PURCHASES = "purchases";
+
+    public static final String ATTR_PURCHASE = "purchase";
+
+    public static final String ATTR_CUSTOMERS = "customers";
+
+    public static final String ATTR_DISCOUNTS = "discounts";
+
+    public static final String ADD_PURCHASE = "createPurchase";
+
+    public static final String SAVE_PURCHASE = "savePurchase";
+
+    public static final String EDIT_PURCHASE = "editPurchase";
+
+    public static final String UPDATE_PURCHASE = "updatePurchase";
+
+    public static final String DELETE_PURCHASE = "deletePurchase";
+
+    public static final String PURCHASES_JSP = "view/purchase/purchases.jsp";
+
+    public static final String ADD_PURCHASE_JSP = "view/purchase/addPurchase.jsp";
+
+    public static final String EDIT_PURCHASE_JSP = "view/purchase/editPurchase.jsp";
+
 }

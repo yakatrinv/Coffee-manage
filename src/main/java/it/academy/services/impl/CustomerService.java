@@ -14,6 +14,7 @@ import it.academy.services.auth.IUserAuthService;
 import it.academy.services.auth.UserAuthService;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CustomerService implements ICustomerService {
     private final Mapper<Customer, CustomerDto> mapper = new CustomerMapper();
@@ -56,6 +57,15 @@ public class CustomerService implements ICustomerService {
     @Override
     public void deleteCustomerById(Serializable id) {
         repository.delete(id);
+    }
+
+    @Override
+    public List<CustomerDto> findAllCustomers() {
+        List<Customer> entities = repository.getAll();
+        return entities
+                .stream()
+                .map(mapper::entityToDto)
+                .toList();
     }
 
     @Override

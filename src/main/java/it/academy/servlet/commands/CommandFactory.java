@@ -45,6 +45,12 @@ import it.academy.servlet.commands.product.EditProduct;
 import it.academy.servlet.commands.product.ListProducts;
 import it.academy.servlet.commands.product.SaveProduct;
 import it.academy.servlet.commands.product.UpdateProduct;
+import it.academy.servlet.commands.purchase.CreatePurchase;
+import it.academy.servlet.commands.purchase.DeletePurchase;
+import it.academy.servlet.commands.purchase.EditPurchase;
+import it.academy.servlet.commands.purchase.ListPurchase;
+import it.academy.servlet.commands.purchase.SavePurchase;
+import it.academy.servlet.commands.purchase.UpdatePurchase;
 import it.academy.servlet.commands.role.CreateRole;
 import it.academy.servlet.commands.role.DeleteRole;
 import it.academy.servlet.commands.role.EditRole;
@@ -66,6 +72,7 @@ import static it.academy.utils.Data.ADD_MACHINE;
 import static it.academy.utils.Data.ADD_MACHINE_PRODUCT;
 import static it.academy.utils.Data.ADD_MODEL;
 import static it.academy.utils.Data.ADD_PRODUCT;
+import static it.academy.utils.Data.ADD_PURCHASE;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
@@ -75,6 +82,7 @@ import static it.academy.utils.Data.COMMAND_MACHINES;
 import static it.academy.utils.Data.COMMAND_MACHINE_PRODUCTS;
 import static it.academy.utils.Data.COMMAND_MODELS;
 import static it.academy.utils.Data.COMMAND_PRODUCTS;
+import static it.academy.utils.Data.COMMAND_PURCHASES;
 import static it.academy.utils.Data.COMMAND_ROLES;
 import static it.academy.utils.Data.COMMAND_USERS;
 import static it.academy.utils.Data.DELETE_ADDRESS;
@@ -84,6 +92,7 @@ import static it.academy.utils.Data.DELETE_MACHINE;
 import static it.academy.utils.Data.DELETE_MACHINE_PRODUCT;
 import static it.academy.utils.Data.DELETE_MODEL;
 import static it.academy.utils.Data.DELETE_PRODUCT;
+import static it.academy.utils.Data.DELETE_PURCHASE;
 import static it.academy.utils.Data.DELETE_ROLE;
 import static it.academy.utils.Data.EDIT_ADDRESS;
 import static it.academy.utils.Data.EDIT_CUSTOMER;
@@ -92,6 +101,7 @@ import static it.academy.utils.Data.EDIT_MACHINE;
 import static it.academy.utils.Data.EDIT_MODEL;
 import static it.academy.utils.Data.EDIT_PASS_USERS;
 import static it.academy.utils.Data.EDIT_PRODUCT;
+import static it.academy.utils.Data.EDIT_PURCHASE;
 import static it.academy.utils.Data.EDIT_ROLE;
 import static it.academy.utils.Data.GET_LOGIN_PAGE;
 import static it.academy.utils.Data.GET_REG_PAGE;
@@ -105,6 +115,7 @@ import static it.academy.utils.Data.SAVE_MACHINE;
 import static it.academy.utils.Data.SAVE_MACHINE_PRODUCT;
 import static it.academy.utils.Data.SAVE_MODEL;
 import static it.academy.utils.Data.SAVE_PRODUCT;
+import static it.academy.utils.Data.SAVE_PURCHASE;
 import static it.academy.utils.Data.SAVE_ROLE;
 import static it.academy.utils.Data.SAVE_USERS;
 import static it.academy.utils.Data.UPDATE_ADDRESS;
@@ -114,6 +125,7 @@ import static it.academy.utils.Data.UPDATE_MACHINE;
 import static it.academy.utils.Data.UPDATE_MODEL;
 import static it.academy.utils.Data.UPDATE_PASS_USERS;
 import static it.academy.utils.Data.UPDATE_PRODUCT;
+import static it.academy.utils.Data.UPDATE_PURCHASE;
 import static it.academy.utils.Data.UPDATE_ROLE;
 
 public final class CommandFactory {
@@ -190,13 +202,21 @@ public final class CommandFactory {
         commands.put(SAVE_MACHINE_PRODUCT, new SaveMachineProduct());
         commands.put(DELETE_MACHINE_PRODUCT, new DeleteMachineProduct());
 
-        //model
+        //discounts
         commands.put(COMMAND_DISCOUNTS, new ListDiscounts());
         commands.put(ADD_DISCOUNT, new CreateDiscount());
         commands.put(SAVE_DISCOUNT, new SaveDiscount());
         commands.put(EDIT_DISCOUNT, new EditDiscount());
         commands.put(UPDATE_DISCOUNT, new UpdateDiscount());
         commands.put(DELETE_DISCOUNT, new DeleteDiscount());
+
+        //purchase
+        commands.put(COMMAND_PURCHASES, new ListPurchase());
+        commands.put(ADD_PURCHASE, new CreatePurchase());
+        commands.put(SAVE_PURCHASE, new SavePurchase());
+        commands.put(EDIT_PURCHASE, new EditPurchase());
+        commands.put(UPDATE_PURCHASE, new UpdatePurchase());
+        commands.put(DELETE_PURCHASE, new DeletePurchase());
     }
 
     public static CommandFactory getInstance() {
