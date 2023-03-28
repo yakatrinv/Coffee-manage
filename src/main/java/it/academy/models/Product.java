@@ -38,7 +38,6 @@ import static it.academy.utils.Data.MACHINE_PRODUCT;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
 
     @Column
