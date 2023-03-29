@@ -34,12 +34,12 @@ public class MachineConverter implements IMachineConverter {
         AddressDto addressDto = null;
         ModelDto modelDto = null;
 
-        if (!StringUtils.isBlank(addressId)) {
+        if (StringUtils.isNotBlank(addressId)) {
             addressDto = addressService.findAddressById(Integer.parseInt(addressId));
         }
 
 
-        if (!StringUtils.isBlank(modelId)) {
+        if (StringUtils.isNotBlank(modelId)) {
             modelDto = modelService.findModelById(Integer.parseInt(modelId));
         }
 

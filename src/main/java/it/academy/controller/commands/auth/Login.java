@@ -41,8 +41,7 @@ public class Login implements Command {
             if (StringUtils.isBlank(login) || StringUtils.isBlank(password)) {
                 return LOGIN_JSP;
             } else {
-                UserDto authUser;
-                authUser = service.findAuthUser(login, password);
+                UserDto authUser = service.findAuthUser(login, password);
                 session.setAttribute(ATTR_LOGGED_USER, authUser);
 
                 if (authUser == null) {

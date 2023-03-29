@@ -55,7 +55,7 @@ public class PurchaseConverter implements IPurchaseConverter {
         }
 
         MachineDto machine = null;
-        if (!StringUtils.isBlank(machineId)) {
+        if (StringUtils.isNotBlank(machineId)) {
             machine = machineService.findMachineById(Integer.parseInt(machineId));
         }
 
