@@ -2,6 +2,7 @@ package it.academy.converter.impl;
 
 import it.academy.converter.IRoleConverter;
 import it.academy.dto.auth.RoleDto;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class RoleConverter implements IRoleConverter {
         String roleName = request.getParameter(ATTR_ROLE_NAME);
 
         return RoleDto.builder()
-                .id(isEmpty(id) ? null : Integer.valueOf(id))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .roleName(roleName)
                 .build();
     }
@@ -27,13 +28,8 @@ public class RoleConverter implements IRoleConverter {
         HashMap<String, Object> searchFields = new HashMap<>();
 
         String roleName = request.getParameter(ATTR_SEARCH_ROLE_NAME);
-
         searchFields.put(ATTR_ROLE_NAME, roleName);
 
         return searchFields;
-    }
-
-    private boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
     }
 }

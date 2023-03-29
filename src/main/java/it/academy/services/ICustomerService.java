@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface ICustomerService {
-    CustomerDto createCustomer(String login, String password,CustomerDto customerDto);
+    void createCustomer(String login, String password, CustomerDto customerDto);
 
-    CustomerDto updateCustomer(CustomerDto customerDto);
+    void updateCustomer(CustomerDto customerDto);
 
     CustomerDto findCustomerById(Serializable id);
 

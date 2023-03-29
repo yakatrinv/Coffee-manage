@@ -10,9 +10,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+import static it.academy.utils.Data.ATTR_ROLE_NAME;
 import static it.academy.utils.Data.FIRST_INDEX;
 import static it.academy.utils.Data.ROLE_CLASS;
-import static it.academy.utils.Data.ATTR_ROLE_NAME;
 
 public class RoleRepository extends CrudRepository<Role>
         implements IRoleRepository {

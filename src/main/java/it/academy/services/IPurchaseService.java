@@ -6,9 +6,9 @@ import it.academy.models.pageable.Pageable;
 import java.io.Serializable;
 
 public interface IPurchaseService {
-    PurchaseDto createPurchase(PurchaseDto purchaseDto);
+    void createPurchase(PurchaseDto purchaseDto);
 
-    PurchaseDto updatePurchase(PurchaseDto purchaseDto);
+    void updatePurchase(PurchaseDto purchaseDto);
 
     PurchaseDto findPurchaseById(Serializable id);
 

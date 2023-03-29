@@ -8,6 +8,7 @@ import it.academy.services.IAddressService;
 import it.academy.services.IModelService;
 import it.academy.services.impl.AddressService;
 import it.academy.services.impl.ModelService;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -33,17 +34,17 @@ public class MachineConverter implements IMachineConverter {
         AddressDto addressDto = null;
         ModelDto modelDto = null;
 
-        if (!isEmpty(addressId)) {
-            addressDto = addressService.findAddressById(Integer.valueOf(addressId));
+        if (!StringUtils.isBlank(addressId)) {
+            addressDto = addressService.findAddressById(Integer.parseInt(addressId));
         }
 
 
-        if (!isEmpty(modelId)) {
-            modelDto = modelService.findModelById(Integer.valueOf(modelId));
+        if (!StringUtils.isBlank(modelId)) {
+            modelDto = modelService.findModelById(Integer.parseInt(modelId));
         }
 
         return MachineDto.builder()
-                .id(isEmpty(id) ? null : Integer.valueOf(id))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .serialNumber(serialNumber)
                 .address(addressDto)
                 .model(modelDto)
@@ -55,13 +56,8 @@ public class MachineConverter implements IMachineConverter {
         HashMap<String, Object> searchFields = new HashMap<>();
 
         String serialNumber = request.getParameter(ATTR_SEARCH_SERIAL_NUMBER);
-
         searchFields.put(ATTR_SERIAL_NUMBER, serialNumber);
 
         return searchFields;
-    }
-
-    private boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
     }
 }

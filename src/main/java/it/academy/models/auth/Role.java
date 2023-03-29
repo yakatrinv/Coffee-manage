@@ -2,6 +2,7 @@ package it.academy.models.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import static it.academy.utils.Data.COL_ROLE_NAME;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(of = "roleName")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

@@ -13,32 +13,33 @@ import it.academy.services.IPurchaseService;
 import java.io.Serializable;
 
 public class PurchaseService implements IPurchaseService {
-    private final Mapper<Purchase, PurchaseDto> mapper = new PurchaseMapper();
-
-    private final Mapper<Pageable<Purchase>, Pageable<PurchaseDto>> pageMapper =
-            new PageableMapper<>(mapper);
-
     private final IPurchaseRepository repository
             = new PurchaseRepository();
 
+    private final Mapper<Purchase, PurchaseDto> mapper = new PurchaseMapper();
+
+    private final Mapper<Pageable<Purchase>, Pageable<PurchaseDto>> mapperP =
+            new PageableMapper<>(mapper);
+
+
     @Override
-    public PurchaseDto createPurchase(PurchaseDto entityDto) {
-        Purchase entity = mapper.dtoToEntity(entityDto);
-        entity = repository.save(entity);
-        return mapper.entityToDto(entity);
+    public void createPurchase(PurchaseDto entityDto) {
+        Purchase purchase = mapper.dtoToEntity(entityDto);
+        purchase = repository.save(purchase);
+        mapper.entityToDto(purchase);
     }
 
     @Override
-    public PurchaseDto updatePurchase(PurchaseDto entityDto) {
-        Purchase entity = mapper.dtoToEntity(entityDto);
-        entity = repository.update(entity);
-        return mapper.entityToDto(entity);
+    public void updatePurchase(PurchaseDto entityDto) {
+        Purchase purchase = mapper.dtoToEntity(entityDto);
+        purchase = repository.update(purchase);
+        mapper.entityToDto(purchase);
     }
 
     @Override
     public PurchaseDto findPurchaseById(Serializable id) {
-        Purchase entity = repository.getById(id);
-        return mapper.entityToDto(entity);
+        Purchase purchase = repository.getById(id);
+        return mapper.entityToDto(purchase);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class PurchaseService implements IPurchaseService {
 
     @Override
     public Pageable<PurchaseDto> getPageableRecords(Pageable<PurchaseDto> pageableDto) {
-        Pageable<Purchase> pageable = pageMapper.dtoToEntity(pageableDto);
-        return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+        Pageable<Purchase> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

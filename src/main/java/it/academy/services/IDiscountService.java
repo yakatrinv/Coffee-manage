@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IDiscountService {
-    DiscountDto createDiscount(DiscountDto discountDto);
+    void createDiscount(DiscountDto discountDto);
 
-    DiscountDto updateDiscount(DiscountDto discountDto);
+    void updateDiscount(DiscountDto discountDto);
 
     DiscountDto findDiscountById(Serializable id);
 

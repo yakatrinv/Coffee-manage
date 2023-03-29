@@ -8,9 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IMachineService {
-    MachineDto createMachine(MachineDto machineDto);
+    void createMachine(MachineDto machineDto);
 
-    MachineDto updateMachine(MachineDto machineDto);
+    void updateMachine(MachineDto machineDto);
 
     MachineDto findMachineById(Serializable id);
 

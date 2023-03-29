@@ -12,33 +12,27 @@ import it.academy.models.auth.User;
 
 public class Data {
     //auth
-    public static final String SECURE_ALG = "SHA1PRNG";
-
-    public static final String ALGORITHM = "PBKDF2WithHmacSHA1";
-
-    public static final int KEY_LENGTH = 128;
-
-    public static final int RADIX = 16;
-
-    public static final int SALT_LENGTH = 16;
-
-    public static final int ITERATIONS = 10000;
-
     public static final String ATTR_LOGGED_USER = "loggedUser";
 
     public static final String ATTR_USER_ROLES = "userRoles";
+
+    public static final String ATTR_LOGGED_ROLE = "loggedRole";
 
     public static final String ATTR_MESSAGE = "message";
 
     public static final String ERROR_AUTH = "Ошибка авторизации";
 
+    public static final String ERROR_ROLE = "Отсутствуют роли";
+
+    public static final String ERROR_REG = "Пользователь уже существует";
+
     public static final String MAIN_JSP = "view/general/main.jsp";
 
-    public static final String LOGIN_JSP = "view/auth/login.jsp";
+    public static final String LOGIN_JSP = "auth/login.jsp";
 
-    public static final String ERROR_JSP = "view/auth/error.jsp";
+    public static final String ERROR_JSP = "auth/error.jsp";
 
-    public static final String REGISTRATION_JSP = "view/auth/registration.jsp";
+    public static final String REGISTRATION_JSP = "auth/registration.jsp";
 
     public static final String GET_LOGIN_PAGE = "getLoginPage";
 
@@ -85,6 +79,10 @@ public class Data {
     //users and roles
     public static final String ROLE_CUSTOMER = "Customer";
 
+    public static final String ROLE_MANAGER = "Manager";
+
+    public static final String ROLE_ADMINISTRATOR = "Administrator";
+
     public static final String COL_ROLE_NAME = "role_name";
 
     public static final String USER_ROLE = "user_role";
@@ -96,6 +94,8 @@ public class Data {
     public static final String ATTR_OLD_PASSWORD = "oldPassword";
 
     public static final String ATTR_ROLES = "roles";
+
+    public static final String ATTR_CHECK_ROLES = "checkRoles";
 
     public static final String ATTR_USER_ID = "user_id";
 
@@ -129,9 +129,13 @@ public class Data {
 
     public static final String SAVE_USERS = "saveUser";
 
-    public static final String EDIT_PASS_USERS = "editPassUser";
+    public static final String EDIT_PASS_USER = "editPassUser";
 
-    public static final String UPDATE_PASS_USERS = "updatePassUser";
+    public static final String UPDATE_PASS_USER = "updatePassUser";
+
+    public static final String EDIT_ROLES_USER = "editRolesUser";
+
+    public static final String UPDATE_ROLES_USER = "updateRolesUser";
 
     public static final String ATTR_SEARCH_LOGIN = "searchLogin";
 
@@ -142,6 +146,8 @@ public class Data {
     public static final String ADD_USER_JSP = "view/user/addUser.jsp";
 
     public static final String EDIT_PASS_USER_JSP = "view/user/editPassUser.jsp";
+
+    public static final String EDIT_ROLES_USER_JSP = "view/user/editRolesUser.jsp";
 
     //role entity
     public static final String COMMAND_ROLES = "roles";

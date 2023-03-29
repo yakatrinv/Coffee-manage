@@ -2,6 +2,7 @@ package it.academy.converter.impl;
 
 import it.academy.converter.IDiscountConverter;
 import it.academy.dto.DiscountDto;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -14,8 +15,6 @@ import static it.academy.utils.Data.ATTR_SUM;
 import static it.academy.utils.Data.VALUE_ZERO;
 
 public class DiscountConverter implements IDiscountConverter {
-
-
     @Override
     public DiscountDto convertToDto(HttpServletRequest request) {
         String id = request.getParameter(ATTR_ID);
@@ -23,9 +22,9 @@ public class DiscountConverter implements IDiscountConverter {
         String percent = request.getParameter(ATTR_PERCENT);
 
         return DiscountDto.builder()
-                .id(isEmpty(id) ? null : Integer.valueOf(id))
-                .sum(isEmpty(sum) ? VALUE_ZERO : Integer.parseInt(sum))
-                .percent(isEmpty(percent) ? VALUE_ZERO : Integer.parseInt(percent))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
+                .sum(StringUtils.isBlank(sum) ? VALUE_ZERO : Integer.parseInt(sum))
+                .percent(StringUtils.isBlank(percent) ? VALUE_ZERO : Integer.parseInt(percent))
                 .build();
     }
 
@@ -36,13 +35,9 @@ public class DiscountConverter implements IDiscountConverter {
         String sum = request.getParameter(ATTR_SEARCH_SUM);
         String percent = request.getParameter(ATTR_SEARCH_PERCENT);
 
-        searchFields.put(ATTR_SUM, isEmpty(sum) ? null : Integer.parseInt(sum));
-        searchFields.put(ATTR_PERCENT, isEmpty(percent) ? null : Integer.parseInt(percent));
+        searchFields.put(ATTR_SUM, StringUtils.isBlank(sum) ? null : Integer.parseInt(sum));
+        searchFields.put(ATTR_PERCENT, StringUtils.isBlank(percent) ? null : Integer.parseInt(percent));
 
         return searchFields;
-    }
-
-    private boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
     }
 }

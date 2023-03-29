@@ -50,7 +50,7 @@
                 <th>№</th>
                 <th>Логин</th>
                 <th>Роли</th>
-                <th colspan="1">Действие</th>
+                <th colspan="2">Действие</th>
             </tr>
 
             <c:choose>
@@ -81,21 +81,16 @@
                             </button>
                         </form>
                     </td>
-<%--                    <td>--%>
-<%--                        <form action="coffee-manage">--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${users.size() eq 1}">--%>
-<%--                                    <input type="hidden" name="prevURL"--%>
-<%--                                           value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber-1}"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <input type="hidden" name="prevURL"--%>
-<%--                                           value="/coffee-manage?${pageContext.request.queryString}"/>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
-<%--                            <button type="submit" name="command" value="deleteUser" class="buttonClass">УДАЛИТЬ</button>--%>
-<%--                        </form>--%>
-<%--                    </td>--%>
+                    <td>
+                        <form action="coffee-manage" method="get">
+                            <input type="hidden" name="login" value="${user.login}">
+                            <input type="hidden" name="prevURL"
+                                   value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber}"/>
+                            <button type="submit" name="command" value="editRolesUser" class="buttonClass">
+                                КОРРЕКТИРОВАТЬ СПИСОК РОЛЕЙ
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
 

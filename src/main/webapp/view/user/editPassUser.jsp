@@ -28,7 +28,7 @@
             </p>
             <br>
             <p>
-                <button type="submit" name="command" value="updatePassUser" class="buttonClass" formmethod="post">СОХРАНИТЬ</button>
+                <button type="submit" name="command" value="updatePassUser" class="buttonClass" formmethod="post">ОБНОВИТЬ</button>
                 <button type="submit" name="command" value="users" class="buttonClass" formmethod="post">ОТМЕНА</button>
             </p>
         </form>

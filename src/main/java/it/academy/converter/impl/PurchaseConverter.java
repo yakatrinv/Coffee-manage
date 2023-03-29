@@ -14,6 +14,7 @@ import it.academy.services.impl.CustomerService;
 import it.academy.services.impl.DiscountService;
 import it.academy.services.impl.MachineService;
 import it.academy.services.impl.ProductService;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -49,33 +50,33 @@ public class PurchaseConverter implements IPurchaseConverter {
         String sum = request.getParameter(ATTR_SUM);
 
         CustomerDto customer = null;
-        if (!isEmpty(customerId)) {
+        if (StringUtils.isNotBlank(customerId)) {
             customer = customerService.findCustomerById(Integer.parseInt(customerId));
         }
 
         MachineDto machine = null;
-        if (!isEmpty(machineId)) {
+        if (!StringUtils.isBlank(machineId)) {
             machine = machineService.findMachineById(Integer.parseInt(machineId));
         }
 
         ProductDto product = null;
-        if (!isEmpty(productId)) {
+        if (StringUtils.isNotBlank(productId)) {
             product = productService.findProductById(Integer.parseInt(productId));
         }
 
         DiscountDto discount = null;
-        if (!isEmpty(discountId)) {
+        if (StringUtils.isNotBlank(discountId)) {
             discount = discountService.findDiscountById(Integer.parseInt(discountId));
         }
 
         return PurchaseDto.builder()
-                .id(isEmpty(id) ? null : Integer.valueOf(id))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .customer(customer)
                 .machine(machine)
                 .product(product)
-                .price(isEmpty(price) ? VALUE_ZERO : Float.parseFloat(price))
+                .price(StringUtils.isBlank(price) ? VALUE_ZERO : Float.parseFloat(price))
                 .discount(discount)
-                .sum(isEmpty(sum) ? VALUE_ZERO : Float.parseFloat(sum))
+                .sum(StringUtils.isBlank(sum) ? VALUE_ZERO : Float.parseFloat(sum))
                 .build();
     }
 
@@ -86,13 +87,9 @@ public class PurchaseConverter implements IPurchaseConverter {
         String price = request.getParameter(ATTR_SEARCH_PRICE);
         String sum = request.getParameter(ATTR_SEARCH_SUM);
 
-        searchFields.put(ATTR_PRICE, isEmpty(price) ? null : Float.parseFloat(price));
-        searchFields.put(ATTR_SUM, isEmpty(sum) ? null : Float.parseFloat(sum));
+        searchFields.put(ATTR_PRICE, StringUtils.isBlank(price) ? null : Float.parseFloat(price));
+        searchFields.put(ATTR_SUM, StringUtils.isBlank(sum) ? null : Float.parseFloat(sum));
 
         return searchFields;
-    }
-
-    private boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
     }
 }

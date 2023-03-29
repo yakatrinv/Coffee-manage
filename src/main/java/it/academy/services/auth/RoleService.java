@@ -10,33 +10,34 @@ import it.academy.repositories.auth.IRoleRepository;
 import it.academy.repositories.auth.RoleRepository;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class RoleService implements IRoleService {
     private final IRoleRepository repository = new RoleRepository();
 
     private final Mapper<Role, RoleDto> mapper = new RoleMapper();
 
-    private final Mapper<Pageable<Role>, Pageable<RoleDto>> pageMapper =
+    private final Mapper<Pageable<Role>, Pageable<RoleDto>> mapperP =
             new PageableMapper<>(mapper);
 
     @Override
-    public RoleDto createRole(RoleDto entityDto) {
-        Role entity = mapper.dtoToEntity(entityDto);
-        entity = repository.save(entity);
-        return mapper.entityToDto(entity);
+    public void createRole(RoleDto entityDto) {
+        Role role = mapper.dtoToEntity(entityDto);
+        role = repository.save(role);
+        mapper.entityToDto(role);
     }
 
     @Override
-    public RoleDto updateRole(RoleDto entityDto) {
-        Role entity = mapper.dtoToEntity(entityDto);
-        entity = repository.update(entity);
-        return mapper.entityToDto(entity);
+    public void updateRole(RoleDto entityDto) {
+        Role role = mapper.dtoToEntity(entityDto);
+        role = repository.update(role);
+        mapper.entityToDto(role);
     }
 
     @Override
     public RoleDto findRoleById(Serializable id) {
-        Role entity = repository.getById(id);
-        return mapper.entityToDto(entity);
+        Role role = repository.getById(id);
+        return mapper.entityToDto(role);
     }
 
     @Override
@@ -52,7 +53,16 @@ public class RoleService implements IRoleService {
 
     @Override
     public Pageable<RoleDto> getPageableRecords(Pageable<RoleDto> pageableDto) {
-        Pageable<Role> pageable = pageMapper.dtoToEntity(pageableDto);
-        return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+        Pageable<Role> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
+    }
+
+    @Override
+    public List<RoleDto> findAllRoles() {
+        List<Role> entities = repository.getAll();
+        return entities
+                .stream()
+                .map(mapper::entityToDto)
+                .toList();
     }
 }

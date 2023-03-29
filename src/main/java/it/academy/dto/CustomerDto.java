@@ -1,6 +1,6 @@
 package it.academy.dto;
 
-import it.academy.dto.auth.UserAuthDto;
+import it.academy.dto.auth.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -29,5 +29,5 @@ public class CustomerDto implements Serializable {
 
     private String email;
 
-    private UserAuthDto user;
+    private UserDto user;
 }

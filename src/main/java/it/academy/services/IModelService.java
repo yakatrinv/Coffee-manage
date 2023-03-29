@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IModelService {
-    ModelDto createModel(ModelDto modelDto);
+    void createModel(ModelDto modelDto);
 
-    ModelDto updateModel(ModelDto modelDto);
+    void updateModel(ModelDto modelDto);
 
     ModelDto findModelById(Serializable id);
 

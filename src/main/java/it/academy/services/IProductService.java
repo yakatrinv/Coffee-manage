@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IProductService {
-    ProductDto createProduct(ProductDto productDto);
+    void createProduct(ProductDto productDto);
 
-    ProductDto updateProduct(ProductDto productDto);
+    void updateProduct(ProductDto productDto);
 
     ProductDto findProductById(Serializable id);
 

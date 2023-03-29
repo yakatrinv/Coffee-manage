@@ -9,19 +9,17 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
 
-import static it.academy.utils.Data.ALGORITHM;
-import static it.academy.utils.Data.ITERATIONS;
-import static it.academy.utils.Data.KEY_LENGTH;
-import static it.academy.utils.Data.RADIX;
-import static it.academy.utils.Data.SALT_LENGTH;
-import static it.academy.utils.Data.SECURE_ALG;
+import static it.academy.utils.DataEncrypt.ALGORITHM;
+import static it.academy.utils.DataEncrypt.BEGIN_HEX;
+import static it.academy.utils.DataEncrypt.END_HEX;
+import static it.academy.utils.DataEncrypt.ITERATIONS;
+import static it.academy.utils.DataEncrypt.KEY_LENGTH;
+import static it.academy.utils.DataEncrypt.RADIX;
+import static it.academy.utils.DataEncrypt.SALT_LENGTH;
+import static it.academy.utils.DataEncrypt.SECURE_ALG;
+import static it.academy.utils.DataEncrypt.SIGNUM;
 
 public class EncryptService {
-
-    public static final int SIGNUM = 1;
-    public static final String BEGIN_HEX = "%0";
-    public static final String END_HEX = "d";
-
     public boolean verifyPassword(String pass,
                                   byte[] encryptedPass,
                                   byte[] salt) {

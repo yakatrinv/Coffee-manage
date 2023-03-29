@@ -3,6 +3,7 @@ package it.academy.repositories.impl;
 import it.academy.models.pageable.Pageable;
 import it.academy.repositories.ICrudRepository;
 import it.academy.utils.HibernateUtil;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -132,9 +133,9 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                 String key = pair.getKey();
                 Object value = pair.getValue();
 
-                if (isNotEmpty(key) && value != null) {
+                if (StringUtils.isNotBlank(key) && value != null) {
                     if (value.getClass() == String.class) {
-                        if (!((String) value).isEmpty()) {
+                        if (StringUtils.isNotBlank((String) value)) {
                             predicates.add(criteriaBuilder
                                     .like(root.get(key),
                                             PERCENT_STRING + value +
@@ -161,7 +162,7 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
 
             //order by
             String sortField = pageable.getSortField();
-            if (isNotEmpty(sortField)) {
+            if (StringUtils.isBlank(sortField)) {
                 query.orderBy(criteriaBuilder.asc(root.get(sortField)));
             } else {
                 query.orderBy(criteriaBuilder.asc(root.get(ATTR_ID)));
@@ -209,9 +210,9 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                 String key = pair.getKey();
                 Object value = pair.getValue();
 
-                if (isNotEmpty(key) && value != null) {
+                if (StringUtils.isNotBlank(key) && value != null) {
                     if (value.getClass() == String.class) {
-                        if (!((String) value).isEmpty()) {
+                        if (StringUtils.isNotBlank((String) value)) {
                             predicates
                                     .add(cbCount
                                             .like(rootCount.get(key),
@@ -258,9 +259,5 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
     private int getPages(Long countRecords, int pageSize) {
         long pages = countRecords / pageSize;
         return (int) ((countRecords % pageSize == 0) ? pages : pages + 1);
-    }
-
-    private boolean isNotEmpty(String value) {
-        return (value != null && !value.isEmpty());
     }
 }

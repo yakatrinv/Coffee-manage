@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IAddressService {
-    AddressDto createAddress(AddressDto addressDto);
+    void createAddress(AddressDto addressDto);
 
-    AddressDto updateAddress(AddressDto addressDto);
+    void updateAddress(AddressDto addressDto);
 
     AddressDto findAddressById(Serializable id);
 

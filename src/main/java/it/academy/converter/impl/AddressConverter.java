@@ -2,6 +2,7 @@ package it.academy.converter.impl;
 
 import it.academy.converter.IAddressConverter;
 import it.academy.dto.AddressDto;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class AddressConverter implements IAddressConverter {
         String street = request.getParameter(ATTR_STREET);
 
         return AddressDto.builder()
-                .id(isEmpty(id) ? null : Integer.valueOf(id))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .city(city)
                 .street(street)
                 .build();
@@ -37,9 +38,5 @@ public class AddressConverter implements IAddressConverter {
         searchFields.put(ATTR_STREET, street);
 
         return searchFields;
-    }
-
-    private boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
     }
 }

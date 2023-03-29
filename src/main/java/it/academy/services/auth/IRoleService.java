@@ -4,11 +4,12 @@ import it.academy.dto.auth.RoleDto;
 import it.academy.models.pageable.Pageable;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface IRoleService {
-    RoleDto createRole(RoleDto entityDto);
+    void createRole(RoleDto entityDto);
 
-    RoleDto updateRole(RoleDto entityDto);
+    void updateRole(RoleDto entityDto);
 
     RoleDto findRoleById(Serializable id);
 
@@ -17,4 +18,6 @@ public interface IRoleService {
     RoleDto findByRoleName(String roleName);
 
     Pageable<RoleDto> getPageableRecords(Pageable<RoleDto> pageableDto);
+
+    List<RoleDto> findAllRoles();
 }

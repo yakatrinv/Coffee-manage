@@ -1,7 +1,7 @@
 package it.academy.converter.impl;
 
 import it.academy.converter.IUserConverter;
-import it.academy.dto.auth.UserAuthDto;
+import it.academy.dto.auth.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -11,10 +11,10 @@ import static it.academy.utils.Data.ATTR_SEARCH_LOGIN;
 
 public class UserConverter implements IUserConverter {
     @Override
-    public UserAuthDto convertToDto(HttpServletRequest request) {
+    public UserDto convertToDto(HttpServletRequest request) {
         String login = request.getParameter(ATTR_LOGIN);
 
-        return UserAuthDto.builder()
+        return UserDto.builder()
                 .login(login)
                 .build();
     }
@@ -24,7 +24,6 @@ public class UserConverter implements IUserConverter {
         HashMap<String, Object> searchFields = new HashMap<>();
 
         String login = request.getParameter(ATTR_SEARCH_LOGIN);
-
         searchFields.put(ATTR_LOGIN, login);
 
         return searchFields;

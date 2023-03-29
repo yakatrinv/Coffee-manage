@@ -2,6 +2,7 @@ package it.academy.converter.impl;
 
 import it.academy.converter.IModelConverter;
 import it.academy.dto.ModelDto;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class ModelConverter implements IModelConverter {
         String nameModel = request.getParameter(ATTR_NAME_MODEL);
 
         return ModelDto.builder()
-                .id(isEmpty(id) ? null : Integer.valueOf(id))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .brand(brand)
                 .nameModel(nameModel)
                 .build();
@@ -37,9 +38,5 @@ public class ModelConverter implements IModelConverter {
         searchFields.put(ATTR_NAME_MODEL, nameModel);
 
         return searchFields;
-    }
-
-    private boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
     }
 }

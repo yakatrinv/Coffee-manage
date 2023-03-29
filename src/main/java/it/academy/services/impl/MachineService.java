@@ -17,37 +17,37 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MachineService implements IMachineService {
-    private final Mapper<Machine, MachineDto> mapper = new MachineMapper();
-
-    private final Mapper<Product, ProductDto> productMapper = new ProductMapper();
-
-    private final Mapper<Pageable<Machine>, Pageable<MachineDto>> pageMapper =
-            new PageableMapper<>(mapper);
-
-    private final Mapper<Pageable<Product>, Pageable<ProductDto>> productPageMapper =
-            new PageableMapper<>(productMapper);
-
     private final IMachineRepository repository
             = new MachineRepository();
 
+    private final Mapper<Machine, MachineDto> machineMapper = new MachineMapper();
+
+    private final Mapper<Product, ProductDto> productMapper = new ProductMapper();
+
+    private final Mapper<Pageable<Product>, Pageable<ProductDto>> mapperProductP =
+            new PageableMapper<>(productMapper);
+
+    private final Mapper<Pageable<Machine>, Pageable<MachineDto>> mapperMachineP =
+            new PageableMapper<>(machineMapper);
+
     @Override
-    public MachineDto createMachine(MachineDto entityDto) {
-        Machine entity = mapper.dtoToEntity(entityDto);
-        entity = repository.save(entity);
-        return mapper.entityToDto(entity);
+    public void createMachine(MachineDto entityDto) {
+        Machine machine = machineMapper.dtoToEntity(entityDto);
+        machine = repository.save(machine);
+        machineMapper.entityToDto(machine);
     }
 
     @Override
-    public MachineDto updateMachine(MachineDto entityDto) {
-        Machine entity = mapper.dtoToEntity(entityDto);
-        entity = repository.update(entity);
-        return mapper.entityToDto(entity);
+    public void updateMachine(MachineDto entityDto) {
+        Machine machine = machineMapper.dtoToEntity(entityDto);
+        machine = repository.update(machine);
+        machineMapper.entityToDto(machine);
     }
 
     @Override
     public MachineDto findMachineById(Serializable id) {
-        Machine entity = repository.getById(id);
-        return mapper.entityToDto(entity);
+        Machine machine = repository.getById(id);
+        return machineMapper.entityToDto(machine);
     }
 
     @Override
@@ -57,32 +57,32 @@ public class MachineService implements IMachineService {
 
     @Override
     public Pageable<MachineDto> getPageableRecords(Pageable<MachineDto> pageableDto) {
-        Pageable<Machine> pageable = pageMapper.dtoToEntity(pageableDto);
-        return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+        Pageable<Machine> pageable = mapperMachineP.dtoToEntity(pageableDto);
+        return mapperMachineP.entityToDto(repository.getPageableRecords(pageable));
     }
 
     @Override
     public List<MachineDto> findAllMachines() {
-        List<Machine> entities = repository.getAll();
-        return entities
+        List<Machine> machines = repository.getAll();
+        return machines
                 .stream()
-                .map(mapper::entityToDto)
+                .map(machineMapper::entityToDto)
                 .toList();
     }
 
     @Override
     public Pageable<ProductDto> getProducts(Serializable id, Pageable<ProductDto> pageableDto) {
-        Pageable<Product> pageable = productPageMapper.dtoToEntity(pageableDto);
-        return productPageMapper.entityToDto(repository.getProducts(id, pageable));
+        Pageable<Product> pageable = mapperProductP.dtoToEntity(pageableDto);
+        return mapperProductP.entityToDto(repository.getProducts(id, pageable));
     }
 
     @Override
     public void addProductInMachine(Integer machineId, Integer productId) {
-        repository.addProductInMachine(machineId,productId);
+        repository.addProductInMachine(machineId, productId);
     }
 
     @Override
     public void deleteProductInMachine(Integer machineId, Integer productId) {
-        repository.deleteProductInMachine(machineId,productId);
+        repository.deleteProductInMachine(machineId, productId);
     }
 }

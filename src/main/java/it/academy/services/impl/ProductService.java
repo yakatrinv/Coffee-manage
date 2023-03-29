@@ -14,32 +14,33 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ProductService implements IProductService {
-    private final Mapper<Product, ProductDto> mapper = new ProductMapper();
-
-    private final Mapper<Pageable<Product>, Pageable<ProductDto>> pageMapper =
-            new PageableMapper<>(mapper);
-
     private final IProductRepository repository
             = new ProductRepository();
 
+    private final Mapper<Product, ProductDto> mapper = new ProductMapper();
+
+    private final Mapper<Pageable<Product>, Pageable<ProductDto>> mapperP =
+            new PageableMapper<>(mapper);
+
+
     @Override
-    public ProductDto createProduct(ProductDto entityDto) {
-        Product entity = mapper.dtoToEntity(entityDto);
-        entity = repository.save(entity);
-        return mapper.entityToDto(entity);
+    public void createProduct(ProductDto entityDto) {
+        Product product = mapper.dtoToEntity(entityDto);
+        product = repository.save(product);
+        mapper.entityToDto(product);
     }
 
     @Override
-    public ProductDto updateProduct(ProductDto entityDto) {
-        Product entity = mapper.dtoToEntity(entityDto);
-        entity = repository.update(entity);
-        return mapper.entityToDto(entity);
+    public void updateProduct(ProductDto entityDto) {
+        Product product = mapper.dtoToEntity(entityDto);
+        product = repository.update(product);
+        mapper.entityToDto(product);
     }
 
     @Override
     public ProductDto findProductById(Serializable id) {
-        Product entity = repository.getById(id);
-        return mapper.entityToDto(entity);
+        Product product = repository.getById(id);
+        return mapper.entityToDto(product);
     }
 
     @Override
@@ -49,14 +50,14 @@ public class ProductService implements IProductService {
 
     @Override
     public Pageable<ProductDto> getPageableRecords(Pageable<ProductDto> pageableDto) {
-        Pageable<Product> pageable = pageMapper.dtoToEntity(pageableDto);
-        return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+        Pageable<Product> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 
     @Override
     public List<ProductDto> findAllProducts() {
-        List<Product> entities = repository.getAll();
-        return entities
+        List<Product> products = repository.getAll();
+        return products
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();

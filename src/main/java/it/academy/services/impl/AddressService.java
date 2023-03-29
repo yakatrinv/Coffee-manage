@@ -14,32 +14,32 @@ import java.io.Serializable;
 import java.util.List;
 
 public class AddressService implements IAddressService {
-    private final Mapper<Address, AddressDto> mapper = new AddressMapper();
-
-    private final Mapper<Pageable<Address>, Pageable<AddressDto>> pageMapper =
-            new PageableMapper<>(mapper);
-
     private final IAddressRepository repository
             = new AddressRepository();
 
+    private final Mapper<Address, AddressDto> mapper = new AddressMapper();
+
+    private final Mapper<Pageable<Address>, Pageable<AddressDto>> mapperP =
+            new PageableMapper<>(mapper);
+
     @Override
-    public AddressDto createAddress(AddressDto entityDto) {
-        Address entity = mapper.dtoToEntity(entityDto);
-        entity = repository.save(entity);
-        return mapper.entityToDto(entity);
+    public void createAddress(AddressDto entityDto) {
+        Address address = mapper.dtoToEntity(entityDto);
+        address = repository.save(address);
+        mapper.entityToDto(address);
     }
 
     @Override
-    public AddressDto updateAddress(AddressDto entityDto) {
-        Address entity = mapper.dtoToEntity(entityDto);
-        entity = repository.update(entity);
-        return mapper.entityToDto(entity);
+    public void updateAddress(AddressDto entityDto) {
+        Address address = mapper.dtoToEntity(entityDto);
+        address = repository.update(address);
+        mapper.entityToDto(address);
     }
 
     @Override
     public AddressDto findAddressById(Serializable id) {
-        Address entity = repository.getById(id);
-        return mapper.entityToDto(entity);
+        Address address = repository.getById(id);
+        return mapper.entityToDto(address);
     }
 
     @Override
@@ -49,14 +49,14 @@ public class AddressService implements IAddressService {
 
     @Override
     public Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageableDto) {
-        Pageable<Address> pageable = pageMapper.dtoToEntity(pageableDto);
-        return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+        Pageable<Address> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 
     @Override
     public List<AddressDto> findAllAddresses() {
-        List<Address> entities = repository.getAll();
-        return entities
+        List<Address> addresses = repository.getAll();
+        return addresses
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();

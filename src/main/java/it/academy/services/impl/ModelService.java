@@ -14,32 +14,32 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ModelService implements IModelService {
-    private final Mapper<Model, ModelDto> mapper = new ModelMapper();
-
-    private final Mapper<Pageable<Model>, Pageable<ModelDto>> pageMapper =
-            new PageableMapper<>(mapper);
-
     private final IModelRepository repository
             = new ModelRepository();
 
+    private final Mapper<Model, ModelDto> mapper = new ModelMapper();
+
+    private final Mapper<Pageable<Model>, Pageable<ModelDto>> mapperP =
+            new PageableMapper<>(mapper);
+
     @Override
-    public ModelDto createModel(ModelDto entityDto) {
-        Model entity = mapper.dtoToEntity(entityDto);
-        entity = repository.save(entity);
-        return mapper.entityToDto(entity);
+    public void createModel(ModelDto entityDto) {
+        Model model = mapper.dtoToEntity(entityDto);
+        model = repository.save(model);
+        mapper.entityToDto(model);
     }
 
     @Override
-    public ModelDto updateModel(ModelDto entityDto) {
-        Model entity = mapper.dtoToEntity(entityDto);
-        entity = repository.update(entity);
-        return mapper.entityToDto(entity);
+    public void updateModel(ModelDto entityDto) {
+        Model model = mapper.dtoToEntity(entityDto);
+        model = repository.update(model);
+        mapper.entityToDto(model);
     }
 
     @Override
     public ModelDto findModelById(Serializable id) {
-        Model entity = repository.getById(id);
-        return mapper.entityToDto(entity);
+        Model model = repository.getById(id);
+        return mapper.entityToDto(model);
     }
 
     @Override
@@ -49,14 +49,14 @@ public class ModelService implements IModelService {
 
     @Override
     public Pageable<ModelDto> getPageableRecords(Pageable<ModelDto> pageableDto) {
-        Pageable<Model> pageable = pageMapper.dtoToEntity(pageableDto);
-        return pageMapper.entityToDto(repository.getPageableRecords(pageable));
+        Pageable<Model> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 
     @Override
     public List<ModelDto> findAllModels() {
-        List<Model> entities = repository.getAll();
-        return entities
+        List<Model> models = repository.getAll();
+        return models
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();

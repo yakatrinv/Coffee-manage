@@ -10,7 +10,7 @@
 
 <div class="container">
     <div class="div">
-        <span class="span">Регистрация</span>
+        <span class="span">Добавление пользователя</span>
 
         <form class="validate-form" action="coffee-manage">
             <input type="hidden" name="prevURL" value="${requestScope.prevURL}"/>
@@ -26,12 +26,10 @@
 
             <p>
             <div class="select">
-                <label for="roles">Роли</label>
-                <select id="roles" name="roles" multiple>
-                    <option value="Administrator">Administrator</option>
-                    <option value="Customer">Customer</option>
-                    <option value="Manager">Manager</option>
-                </select>
+                <label for="checkRoles">Список ролей</label>
+                <c:forEach var="role" items="${roles}">
+                    <input type="checkbox" name="checkRoles" id="checkRoles" value="${role.id}">${role.roleName}
+                </c:forEach>
             </div>
             </p>
             <p>

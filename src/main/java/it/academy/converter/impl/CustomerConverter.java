@@ -2,6 +2,7 @@ package it.academy.converter.impl;
 
 import it.academy.converter.ICustomerConverter;
 import it.academy.dto.CustomerDto;
+import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class CustomerConverter implements ICustomerConverter {
         String email = request.getParameter(ATTR_EMAIL);
 
         return CustomerDto.builder()
-                .id(id == null ? null : Integer.valueOf(id))
+                .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .name(name)
                 .surname(surname)
                 .phone(phone)
