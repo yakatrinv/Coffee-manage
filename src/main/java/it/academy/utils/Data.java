@@ -14,9 +14,11 @@ public class Data {
     //auth
     public static final String ATTR_LOGGED_USER = "loggedUser";
 
-    public static final String ATTR_USER_ROLES = "userRoles";
-
     public static final String ATTR_LOGGED_ROLE = "loggedRole";
+
+    public static final String ATTR_LOGGED_CUSTOMER = "loggedCustomer";
+
+    public static final String ATTR_USER_ROLES = "userRoles";
 
     public static final String ATTR_MESSAGE = "message";
 
@@ -43,6 +45,8 @@ public class Data {
     public static final String LOGOUT_COMMAND = "logout";
 
     public static final String REGISTRATION = "registration";
+
+    public static final String CHANGE_ROLE = "changeRole";
 
     //general
     public static final int VALUE_ZERO = 0;
@@ -412,4 +416,15 @@ public class Data {
 
     public static final String EDIT_PURCHASE_JSP = "view/purchase/editPurchase.jsp";
 
+    //view customer
+    public static final String CHOOSE_MACHINE = "chooseMachine";
+
+    public static final String ATTR_SEARCH_CITIES = "searchCities";
+    public static final String ATTR_SET_SEARCH_CITIES = "setSearchCities";
+
+    public static final String STRING_SEARCH_CITIES = "&searchCities=";
+
+    public static final String ATTR_CITIES = "cities";
+
+    public static final String CUSTOMER_MACHINES_JSP = "view/viewCustomer/machines.jsp";
 }

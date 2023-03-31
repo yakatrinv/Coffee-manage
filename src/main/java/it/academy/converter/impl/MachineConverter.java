@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 import static it.academy.utils.Data.ATTR_ADDRESS_ID;
+import static it.academy.utils.Data.ATTR_CITIES;
 import static it.academy.utils.Data.ATTR_ID;
 import static it.academy.utils.Data.ATTR_MODEL_ID;
+import static it.academy.utils.Data.ATTR_SEARCH_CITIES;
 import static it.academy.utils.Data.ATTR_SEARCH_SERIAL_NUMBER;
 import static it.academy.utils.Data.ATTR_SERIAL_NUMBER;
 
@@ -57,6 +59,9 @@ public class MachineConverter implements IMachineConverter {
 
         String serialNumber = request.getParameter(ATTR_SEARCH_SERIAL_NUMBER);
         searchFields.put(ATTR_SERIAL_NUMBER, serialNumber);
+
+        String[] cities = request.getParameterValues(ATTR_SEARCH_CITIES);
+        searchFields.put(ATTR_CITIES,cities);
 
         return searchFields;
     }

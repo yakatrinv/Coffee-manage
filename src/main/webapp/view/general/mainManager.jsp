@@ -1,0 +1,30 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>Coffee manage project</title>
+</head>
+<body>
+<jsp:include page="../general/head.jsp"/>
+<br>
+
+<h3>Coffee manage project</h3>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=addresses">Адреса</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=customers">Покупатели</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=models">Модели</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=products">Продукция</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=machines">Аппараты</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=machineProducts">Продукция аппарата</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=discounts">Скидки</a>
+<br>
+<a href="${pageContext.request.contextPath}/coffee-manage?command=purchases">Покупки</a>
+
+</body>
+</html>

@@ -6,6 +6,7 @@ import it.academy.controller.commands.address.EditAddress;
 import it.academy.controller.commands.address.ListAddresses;
 import it.academy.controller.commands.address.SaveAddress;
 import it.academy.controller.commands.address.UpdateAddress;
+import it.academy.controller.commands.auth.ChangeRole;
 import it.academy.controller.commands.auth.GetLoginPage;
 import it.academy.controller.commands.auth.GetRegPage;
 import it.academy.controller.commands.auth.Login;
@@ -23,6 +24,7 @@ import it.academy.controller.commands.discount.EditDiscount;
 import it.academy.controller.commands.discount.ListDiscounts;
 import it.academy.controller.commands.discount.SaveDiscount;
 import it.academy.controller.commands.discount.UpdateDiscount;
+import it.academy.controller.commands.customerCommand.ChooseMachine;
 import it.academy.controller.commands.machine.CreateMachine;
 import it.academy.controller.commands.machine.DeleteMachine;
 import it.academy.controller.commands.machine.EditMachine;
@@ -77,6 +79,8 @@ import static it.academy.utils.Data.ADD_PRODUCT;
 import static it.academy.utils.Data.ADD_PURCHASE;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
+import static it.academy.utils.Data.CHANGE_ROLE;
+import static it.academy.utils.Data.CHOOSE_MACHINE;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
 import static it.academy.utils.Data.COMMAND_CUSTOMERS;
 import static it.academy.utils.Data.COMMAND_DISCOUNTS;
@@ -144,6 +148,7 @@ public final class CommandFactory {
         commands.put(LOGIN_COMMAND, new Login());
         commands.put(LOGOUT_COMMAND, new Logout());
         commands.put(REGISTRATION, new Registration());
+        commands.put(CHANGE_ROLE, new ChangeRole());
 
         //user
         commands.put(COMMAND_USERS, new ListUsers());
@@ -223,6 +228,9 @@ public final class CommandFactory {
         commands.put(EDIT_PURCHASE, new EditPurchase());
         commands.put(UPDATE_PURCHASE, new UpdatePurchase());
         commands.put(DELETE_PURCHASE, new DeletePurchase());
+
+        //view customer
+        commands.put(CHOOSE_MACHINE, new ChooseMachine());
     }
 
     public static CommandFactory getInstance() {

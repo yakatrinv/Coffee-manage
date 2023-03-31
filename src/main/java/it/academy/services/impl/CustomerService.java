@@ -2,11 +2,9 @@ package it.academy.services.impl;
 
 import it.academy.dto.CustomerDto;
 import it.academy.dto.auth.RoleDto;
-import it.academy.dto.auth.UserDto;
 import it.academy.mappers.Mapper;
 import it.academy.mappers.impl.CustomerMapper;
 import it.academy.mappers.impl.PageableMapper;
-import it.academy.mappers.impl.auth.UserMapper;
 import it.academy.models.Customer;
 import it.academy.models.auth.User;
 import it.academy.models.pageable.Pageable;
@@ -38,21 +36,20 @@ public class CustomerService implements ICustomerService {
 
     private final IRoleService roleService = new RoleService();
 
-    private final Mapper<User, UserDto> userMapper = new UserMapper();
-
     @Override
-    public void createCustomer(String login, String password, CustomerDto customerDto) {
+    public CustomerDto createCustomer(String login, String password, CustomerDto customerDto) {
         RoleDto roleCustomer = roleService.findByRoleName(ROLE_CUSTOMER);
         Set<RoleDto> roles = new HashSet<>();
         roles.add(roleCustomer);
-        UserDto user = userService.createUser(login, password, roles);
+        User user = userService.createUser(login, password, roles);
+        Customer customer = customerMapper.dtoToEntity(customerDto);
 
         if (user != null) {
-            Customer customer = customerMapper.dtoToEntity(customerDto);
-            customer.setUser(userMapper.dtoToEntity(user));
+            customer.setUser(user);
             customer = repository.save(customer);
-            customerMapper.entityToDto(customer);
         }
+
+        return customerMapper.entityToDto(customer);
     }
 
     @Override
@@ -90,5 +87,11 @@ public class CustomerService implements ICustomerService {
     public Pageable<CustomerDto> getPageableRecords(Pageable<CustomerDto> pageableDto) {
         Pageable<Customer> pageable = mapperP.dtoToEntity(pageableDto);
         return mapperP.entityToDto(repository.getPageableRecords(pageable));
+    }
+
+    @Override
+    public CustomerDto getCustomerByLoginUser(String login) {
+        Customer customer = repository.getCustomerByLoginUser(login);
+        return customer == null ? null : customerMapper.entityToDto(customer);
     }
 }
