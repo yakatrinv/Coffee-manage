@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/table-style.css">
 
-<%@ page import="java.util.Arrays" %>
-
 <c:set var="nameCommand" value="chooseMachine" scope="request"/>
 <c:set var="sortParam" value="&sortField=id" scope="request"/>
 <c:set var="filterParam" value="&searchCities=${requestScope.searchCities}"
@@ -94,9 +92,9 @@
                                                    value="/coffee-manage?${pageContext.request.queryString}"/>
                                         </c:otherwise>
                                     </c:choose>
-                                    <input type="hidden" name="id" value="${machine.id}">
+                                    <input type="hidden" name="machine_id" value="${machine.id}">
                                     <button type="submit" name="command" value="chooseProduct" class="buttonClass">
-                                        Выбрать
+                                        ВЫБРАТЬ
                                     </button>
                                 </form>
                             </td>
@@ -108,21 +106,6 @@
 
         </c:choose>
     </div>
-
-<%--    test data--%>
-<%--    <br>--%>
-<%--    array ${requestScope.searchCities1}--%>
-<%--    <br>--%>
-<%--    str ${requestScope.searchCities1.size()}--%>
-<%--    <br>--%>
-<%--    cont ${requestScope.searchCities1.contains("Минск")}--%>
-<%--    <br>--%>
-<%--    <c:forEach var="testItem" items="${requestScope.searchCities1}">--%>
-<%--        ${testItem}--%>
-<%--    </c:forEach>--%>
-<%--    <br>--%>
-
-
 
     <div>
         <form action="coffee-manage">

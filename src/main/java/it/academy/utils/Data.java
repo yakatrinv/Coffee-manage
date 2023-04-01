@@ -28,7 +28,6 @@ public class Data {
 
     public static final String ERROR_REG = "Пользователь уже существует";
 
-    public static final String MAIN_JSP = "view/general/main.jsp";
 
     public static final String LOGIN_JSP = "auth/login.jsp";
 
@@ -79,6 +78,7 @@ public class Data {
 
     public static final int DEFAULT_PAGE_SIZE = 5;
 
+    public static final String MAIN_JSP = "view/general/main.jsp";
 
     //users and roles
     public static final String ROLE_CUSTOMER = "Customer";
@@ -415,16 +415,4 @@ public class Data {
     public static final String ADD_PURCHASE_JSP = "view/purchase/addPurchase.jsp";
 
     public static final String EDIT_PURCHASE_JSP = "view/purchase/editPurchase.jsp";
-
-    //view customer
-    public static final String CHOOSE_MACHINE = "chooseMachine";
-
-    public static final String ATTR_SEARCH_CITIES = "searchCities";
-    public static final String ATTR_SET_SEARCH_CITIES = "setSearchCities";
-
-    public static final String STRING_SEARCH_CITIES = "&searchCities=";
-
-    public static final String ATTR_CITIES = "cities";
-
-    public static final String CUSTOMER_MACHINES_JSP = "view/viewCustomer/machines.jsp";
 }

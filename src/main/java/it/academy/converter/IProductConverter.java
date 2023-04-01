@@ -7,4 +7,6 @@ import java.util.HashMap;
 
 public interface IProductConverter extends IConverter<ProductDto> {
     HashMap<String, Object> convertSearchFields(HttpServletRequest request);
+
+    String convertSortFields(HttpServletRequest request);
 }

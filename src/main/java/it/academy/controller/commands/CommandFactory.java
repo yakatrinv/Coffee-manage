@@ -18,13 +18,14 @@ import it.academy.controller.commands.customer.EditCustomer;
 import it.academy.controller.commands.customer.ListCustomers;
 import it.academy.controller.commands.customer.SaveCustomer;
 import it.academy.controller.commands.customer.UpdateCustomer;
+import it.academy.controller.commands.customerCommand.ChooseMachine;
+import it.academy.controller.commands.customerCommand.ChooseProduct;
 import it.academy.controller.commands.discount.CreateDiscount;
 import it.academy.controller.commands.discount.DeleteDiscount;
 import it.academy.controller.commands.discount.EditDiscount;
 import it.academy.controller.commands.discount.ListDiscounts;
 import it.academy.controller.commands.discount.SaveDiscount;
 import it.academy.controller.commands.discount.UpdateDiscount;
-import it.academy.controller.commands.customerCommand.ChooseMachine;
 import it.academy.controller.commands.machine.CreateMachine;
 import it.academy.controller.commands.machine.DeleteMachine;
 import it.academy.controller.commands.machine.EditMachine;
@@ -80,7 +81,6 @@ import static it.academy.utils.Data.ADD_PURCHASE;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
 import static it.academy.utils.Data.CHANGE_ROLE;
-import static it.academy.utils.Data.CHOOSE_MACHINE;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
 import static it.academy.utils.Data.COMMAND_CUSTOMERS;
 import static it.academy.utils.Data.COMMAND_DISCOUNTS;
@@ -135,6 +135,8 @@ import static it.academy.utils.Data.UPDATE_PRODUCT;
 import static it.academy.utils.Data.UPDATE_PURCHASE;
 import static it.academy.utils.Data.UPDATE_ROLE;
 import static it.academy.utils.Data.UPDATE_ROLES_USER;
+import static it.academy.utils.DataCustomer.CHOOSE_MACHINE;
+import static it.academy.utils.DataCustomer.CHOOSE_PRODUCT;
 
 public final class CommandFactory {
     private static CommandFactory instance;
@@ -231,6 +233,7 @@ public final class CommandFactory {
 
         //view customer
         commands.put(CHOOSE_MACHINE, new ChooseMachine());
+        commands.put(CHOOSE_PRODUCT, new ChooseProduct());
     }
 
     public static CommandFactory getInstance() {

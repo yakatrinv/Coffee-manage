@@ -12,6 +12,7 @@ import static it.academy.utils.Data.ATTR_NAME;
 import static it.academy.utils.Data.ATTR_PRICE;
 import static it.academy.utils.Data.ATTR_SEARCH_NAME;
 import static it.academy.utils.Data.ATTR_SEARCH_PRICE;
+import static it.academy.utils.DataCustomer.ATTR_SORT_FIELD;
 
 public class ProductConverter implements IProductConverter {
     @Override
@@ -38,5 +39,11 @@ public class ProductConverter implements IProductConverter {
         searchFields.put(ATTR_PRICE, StringUtils.isBlank(price) ? 0 : Float.parseFloat(price));
 
         return searchFields;
+    }
+
+    @Override
+    public String convertSortFields(HttpServletRequest request) {
+        String sortField = request.getParameter(ATTR_SORT_FIELD);
+        return StringUtils.isBlank(sortField) ? ATTR_ID : sortField;
     }
 }

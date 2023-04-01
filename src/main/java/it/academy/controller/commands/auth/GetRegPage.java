@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static it.academy.utils.Data.ATTR_LOGGED_USER;
 import static it.academy.utils.Data.MAIN_JSP;
+import static it.academy.utils.Data.ATTR_LOGGED_USER;
 import static it.academy.utils.Data.REGISTRATION_JSP;
 
 public class GetRegPage implements Command {

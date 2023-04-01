@@ -18,13 +18,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static it.academy.utils.Data.ATTR_CITIES;
 import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_SEARCH_CITIES;
-import static it.academy.utils.Data.ATTR_SET_SEARCH_CITIES;
-import static it.academy.utils.Data.CUSTOMER_MACHINES_JSP;
 import static it.academy.utils.Data.PAGEABLE;
-import static it.academy.utils.Data.STRING_SEARCH_CITIES;
+import static it.academy.utils.DataCustomer.ATTR_CITIES;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_CITIES;
+import static it.academy.utils.DataCustomer.ATTR_SET_SEARCH_CITIES;
+import static it.academy.utils.DataCustomer.CUSTOMER_MACHINES_JSP;
+import static it.academy.utils.DataCustomer.STRING_SEARCH_CITIES;
 
 
 public class ChooseMachine implements Command {

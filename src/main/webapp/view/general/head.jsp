@@ -9,7 +9,7 @@
         Hi, ${sessionScope.loggedUser.login}
 
         <span></span>
-        <c:if test="${sessionScope.userRoles.size() gt 0}">
+        <c:if test="${sessionScope.userRoles.size() gt 1}">
             <select name="role" onchange="document.location=this.options[this.selectedIndex].value">
                 <c:forEach var="roleItem" items="${sessionScope.userRoles}">
                     <c:choose>

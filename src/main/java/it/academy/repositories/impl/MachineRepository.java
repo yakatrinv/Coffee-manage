@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static it.academy.utils.Data.ATTR_ADDRESS;
-import static it.academy.utils.Data.ATTR_CITIES;
 import static it.academy.utils.Data.ATTR_CITY;
 import static it.academy.utils.Data.ATTR_ID;
 import static it.academy.utils.Data.ATTR_MACHINES;
@@ -30,6 +29,7 @@ import static it.academy.utils.Data.LONG_CLASS;
 import static it.academy.utils.Data.MACHINE_CLASS;
 import static it.academy.utils.Data.PERCENT_STRING;
 import static it.academy.utils.Data.PRODUCT_CLASS;
+import static it.academy.utils.DataCustomer.ATTR_CITIES;
 
 public class MachineRepository extends CrudRepository<Machine>
         implements IMachineRepository {
@@ -69,26 +69,28 @@ public class MachineRepository extends CrudRepository<Machine>
             //filtered
             HashMap<String, Object> filteredFields
                     = pageable.getSearchFields();
-            for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
-                String key = pair.getKey();
-                Object value = pair.getValue();
+            if (filteredFields != null) {
+                for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
+                    String key = pair.getKey();
+                    Object value = pair.getValue();
 
-                if (StringUtils.isNotBlank(key) && value != null) {
-                    if (value.getClass() == String.class) {
-                        if (StringUtils.isNotBlank((String) value)) {
+                    if (StringUtils.isNotBlank(key) && value != null) {
+                        if (value.getClass() == String.class) {
+                            if (StringUtils.isNotBlank((String) value)) {
+                                predicates.add(criteriaBuilder
+                                        .like(root.get(key),
+                                                PERCENT_STRING + value +
+                                                        PERCENT_STRING));
+                            }
+                        } else if (value.getClass() == Float.class) {
+                            if ((Float) value != 0) {
+                                predicates.add(criteriaBuilder
+                                        .ge(root.get(key), (Number) value));
+                            }
+                        } else {
                             predicates.add(criteriaBuilder
-                                    .like(root.get(key),
-                                            PERCENT_STRING + value +
-                                                    PERCENT_STRING));
+                                    .equal(root.get(key), value));
                         }
-                    } else if (value.getClass() == Float.class) {
-                        if ((Float) value != 0) {
-                            predicates.add(criteriaBuilder
-                                    .ge(root.get(key), (Number) value));
-                        }
-                    } else {
-                        predicates.add(criteriaBuilder
-                                .equal(root.get(key), value));
                     }
                 }
             }
@@ -149,27 +151,29 @@ public class MachineRepository extends CrudRepository<Machine>
             //filtered
             HashMap<String, Object> filteredFields
                     = pageable.getSearchFields();
-            for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
-                String key = pair.getKey();
-                Object value = pair.getValue();
+            if (filteredFields != null) {
+                for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
+                    String key = pair.getKey();
+                    Object value = pair.getValue();
 
-                if (StringUtils.isNotBlank(key) && value != null) {
-                    if (value.getClass() == String.class) {
-                        if (!StringUtils.isBlank((String) value)) {
-                            predicates
-                                    .add(cbCount
-                                            .like(rootCount.get(key),
-                                                    PERCENT_STRING + value +
-                                                            PERCENT_STRING));
-                        }
-                    } else if (value.getClass() == Float.class) {
-                        if ((Float) value != 0) {
+                    if (StringUtils.isNotBlank(key) && value != null) {
+                        if (value.getClass() == String.class) {
+                            if (!StringUtils.isBlank((String) value)) {
+                                predicates
+                                        .add(cbCount
+                                                .like(rootCount.get(key),
+                                                        PERCENT_STRING + value +
+                                                                PERCENT_STRING));
+                            }
+                        } else if (value.getClass() == Float.class) {
+                            if ((Float) value != 0) {
+                                predicates.add(cbCount
+                                        .ge(rootCount.get(key), (Number) value));
+                            }
+                        } else {
                             predicates.add(cbCount
-                                    .ge(rootCount.get(key), (Number) value));
+                                    .equal(rootCount.get(key), value));
                         }
-                    } else {
-                        predicates.add(cbCount
-                                .equal(rootCount.get(key), value));
                     }
                 }
             }
