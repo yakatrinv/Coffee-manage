@@ -11,6 +11,8 @@
             </column>
             <column name="name" type="varchar(30)"/>
             <column name="price" type="float"/>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

@@ -27,10 +27,10 @@ import static it.academy.utils.Data.ATTR_USER_ID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"user"})
-@EqualsAndHashCode(of = {"name", "surname", "phone", "email"})
+@EqualsAndHashCode(of = {"name", "surname", "phone", "email"}, callSuper = false)
 @Entity
 @Table
-public class Customer implements Serializable {
+public class Customer extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

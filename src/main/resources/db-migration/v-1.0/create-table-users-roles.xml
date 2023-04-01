@@ -16,6 +16,8 @@
                              foreignKeyName="user_role_role_id_fk"
                              references="role(id)"/>
             </column>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

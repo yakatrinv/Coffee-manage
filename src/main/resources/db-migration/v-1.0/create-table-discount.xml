@@ -11,6 +11,8 @@
             </column>
             <column name="percent" type="float"/>
             <column name="sum" type="float"/>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

@@ -23,6 +23,8 @@
             <column name="product_id" type="int">
                 <constraints foreignKeyName="purchase_product_id_fk" references="product(id)" nullable="false"/>
             </column>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

@@ -30,12 +30,12 @@ import static it.academy.utils.Data.MACHINE_PRODUCT;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(of = {"id", "name", "price"})
+@EqualsAndHashCode(of = {"id", "name", "price"}, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
-public class Product implements Serializable {
+public class Product extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

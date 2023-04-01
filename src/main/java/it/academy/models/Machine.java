@@ -34,12 +34,12 @@ import static it.academy.utils.Data.MACHINE_PRODUCT;
 @Getter
 @Setter
 @ToString(exclude = {"products", "address", "model"})
-@EqualsAndHashCode(of = {"serialNumber"})
+@EqualsAndHashCode(of = {"serialNumber"}, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
-public class Machine implements Serializable {
+public class Machine extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

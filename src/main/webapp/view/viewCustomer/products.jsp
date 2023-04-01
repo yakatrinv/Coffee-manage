@@ -18,7 +18,7 @@
 <jsp:include page="../general/head.jsp"/>
 <br>
 <header>
-    <h3 class="h1">Список продукции по аппарату</h3>
+    <h3 class="h1">Выбор продукции</h3>
 </header>
 
 <form action="coffee-manage">
@@ -117,7 +117,7 @@
                                 </c:choose>
                                 <input type="hidden" name="machine_id" value="${requestScope.machine.id}">
                                 <input type="hidden" name="product_id" value="${machineProduct.id}">
-                                <button type="submit" name="command" value="orderPay" class="buttonClass">
+                                <button type="submit" name="command" value="createOrderPay" class="buttonClass">
                                     ВЫБРАТЬ
                                 </button>
                             </form>

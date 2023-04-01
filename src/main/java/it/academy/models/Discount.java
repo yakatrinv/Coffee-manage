@@ -23,7 +23,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table
-public class Discount implements Serializable {
+public class Discount extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

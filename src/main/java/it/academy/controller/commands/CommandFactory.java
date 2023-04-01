@@ -20,6 +20,8 @@ import it.academy.controller.commands.customer.SaveCustomer;
 import it.academy.controller.commands.customer.UpdateCustomer;
 import it.academy.controller.commands.customerCommand.ChooseMachine;
 import it.academy.controller.commands.customerCommand.ChooseProduct;
+import it.academy.controller.commands.customerCommand.CreateOrderPay;
+import it.academy.controller.commands.customerCommand.SaveOrderPay;
 import it.academy.controller.commands.discount.CreateDiscount;
 import it.academy.controller.commands.discount.DeleteDiscount;
 import it.academy.controller.commands.discount.EditDiscount;
@@ -137,6 +139,8 @@ import static it.academy.utils.Data.UPDATE_ROLE;
 import static it.academy.utils.Data.UPDATE_ROLES_USER;
 import static it.academy.utils.DataCustomer.CHOOSE_MACHINE;
 import static it.academy.utils.DataCustomer.CHOOSE_PRODUCT;
+import static it.academy.utils.DataCustomer.CREATE_ORDER_PAY;
+import static it.academy.utils.DataCustomer.SAVE_ORDER_PAY;
 
 public final class CommandFactory {
     private static CommandFactory instance;
@@ -234,6 +238,8 @@ public final class CommandFactory {
         //view customer
         commands.put(CHOOSE_MACHINE, new ChooseMachine());
         commands.put(CHOOSE_PRODUCT, new ChooseProduct());
+        commands.put(CREATE_ORDER_PAY, new CreateOrderPay());
+        commands.put(SAVE_ORDER_PAY, new SaveOrderPay());
     }
 
     public static CommandFactory getInstance() {

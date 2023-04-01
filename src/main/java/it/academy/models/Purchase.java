@@ -29,7 +29,7 @@ import static it.academy.utils.Data.ATTR_PRODUCT_ID;
 @AllArgsConstructor
 @Entity
 @Table
-public class Purchase implements Serializable {
+public class Purchase extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
