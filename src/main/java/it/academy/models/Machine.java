@@ -20,7 +20,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import static it.academy.utils.Data.ATTR_ADDRESS_ID;
@@ -59,5 +58,5 @@ public class Machine extends DataEntity implements Serializable {
     @JoinTable(name = MACHINE_PRODUCT,
             joinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)})
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products;
 }

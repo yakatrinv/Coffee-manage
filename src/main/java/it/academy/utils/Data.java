@@ -1,12 +1,14 @@
 package it.academy.utils;
 
 import it.academy.models.Address;
+import it.academy.models.CreditCard;
 import it.academy.models.Customer;
 import it.academy.models.Discount;
 import it.academy.models.Machine;
 import it.academy.models.Model;
 import it.academy.models.Product;
 import it.academy.models.Purchase;
+import it.academy.models.TypePayment;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
@@ -61,6 +63,10 @@ public class Data {
     public static final Class<Long> LONG_CLASS = Long.class;
 
     public static final Class<Address> ADDRESS_CLASS = Address.class;
+
+    public static final Class<CreditCard> CREDIT_CARD_CLASS = CreditCard.class;
+
+    public static final Class<TypePayment> TYPE_PAYMENT_CLASS = TypePayment.class;
 
     public static final Class<Model> MODEL_CLASS = Model.class;
 
@@ -209,6 +215,8 @@ public class Data {
     //customer entity
     public static final String ATTR_NAME = "name";
 
+    public static final String CREDIT_CARD = "credit_card";
+
     public static final String ATTR_SURNAME = "surname";
 
     public static final String ATTR_PHONE = "phone";
@@ -306,6 +314,11 @@ public class Data {
     public static final String ATTR_MODEL_ID = "model_id";
 
     public static final String ATTR_PRODUCT_ID = "product_id";
+
+    public static final String ATTR_CREDIT_CARD_ID = "credit_card_id";
+
+    public static final String ATTR_TYPE_PAYMENT_ID = "type_payment_id";
+
 
     public static final String ATTR_MACHINE_ID = "machine_id";
 
@@ -415,4 +428,6 @@ public class Data {
     public static final String ADD_PURCHASE_JSP = "view/purchase/addPurchase.jsp";
 
     public static final String EDIT_PURCHASE_JSP = "view/purchase/editPurchase.jsp";
+
+    public static final String TYPE_PAYMENT = "type_payment";
 }

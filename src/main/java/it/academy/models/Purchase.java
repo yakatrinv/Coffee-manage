@@ -17,9 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+import static it.academy.utils.Data.ATTR_CREDIT_CARD_ID;
 import static it.academy.utils.Data.ATTR_DISCOUNT_ID;
 import static it.academy.utils.Data.ATTR_MACHINE_ID;
 import static it.academy.utils.Data.ATTR_PRODUCT_ID;
+import static it.academy.utils.Data.ATTR_TYPE_PAYMENT_ID;
 
 @Builder
 @Getter
@@ -55,5 +57,11 @@ public class Purchase extends DataEntity implements Serializable {
     @Column
     private float sum;
 
+    @ManyToOne
+    @JoinColumn(name = ATTR_CREDIT_CARD_ID)
+    private CreditCard creditCard;
 
+    @ManyToOne
+    @JoinColumn(name = ATTR_TYPE_PAYMENT_ID)
+    private TypePayment typePayment;
 }

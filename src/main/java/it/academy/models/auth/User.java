@@ -20,7 +20,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import static it.academy.utils.Data.ATTR_ROLE_ID;
@@ -54,5 +53,5 @@ public class User extends DataEntity implements Serializable {
     @JoinTable(name = USER_ROLE,
             joinColumns = {@JoinColumn(name = ATTR_USER_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_ROLE_ID)})
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 }

@@ -23,6 +23,12 @@
             <column name="product_id" type="int">
                 <constraints foreignKeyName="purchase_product_id_fk" references="product(id)" nullable="false"/>
             </column>
+            <column name="credit_card_id" type="int">
+                <constraints foreignKeyName="purchase_credit_card_id_fk" references="credit_card(id)" nullable="false"/>
+            </column>
+            <column name="type_payment_id" type="int">
+                <constraints foreignKeyName="purchase_type_payment_id_fk" references="type_payment(id)" nullable="false"/>
+            </column>
             <column name="createDate" type="datetime"/>
             <column name="updateDate" type="datetime"/>
         </createTable>

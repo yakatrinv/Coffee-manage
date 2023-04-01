@@ -27,13 +27,13 @@
     <input type="hidden" name="pageSize" value="${pageSize}">
     <input type="hidden" name="machine_id" value="${requestScope.machine.id}">
 
-    <c:if test="${machine ne null}">
+    <c:if test="${requestScope.machine ne null}">
         <p>
-                ${machine.model.brand}, ${machine.model.nameModel}
+                ${requestScope.machine.model.brand}, ${requestScope.machine.model.nameModel}
         </p>
 
         <p>
-                ${machine.address.city}, ${machine.address.street}
+                ${requestScope.machine.address.city}, ${requestScope.machine.address.street}
         </p>
     </c:if>
 
@@ -117,7 +117,7 @@
                                 </c:choose>
                                 <input type="hidden" name="machine_id" value="${requestScope.machine.id}">
                                 <input type="hidden" name="product_id" value="${machineProduct.id}">
-                                <button type="submit" name="command" value="createOrderPay" class="buttonClass">
+                                <button type="submit" name="command" value="chooseTypePay" class="buttonClass">
                                     ВЫБРАТЬ
                                 </button>
                             </form>
