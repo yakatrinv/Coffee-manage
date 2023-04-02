@@ -1,6 +1,7 @@
 package it.academy.services;
 
 import it.academy.dto.DiscountDto;
+import it.academy.models.Discount;
 import it.academy.models.pageable.Pageable;
 
 import java.io.Serializable;
@@ -18,4 +19,6 @@ public interface IDiscountService {
     Pageable<DiscountDto> getPageableRecords(Pageable<DiscountDto> pageable);
 
     List<DiscountDto> findAllDiscounts();
+
+    Discount getPercentDiscount(Float sum);
 }

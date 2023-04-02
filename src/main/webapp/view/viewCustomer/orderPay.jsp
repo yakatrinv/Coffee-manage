@@ -24,16 +24,18 @@
             <input type="hidden" name="customer_id" value="${sessionScope.loggedCustomer.id}" scope="request"/>
             <input type="hidden" name="machine_id" value="${requestScope.machine.id}" scope="request"/>
             <input type="hidden" name="product_id" value="${requestScope.product.id}" scope="request"/>
+            <input type="hidden" name="discount_id" value="${requestScope.discount.id}" scope="request"/>
             <input type="hidden" name="price" value="${requestScope.product.price}" scope="request"/>
-            <input type="hidden" name="sum" value="${requestScope.product.price}" scope="request"/>
+            <input type="hidden" name="sum" value="${requestScope.sum}" scope="request"/>
 
             <c:if test="${sessionScope.loggedCustomer ne null}">
                 <p>
-                        ${sessionScope.loggedCustomer.name}, ${sessionScope.loggedCustomer.surname}
+                        Покупатель: ${sessionScope.loggedCustomer.name}, ${sessionScope.loggedCustomer.surname}
                 </p>
             </c:if>
             <br>
             <c:if test="${requestScope.machine ne null}">
+                Аппарат:
                 <p>
                         ${requestScope.machine.model.brand}, ${requestScope.machine.model.nameModel}
                 </p>
@@ -42,14 +44,17 @@
                         ${requestScope.machine.address.city}, ${requestScope.machine.address.street}
                 </p>
             </c:if>
-            <br>
+<%--            <br>--%>
 
             <c:if test="${requestScope.product ne null}">
                 <p>
-                        ${requestScope.product.name}, ${requestScope.product.price}
+                        Продукция: ${requestScope.product.name}
+                </p>
+                <p>
+                        Цена: ${requestScope.product.price}
                 </p>
             </c:if>
-            <br>
+<%--            <br>--%>
 
             <div>
                 <script>
@@ -71,17 +76,20 @@
                     }
                 </script>
 
-                <label>Типы оплаты</label>
-                <c:forEach var="typePayment" items="${requestScope.typePayments}">
-                    <div class="form_radio_btn">
-                        <input id="typePayment${typePayment.id}" type="radio" name="type_payment_id" value="${typePayment.id}"
-                               onChange="SelectedCreditCard('${typePayment.useCreditCard}','${typePayment.usePhoneNumber}')">
-                        <label for="typePayment${typePayment.id}">${typePayment.name}</label>
-                    </div>
-                </c:forEach>
+                <div>
+                    <label>Типы оплаты</label>
+                    <c:forEach var="typePayment" items="${requestScope.typePayments}">
+                        <div class="form_radio_btn">
+                            <input id="typePayment${typePayment.id}" type="radio" name="type_payment_id"
+                                   value="${typePayment.id}"
+                                   onChange="SelectedCreditCard('${typePayment.useCreditCard}','${typePayment.usePhoneNumber}')">
+                            <label for="typePayment${typePayment.id}">${typePayment.name}</label>
+                        </div>
+                    </c:forEach>
+                </div>
 
             </div>
-            <br>
+<%--            <br>--%>
 
             <div id='creditCard' style='display: none;'>
                 <label for="creditCard">Карта</label>
@@ -97,10 +105,14 @@
                 <label for="phoneNumber">Номер телефона: ${sessionScope.loggedCustomer.phone}</label>
             </div>
 
-            <c:set var="sum" value="${requestScope.product.price}"/>
+            <c:set var="discount" value="${requestScope.discount}"/>
             <p>
-                ${sum}
+                Скидка: ${requestScope.discount.percent} %
             </p>
+
+            <p><b>
+                Сумма к оплате: ${requestScope.sum}
+            </b></p>
             <br>
 
             <p>

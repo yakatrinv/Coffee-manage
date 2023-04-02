@@ -5,8 +5,6 @@ public class DataCustomer {
 
     public static final String CHOOSE_PRODUCT = "chooseProduct";
 
-    public static final String CHOOSE_TYPE_PAY = "chooseTypePay";
-
     public static final String CREATE_ORDER_PAY = "createOrderPay";
 
     public static final String SAVE_ORDER_PAY = "saveOrderPay";
@@ -24,8 +22,6 @@ public class DataCustomer {
     public static final String CUSTOMER_MACHINES_JSP = "view/viewCustomer/machines.jsp";
 
     public static final String CUSTOMER_PRODUCTS_JSP = "view/viewCustomer/products.jsp";
-
-    public static final String CUSTOMER_TYPE_PAYS_JSP = "view/viewCustomer/typePays.jsp";
 
     public static final String CUSTOMER_ORDER_PAY_JSP = "view/viewCustomer/orderPay.jsp";
 }

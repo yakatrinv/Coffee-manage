@@ -52,4 +52,9 @@ public class PurchaseService implements IPurchaseService {
         Pageable<Purchase> pageable = mapperP.dtoToEntity(pageableDto);
         return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
+
+    @Override
+    public Float getSumPurchases(Serializable id) {
+        return repository.getSumPurchases(id);
+    }
 }
