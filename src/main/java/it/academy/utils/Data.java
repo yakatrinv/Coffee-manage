@@ -430,4 +430,14 @@ public class Data {
     public static final String EDIT_PURCHASE_JSP = "view/purchase/editPurchase.jsp";
 
     public static final String TYPE_PAYMENT = "type_payment";
+
+    public static final String ATTR_TYPE_PAYMENT = "typePayments";
+
+    public static final String ATTR_CREDIT_CARDS = "creditCards";
+
+    public static final String COL_USE_CREDIT_CARD = "use_credit_card";
+
+    public static final String COL_USE_PHONE_NUMBER = "use_phone_number";
+
+
 }

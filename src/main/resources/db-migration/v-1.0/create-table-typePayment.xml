@@ -10,6 +10,8 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(20)"/>
+            <column name="use_credit_card" type="boolean"/>
+            <column name="use_phone_number" type="boolean"/>
             <column name="createDate" type="datetime"/>
             <column name="updateDate" type="datetime"/>
         </createTable>
@@ -18,8 +20,14 @@
     <changeSet id="insert=type-payment" author="Katerina">
         <insert tableName="type_payment">
             <column name="name">Наличная</column>
+        </insert>
+        <insert tableName="type_payment">
             <column name="name">Безналичная</column>
+            <column name="use_credit_card">true</column>
+        </insert>
+        <insert tableName="type_payment">
             <column name="name">По номеру телефона</column>
+            <column name="use_phone_number">true</column>
         </insert>
     </changeSet>
 

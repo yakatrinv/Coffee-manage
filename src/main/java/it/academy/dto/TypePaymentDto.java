@@ -22,4 +22,8 @@ public class TypePaymentDto extends DataEntity implements Serializable {
     private Integer id;
 
     private String name;
+
+    private Boolean useCreditCard;
+
+    private Boolean usePhoneNumber;
 }

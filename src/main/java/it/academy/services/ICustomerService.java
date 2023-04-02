@@ -1,5 +1,6 @@
 package it.academy.services;
 
+import it.academy.dto.CreditCardDto;
 import it.academy.dto.CustomerDto;
 import it.academy.models.pageable.Pageable;
 
@@ -20,4 +21,6 @@ public interface ICustomerService {
     Pageable<CustomerDto> getPageableRecords(Pageable<CustomerDto> pageable);
 
     CustomerDto getCustomerByLoginUser(String login);
+
+    List<CreditCardDto> getCreditCards(Serializable id);
 }

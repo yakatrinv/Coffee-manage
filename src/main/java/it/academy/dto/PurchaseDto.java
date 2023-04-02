@@ -30,5 +30,7 @@ public class PurchaseDto implements Serializable {
 
     private float sum;
 
+    private CreditCardDto creditCard;
 
+    private TypePaymentDto typePayment;
 }

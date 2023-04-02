@@ -1,10 +1,13 @@
 package it.academy.services.impl;
 
+import it.academy.dto.CreditCardDto;
 import it.academy.dto.CustomerDto;
 import it.academy.dto.auth.RoleDto;
 import it.academy.mappers.Mapper;
+import it.academy.mappers.impl.CreditCardMapper;
 import it.academy.mappers.impl.CustomerMapper;
 import it.academy.mappers.impl.PageableMapper;
+import it.academy.models.CreditCard;
 import it.academy.models.Customer;
 import it.academy.models.auth.User;
 import it.academy.models.pageable.Pageable;
@@ -28,6 +31,8 @@ public class CustomerService implements ICustomerService {
             = new CustomerRepository();
 
     private final Mapper<Customer, CustomerDto> customerMapper = new CustomerMapper();
+
+    private final Mapper<CreditCard, CreditCardDto> creditCardMapper = new CreditCardMapper();
 
     private final Mapper<Pageable<Customer>, Pageable<CustomerDto>> mapperP =
             new PageableMapper<>(customerMapper);
@@ -93,5 +98,14 @@ public class CustomerService implements ICustomerService {
     public CustomerDto getCustomerByLoginUser(String login) {
         Customer customer = repository.getCustomerByLoginUser(login);
         return customer == null ? null : customerMapper.entityToDto(customer);
+    }
+
+    @Override
+    public List<CreditCardDto> getCreditCards(Serializable id) {
+        List<CreditCard> creditCards = repository.getCreditCards(id);
+        return creditCards
+                .stream()
+                .map(creditCardMapper::entityToDto)
+                .toList();
     }
 }

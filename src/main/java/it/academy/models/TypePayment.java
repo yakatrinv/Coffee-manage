@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+import static it.academy.utils.Data.COL_USE_CREDIT_CARD;
+import static it.academy.utils.Data.COL_USE_PHONE_NUMBER;
 import static it.academy.utils.Data.TYPE_PAYMENT;
 
 @Builder
@@ -34,4 +36,10 @@ public class TypePayment extends DataEntity implements Serializable {
 
     @Column
     private String name;
+
+    @Column(name = COL_USE_CREDIT_CARD)
+    private Boolean useCreditCard;
+
+    @Column(name = COL_USE_PHONE_NUMBER)
+    private Boolean usePhoneNumber;
 }

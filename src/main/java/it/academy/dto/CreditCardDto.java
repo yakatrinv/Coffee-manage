@@ -23,6 +23,4 @@ public class CreditCardDto extends DataEntity implements Serializable {
     private Integer id;
 
     private String number;
-
-    private Set<CreditCardDto> creditCard;
 }

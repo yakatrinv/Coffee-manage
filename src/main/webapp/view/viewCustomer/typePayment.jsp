@@ -2,13 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/table-style.css">
 
-<c:set var="nameCommand" value="chooseProduct" scope="request"/>
+<c:set var="nameCommand" value="typePayment" scope="request"/>
 <c:set var="sortParam" value="&sortField=${requestScope.sortField}" scope="request"/>
 <c:set var="filterParam" value="" scope="request"/>
 <c:set var="pageNumber" value="${requestScope.pageable.pageNumber}" scope="request"/>
 <c:set var="pageSize" value="${requestScope.pageable.pageSize}" scope="request"/>
 <c:set var="lastPageNumber" value="${requestScope.pageable.lastPageNumber}" scope="request"/>
-<c:set var="machineProducts" value="${requestScope.pageable.records}" scope="request"/>
 
 <html>
 <head>
@@ -25,7 +24,12 @@
     <input type="hidden" name="prevURL" value="${pageContext.request.queryString}"/>
     <input type="hidden" name="pageNumber" value="${pageNumber}">
     <input type="hidden" name="pageSize" value="${pageSize}">
-    <input type="hidden" name="machine_id" value="${requestScope.machine.id}">
+
+    <input type="hidden" name="customer_id" value="${sessionScope.loggedCustomer.id}" scope="request"/>
+    <input type="hidden" name="machine_id" value="${requestScope.machine.id}" scope="request"/>
+    <input type="hidden" name="product_id" value="${requestScope.product.id}" scope="request"/>
+    <input type="hidden" name="price" value="${requestScope.product.price}" scope="request"/>
+    <input type="hidden" name="sum" value="${requestScope.product.price}" scope="request"/>
 
     <c:if test="${requestScope.machine ne null}">
         <p>
@@ -117,7 +121,7 @@
                                 </c:choose>
                                 <input type="hidden" name="machine_id" value="${requestScope.machine.id}">
                                 <input type="hidden" name="product_id" value="${machineProduct.id}">
-                                <button type="submit" name="command" value="createOrderPay" class="buttonClass">
+                                <button type="submit" name="command" value="chooseTypePay" class="buttonClass">
                                     ВЫБРАТЬ
                                 </button>
                             </form>

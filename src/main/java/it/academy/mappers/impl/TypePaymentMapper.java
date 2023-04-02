@@ -10,6 +10,8 @@ public class TypePaymentMapper implements Mapper<TypePayment, TypePaymentDto> {
         return TypePayment.builder()
                 .id(typePaymentDto.getId())
                 .name(typePaymentDto.getName())
+                .useCreditCard(typePaymentDto.getUseCreditCard())
+                .usePhoneNumber(typePaymentDto.getUsePhoneNumber())
                 .build();
     }
 
@@ -18,6 +20,8 @@ public class TypePaymentMapper implements Mapper<TypePayment, TypePaymentDto> {
         return TypePaymentDto.builder()
                 .id(typePayment.getId())
                 .name(typePayment.getName())
+                .useCreditCard(typePayment.getUseCreditCard())
+                .usePhoneNumber(typePayment.getUsePhoneNumber())
                 .build();
     }
 }

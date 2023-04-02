@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/add-form-style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/radio-style.css">
 
 <html>
 <head>
@@ -49,10 +51,56 @@
             </c:if>
             <br>
 
+            <div>
+                <script>
+                    function SelectedCreditCard(creditCard, phoneNumber) {
+                        document.getElementById("creditCard").style.display = 'none';
+                        document.getElementById("phoneNumber").style.display = 'none';
+
+                        if (creditCard.valueOf()) {
+                            document.getElementById("creditCard").style.display = 'block';
+                        } else {
+                            document.getElementById("creditCard").style.display = 'none';
+                        }
+
+                        if (phoneNumber.valueOf()) {
+                            document.getElementById("phoneNumber").style.display = 'block';
+                        } else {
+                            document.getElementById("phoneNumber").style.display = 'none';
+                        }
+                    }
+                </script>
+
+                <label>Типы оплаты</label>
+                <c:forEach var="typePayment" items="${requestScope.typePayments}">
+                    <div class="form_radio_btn">
+                        <input id="typePayment${typePayment.id}" type="radio" name="type_payment_id" value="${typePayment.id}"
+                               onChange="SelectedCreditCard('${typePayment.useCreditCard}','${typePayment.usePhoneNumber}')">
+                        <label for="typePayment${typePayment.id}">${typePayment.name}</label>
+                    </div>
+                </c:forEach>
+
+            </div>
+            <br>
+
+            <div id='creditCard' style='display: none;'>
+                <label for="creditCard">Карта</label>
+                <select name="credit_card_id">
+                    <c:forEach var="creditCardItem" items="${requestScope.creditCards}">
+                    <option value="${creditCardItem.id}">${creditCardItem.number}</option>
+                    </c:forEach>
+                </select>
+                <%--                <input type="text" name="creditCard">--%>
+            </div>
+
+            <div id='phoneNumber' style='display: none;'>
+                <label for="phoneNumber">Номер телефона: ${sessionScope.loggedCustomer.phone}</label>
+            </div>
+
             <c:set var="sum" value="${requestScope.product.price}"/>
-                <p>
-                        ${sum}
-                </p>
+            <p>
+                ${sum}
+            </p>
             <br>
 
             <p>

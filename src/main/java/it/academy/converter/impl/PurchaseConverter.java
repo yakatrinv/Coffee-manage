@@ -1,24 +1,32 @@
 package it.academy.converter.impl;
 
 import it.academy.converter.IPurchaseConverter;
+import it.academy.dto.CreditCardDto;
 import it.academy.dto.CustomerDto;
 import it.academy.dto.DiscountDto;
 import it.academy.dto.MachineDto;
 import it.academy.dto.ProductDto;
 import it.academy.dto.PurchaseDto;
+import it.academy.dto.TypePaymentDto;
+import it.academy.services.ICreditCardService;
 import it.academy.services.ICustomerService;
 import it.academy.services.IDiscountService;
 import it.academy.services.IMachineService;
 import it.academy.services.IProductService;
+import it.academy.services.ITypePaymentService;
+import it.academy.services.impl.CreditCardService;
 import it.academy.services.impl.CustomerService;
 import it.academy.services.impl.DiscountService;
 import it.academy.services.impl.MachineService;
 import it.academy.services.impl.ProductService;
+import it.academy.services.impl.TypePaymentService;
 import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
+import static it.academy.utils.Data.ATTR_CREDIT_CARDS;
+import static it.academy.utils.Data.ATTR_CREDIT_CARD_ID;
 import static it.academy.utils.Data.ATTR_CUSTOMER_ID;
 import static it.academy.utils.Data.ATTR_DISCOUNT_ID;
 import static it.academy.utils.Data.ATTR_ID;
@@ -28,6 +36,8 @@ import static it.academy.utils.Data.ATTR_PRODUCT_ID;
 import static it.academy.utils.Data.ATTR_SEARCH_PRICE;
 import static it.academy.utils.Data.ATTR_SEARCH_SUM;
 import static it.academy.utils.Data.ATTR_SUM;
+import static it.academy.utils.Data.ATTR_TYPE_PAYMENT;
+import static it.academy.utils.Data.ATTR_TYPE_PAYMENT_ID;
 import static it.academy.utils.Data.VALUE_ZERO;
 
 public class PurchaseConverter implements IPurchaseConverter {
@@ -39,6 +49,10 @@ public class PurchaseConverter implements IPurchaseConverter {
 
     IDiscountService discountService = new DiscountService();
 
+    ITypePaymentService typePaymentService = new TypePaymentService();
+
+    ICreditCardService creditCardService = new CreditCardService();
+
     @Override
     public PurchaseDto convertToDto(HttpServletRequest request) {
         String id = request.getParameter(ATTR_ID);
@@ -48,6 +62,9 @@ public class PurchaseConverter implements IPurchaseConverter {
         String price = request.getParameter(ATTR_PRICE);
         String discountId = request.getParameter(ATTR_DISCOUNT_ID);
         String sum = request.getParameter(ATTR_SUM);
+        String creditCardId = request.getParameter(ATTR_CREDIT_CARD_ID);
+        String typePaymentId = request.getParameter(ATTR_TYPE_PAYMENT_ID);
+
 
         CustomerDto customer = null;
         if (StringUtils.isNotBlank(customerId)) {
@@ -69,6 +86,18 @@ public class PurchaseConverter implements IPurchaseConverter {
             discount = discountService.findDiscountById(Integer.parseInt(discountId));
         }
 
+        TypePaymentDto typePayment = null;
+        CreditCardDto creditCard = null;
+        if (StringUtils.isNotBlank(typePaymentId)) {
+            typePayment = typePaymentService.findTypePaymentById(Integer.parseInt(typePaymentId));
+
+            if (typePayment!=null && typePayment.getUseCreditCard()) {
+                if (StringUtils.isNotBlank(creditCardId)) {
+                    creditCard = creditCardService.findCreditCardById(Integer.parseInt(creditCardId));
+                }
+            }
+        }
+
         return PurchaseDto.builder()
                 .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .customer(customer)
@@ -77,6 +106,8 @@ public class PurchaseConverter implements IPurchaseConverter {
                 .price(StringUtils.isBlank(price) ? VALUE_ZERO : Float.parseFloat(price))
                 .discount(discount)
                 .sum(StringUtils.isBlank(sum) ? VALUE_ZERO : Float.parseFloat(sum))
+                .typePayment(typePayment)
+                .creditCard(creditCard)
                 .build();
     }
 

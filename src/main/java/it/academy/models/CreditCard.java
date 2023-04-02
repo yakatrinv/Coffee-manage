@@ -38,8 +38,4 @@ public class CreditCard extends DataEntity implements Serializable {
 
     @Column
     private String number;
-
-    @OneToMany
-    @JoinColumn(name = ATTR_CUSTOMER_ID)
-    private Set<CreditCard> creditCard;
 }
