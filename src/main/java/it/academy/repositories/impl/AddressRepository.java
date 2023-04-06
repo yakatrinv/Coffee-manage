@@ -12,7 +12,8 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-import static it.academy.utils.Data.ADDRESS_CLASS;
+import static it.academy.utils.DataAddress.ATTR_CITY;
+import static it.academy.utils.DataGeneral.ADDRESS_CLASS;
 
 public class AddressRepository extends CrudRepository<Address>
         implements IAddressRepository {
@@ -32,8 +33,8 @@ public class AddressRepository extends CrudRepository<Address>
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<String> query = criteriaBuilder.createQuery(String.class);
             Root<Address> address = query.from(ADDRESS_CLASS);
-            query.select(address.get("city"));
-            query.orderBy(criteriaBuilder.asc(address.get("city")));
+            query.select(address.get(ATTR_CITY));
+            query.orderBy(criteriaBuilder.asc(address.get(ATTR_CITY)));
             query.distinct(true);
 
             TypedQuery<String> resultQuery = entityManager.createQuery(query);

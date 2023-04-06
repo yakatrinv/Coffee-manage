@@ -8,12 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 
-import static it.academy.utils.Data.ATTR_PERCENT;
-import static it.academy.utils.Data.ATTR_SUM;
-import static it.academy.utils.Data.DISCOUNT_CLASS;
-import static it.academy.utils.Data.FIRST_INDEX;
+import static it.academy.utils.DataDiscount.ATTR_PERCENT;
+import static it.academy.utils.DataDiscount.ATTR_SUM;
+import static it.academy.utils.DataGeneral.DISCOUNT_CLASS;
 
 public class DiscountRepository extends CrudRepository<Discount>
         implements IDiscountRepository {
@@ -24,7 +22,7 @@ public class DiscountRepository extends CrudRepository<Discount>
     }
 
     @Override
-    public Discount getPercentDiscount(Float sum) {
+    public Discount getPercentDiscount(float sum) {
         Discount discount = null;
         try {
             entityManager = HibernateUtil.getEntityManager();
@@ -39,13 +37,9 @@ public class DiscountRepository extends CrudRepository<Discount>
             queryDiscount.where(cbDiscount.le(root.get(ATTR_SUM), sum))
                     .orderBy(cbDiscount.asc(root.get(ATTR_PERCENT)));
 
-            List<Discount> discounts = entityManager
+            discount = entityManager
                     .createQuery(queryDiscount)
-                    .getResultList();
-
-            if (discounts != null) {
-                discount = discounts.isEmpty() ? null : discounts.get(FIRST_INDEX);
-            }
+                    .getSingleResult();
 
             entityManager.getTransaction().commit();
         } catch (

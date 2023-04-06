@@ -14,9 +14,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static it.academy.utils.Data.ATTR_CHECK_ROLES;
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAuth.ATTR_CHECK_ROLES;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class UpdateRolesUser implements Command {
     private final IUserService userService = new UserService();

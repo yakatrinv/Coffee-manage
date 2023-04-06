@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static it.academy.utils.Data.ATTR_LOGGED_USER;
-import static it.academy.utils.Data.LOGIN_JSP;
+import static it.academy.utils.DataAuth.ATTR_LOGGED_USER;
+import static it.academy.utils.DataAuth.LOGIN_JSP;
 
 @WebFilter(urlPatterns = {"/view/*"})
 public class SecurityFilter implements Filter {

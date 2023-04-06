@@ -5,8 +5,8 @@ import it.academy.controller.commands.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ADD_MODEL_JSP;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
+import static it.academy.utils.DataModel.ADD_MODEL_JSP;
 
 public class CreateModel implements Command {
     @Override

@@ -17,11 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-import static it.academy.utils.Data.ATTR_CREDIT_CARD_ID;
-import static it.academy.utils.Data.ATTR_DISCOUNT_ID;
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.ATTR_TYPE_PAYMENT_ID;
+import static it.academy.utils.DataCreditCard.ATTR_CREDIT_CARD_ID;
+import static it.academy.utils.DataDiscount.ATTR_DISCOUNT_ID;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
+import static it.academy.utils.DataTypePayment.ATTR_TYPE_PAYMENT_ID;
 
 @Builder
 @Getter

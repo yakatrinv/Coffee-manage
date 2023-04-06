@@ -15,9 +15,9 @@ public interface IAddressService {
 
     void deleteAddressById(Serializable id);
 
-    Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageable);
-
     List<AddressDto> findAllAddresses();
 
     List<String> findAllCities();
+
+    Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageable);
 }

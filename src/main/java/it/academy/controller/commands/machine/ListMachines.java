@@ -13,11 +13,11 @@ import it.academy.services.impl.MachineService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_SEARCH_SERIAL_NUMBER;
-import static it.academy.utils.Data.ATTR_SERIAL_NUMBER;
-import static it.academy.utils.Data.MACHINES_JSP;
-import static it.academy.utils.Data.PAGEABLE;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataMachine.ATTR_SEARCH_SERIAL_NUMBER;
+import static it.academy.utils.DataMachine.ATTR_SERIAL_NUMBER;
+import static it.academy.utils.DataMachine.MACHINES_JSP;
+import static it.academy.utils.DataPageable.PAGEABLE;
 
 
 public class ListMachines implements Command {
@@ -43,7 +43,6 @@ public class ListMachines implements Command {
             request.setAttribute(ATTR_SEARCH_SERIAL_NUMBER,
                     pageableDto.getSearchFields().get(ATTR_SERIAL_NUMBER));
         }
-
         return MACHINES_JSP;
     }
 }

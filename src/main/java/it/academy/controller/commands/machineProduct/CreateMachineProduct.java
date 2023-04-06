@@ -7,10 +7,10 @@ import it.academy.services.impl.ProductService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ADD_MACHINE_PRODUCTS_JSP;
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRODUCTS;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataProduct.ADD_MACHINE_PRODUCTS_JSP;
+import static it.academy.utils.DataProduct.ATTR_PRODUCTS;
 
 public class CreateMachineProduct implements Command {
     private final IProductService service = new ProductService();

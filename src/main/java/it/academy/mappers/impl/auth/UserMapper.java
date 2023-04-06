@@ -10,14 +10,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class UserMapper implements Mapper<User, UserDto> {
-    private final Mapper<Role, RoleDto> mapper = new RoleMapper();
+    private final Mapper<Role, RoleDto> roleMapper = new RoleMapper();
 
     @Override
     public User dtoToEntity(UserDto userDto) {
         Set<Role> roles = userDto.getRoles() == null ? null :
                 userDto.getRoles()
                         .stream()
-                        .map(mapper::dtoToEntity)
+                        .map(roleMapper::dtoToEntity)
                         .collect(Collectors.toSet());
 
         return User.builder()
@@ -31,7 +31,7 @@ public class UserMapper implements Mapper<User, UserDto> {
         Set<RoleDto> roles = user.getRoles() == null ? null :
                 user.getRoles()
                         .stream()
-                        .map(mapper::entityToDto)
+                        .map(roleMapper::entityToDto)
                         .collect(Collectors.toSet());
 
         return UserDto.builder()

@@ -11,12 +11,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.FIRST_INDEX;
-import static it.academy.utils.Data.USER_CLASS;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataGeneral.USER_CLASS;
 
 public class UserRepository extends CrudRepository<User>
         implements IUserRepository {
@@ -42,19 +40,9 @@ public class UserRepository extends CrudRepository<User>
             criteria.select(userRoot)
                     .where(builder.equal(userRoot.get(ATTR_LOGIN), login));
 
-            List<User> resultList = entityManager
-                    .createQuery(criteria)
-                    .getResultList();
-            if (!resultList.isEmpty()) {
-                findUser = resultList.get(FIRST_INDEX);
-                Set<Role> roles = new HashSet<>();
-                findUser.getRoles().forEach(role -> roles.add(Role.builder()
-                        .id(role.getId())
-                        .roleName(role.getRoleName())
-                        .build()));
 
-                findUser.setRoles(roles);
-            }
+            findUser = entityManager.createQuery(criteria).getSingleResult();
+            fillRoles(findUser);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -67,6 +55,18 @@ public class UserRepository extends CrudRepository<User>
         findUser = checkVerify(pass, findUser);
 
         return findUser;
+    }
+
+    private void fillRoles(User findUser) {
+        if (findUser != null) {
+            Set<Role> roles = new HashSet<>();
+            findUser.getRoles().forEach(role -> roles.add(Role.builder()
+                    .id(role.getId())
+                    .roleName(role.getRoleName())
+                    .build()));
+
+            findUser.setRoles(roles);
+        }
     }
 
     private User checkVerify(String pass, User findUser) {
@@ -84,7 +84,7 @@ public class UserRepository extends CrudRepository<User>
     }
 
     @Override
-    public User findByLogin(String login) {
+    public User findUserByLogin(String login) {
         User findUser = null;
         try {
             entityManager = HibernateUtil.getEntityManager();
@@ -97,19 +97,11 @@ public class UserRepository extends CrudRepository<User>
             criteria.select(userRoot)
                     .where(builder.equal(userRoot.get(ATTR_LOGIN), login));
 
-            List<User> resultList = entityManager
+            findUser = entityManager
                     .createQuery(criteria)
-                    .getResultList();
-            if (!resultList.isEmpty()) {
-                findUser = resultList.get(FIRST_INDEX);
-                Set<Role> roles = new HashSet<>();
-                findUser.getRoles().forEach(role -> roles.add(Role.builder()
-                        .id(role.getId())
-                        .roleName(role.getRoleName())
-                        .build()));
+                    .getSingleResult();
 
-                findUser.setRoles(roles);
-            }
+            fillRoles(findUser);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -129,7 +121,7 @@ public class UserRepository extends CrudRepository<User>
     }
 
     @Override
-    public void updatePass(User user, String newPassword) {
+    public void updatePassUser(User user, String newPassword) {
         byte[] salt = encryptService.fromHex(user.getSalt());
         byte[] encryptedPassword = encryptService
                 .getEncryptedPassword(newPassword, salt);

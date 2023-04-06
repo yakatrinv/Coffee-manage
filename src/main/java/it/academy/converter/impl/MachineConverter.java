@@ -11,15 +11,16 @@ import it.academy.services.impl.ModelService;
 import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_ADDRESS_ID;
-import static it.academy.utils.DataCustomer.ATTR_CITIES;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_MODEL_ID;
-import static it.academy.utils.Data.ATTR_SEARCH_SERIAL_NUMBER;
-import static it.academy.utils.Data.ATTR_SERIAL_NUMBER;
-import static it.academy.utils.DataCustomer.ATTR_SEARCH_CITIES;
+import static it.academy.utils.DataAddress.ATTR_ADDRESS_ID;
+import static it.academy.utils.DataAddress.ATTR_CITIES;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_CITIES;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataMachine.ATTR_MODEL_ID;
+import static it.academy.utils.DataMachine.ATTR_SEARCH_SERIAL_NUMBER;
+import static it.academy.utils.DataMachine.ATTR_SERIAL_NUMBER;
 
 public class MachineConverter implements IMachineConverter {
     private final IAddressService addressService = new AddressService();
@@ -61,6 +62,14 @@ public class MachineConverter implements IMachineConverter {
         searchFields.put(ATTR_SERIAL_NUMBER, serialNumber);
 
         String[] cities = request.getParameterValues(ATTR_SEARCH_CITIES);
+        if (cities != null) {
+            cities = Arrays.stream(cities)
+                    .filter(StringUtils::isNotBlank)
+                    .toList().toArray(new String[0]);
+            if (cities.length == 0) {
+                cities = null;
+            }
+        }
         searchFields.put(ATTR_CITIES, cities);
 
         return searchFields;

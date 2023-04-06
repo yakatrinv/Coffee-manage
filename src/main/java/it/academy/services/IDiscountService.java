@@ -16,9 +16,9 @@ public interface IDiscountService {
 
     void deleteDiscountById(Serializable id);
 
-    Pageable<DiscountDto> getPageableRecords(Pageable<DiscountDto> pageable);
-
     List<DiscountDto> findAllDiscounts();
 
-    Discount getPercentDiscount(Float sum);
+    Discount getPercentDiscount(float sum);
+
+    Pageable<DiscountDto> getPageableRecords(Pageable<DiscountDto> pageable);
 }

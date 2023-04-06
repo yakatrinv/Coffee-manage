@@ -22,12 +22,12 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_ADDRESS_ID;
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_MODEL_ID;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.COL_SERIAL_NUMBER;
-import static it.academy.utils.Data.MACHINE_PRODUCT;
+import static it.academy.utils.DataMachine.ATTR_ADDRESS_ID;
+import static it.academy.utils.DataMachine.ATTR_DB_SERIAL_NUMBER;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataMachine.ATTR_MODEL_ID;
+import static it.academy.utils.DataMachine.MACHINE_PRODUCT;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
 
 @Builder
 @Getter
@@ -43,7 +43,7 @@ public class Machine extends DataEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = COL_SERIAL_NUMBER)
+    @Column(name = ATTR_DB_SERIAL_NUMBER)
     private String serialNumber;
 
     @ManyToOne
@@ -54,7 +54,7 @@ public class Machine extends DataEntity implements Serializable {
     @JoinColumn(name = ATTR_MODEL_ID)
     private Model model;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = MACHINE_PRODUCT,
             joinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)})

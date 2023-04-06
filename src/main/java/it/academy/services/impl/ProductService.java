@@ -24,15 +24,15 @@ public class ProductService implements IProductService {
 
 
     @Override
-    public void createProduct(ProductDto entityDto) {
-        Product product = mapper.dtoToEntity(entityDto);
+    public void createProduct(ProductDto productDto) {
+        Product product = mapper.dtoToEntity(productDto);
         product = repository.save(product);
         mapper.entityToDto(product);
     }
 
     @Override
-    public void updateProduct(ProductDto entityDto) {
-        Product product = mapper.dtoToEntity(entityDto);
+    public void updateProduct(ProductDto productDto) {
+        Product product = mapper.dtoToEntity(productDto);
         product = repository.update(product);
         mapper.entityToDto(product);
     }
@@ -49,17 +49,23 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Pageable<ProductDto> getPageableRecords(Pageable<ProductDto> pageableDto) {
-        Pageable<Product> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
-    }
-
-    @Override
     public List<ProductDto> findAllProducts() {
         List<Product> products = repository.getAll();
         return products
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();
+    }
+
+    @Override
+    public Pageable<ProductDto> getProductsMachine(Serializable id, Pageable<ProductDto> pageableDto) {
+        Pageable<Product> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getProductsMachine(id, pageable));
+    }
+
+    @Override
+    public Pageable<ProductDto> getPageableRecords(Pageable<ProductDto> pageableDto) {
+        Pageable<Product> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

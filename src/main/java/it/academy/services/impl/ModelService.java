@@ -23,15 +23,15 @@ public class ModelService implements IModelService {
             new PageableMapper<>(mapper);
 
     @Override
-    public void createModel(ModelDto entityDto) {
-        Model model = mapper.dtoToEntity(entityDto);
+    public void createModel(ModelDto modelDto) {
+        Model model = mapper.dtoToEntity(modelDto);
         model = repository.save(model);
         mapper.entityToDto(model);
     }
 
     @Override
-    public void updateModel(ModelDto entityDto) {
-        Model model = mapper.dtoToEntity(entityDto);
+    public void updateModel(ModelDto modelDto) {
+        Model model = mapper.dtoToEntity(modelDto);
         model = repository.update(model);
         mapper.entityToDto(model);
     }
@@ -48,17 +48,17 @@ public class ModelService implements IModelService {
     }
 
     @Override
-    public Pageable<ModelDto> getPageableRecords(Pageable<ModelDto> pageableDto) {
-        Pageable<Model> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
-    }
-
-    @Override
     public List<ModelDto> findAllModels() {
         List<Model> models = repository.getAll();
         return models
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();
+    }
+
+    @Override
+    public Pageable<ModelDto> getPageableRecords(Pageable<ModelDto> pageableDto) {
+        Pageable<Model> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

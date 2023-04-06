@@ -7,11 +7,11 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_CITY;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_SEARCH_CITY;
-import static it.academy.utils.Data.ATTR_SEARCH_STREET;
-import static it.academy.utils.Data.ATTR_STREET;
+import static it.academy.utils.DataAddress.ATTR_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_STREET;
+import static it.academy.utils.DataAddress.ATTR_STREET;
+import static it.academy.utils.DataGeneral.ATTR_ID;
 
 public class AddressConverter implements IAddressConverter {
     @Override

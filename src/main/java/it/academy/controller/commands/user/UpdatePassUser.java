@@ -7,10 +7,10 @@ import it.academy.services.auth.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_OLD_PASSWORD;
-import static it.academy.utils.Data.ATTR_PASSWORD;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_OLD_PASSWORD;
+import static it.academy.utils.DataAuth.ATTR_PASSWORD;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class UpdatePassUser implements Command {
     private final IUserService service = new UserService();

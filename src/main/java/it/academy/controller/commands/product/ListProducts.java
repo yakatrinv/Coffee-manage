@@ -13,13 +13,13 @@ import it.academy.services.impl.ProductService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_NAME;
-import static it.academy.utils.Data.ATTR_PRICE;
-import static it.academy.utils.Data.ATTR_SEARCH_NAME;
-import static it.academy.utils.Data.ATTR_SEARCH_PRICE;
-import static it.academy.utils.Data.PAGEABLE;
-import static it.academy.utils.Data.PRODUCTS_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.PAGEABLE;
+import static it.academy.utils.DataProduct.ATTR_NAME;
+import static it.academy.utils.DataProduct.ATTR_PRICE;
+import static it.academy.utils.DataProduct.ATTR_SEARCH_NAME;
+import static it.academy.utils.DataProduct.ATTR_SEARCH_PRICE;
+import static it.academy.utils.DataProduct.PRODUCTS_JSP;
 
 
 public class ListProducts implements Command {
@@ -50,7 +50,6 @@ public class ListProducts implements Command {
             request.setAttribute(ATTR_SEARCH_PRICE,
                     pageableDto.getSearchFields().get(ATTR_PRICE));
         }
-
         return PRODUCTS_JSP;
     }
 }

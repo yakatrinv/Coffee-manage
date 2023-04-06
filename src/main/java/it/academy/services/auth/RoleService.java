@@ -21,15 +21,15 @@ public class RoleService implements IRoleService {
             new PageableMapper<>(mapper);
 
     @Override
-    public void createRole(RoleDto entityDto) {
-        Role role = mapper.dtoToEntity(entityDto);
+    public void createRole(RoleDto roleDto) {
+        Role role = mapper.dtoToEntity(roleDto);
         role = repository.save(role);
         mapper.entityToDto(role);
     }
 
     @Override
-    public void updateRole(RoleDto entityDto) {
-        Role role = mapper.dtoToEntity(entityDto);
+    public void updateRole(RoleDto roleDto) {
+        Role role = mapper.dtoToEntity(roleDto);
         role = repository.update(role);
         mapper.entityToDto(role);
     }
@@ -41,20 +41,14 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public void deleteAddressById(Serializable id) {
+    public void deleteRoleById(Serializable id) {
         repository.delete(id);
     }
 
     @Override
-    public RoleDto findByRoleName(String roleName) {
+    public RoleDto findRoleByName(String roleName) {
         Role role = repository.findByRoleName(roleName);
         return role == null ? null : mapper.entityToDto(role);
-    }
-
-    @Override
-    public Pageable<RoleDto> getPageableRecords(Pageable<RoleDto> pageableDto) {
-        Pageable<Role> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 
     @Override
@@ -64,5 +58,11 @@ public class RoleService implements IRoleService {
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();
+    }
+
+    @Override
+    public Pageable<RoleDto> getPageableRecords(Pageable<RoleDto> pageableDto) {
+        Pageable<Role> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

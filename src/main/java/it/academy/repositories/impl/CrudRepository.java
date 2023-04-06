@@ -18,10 +18,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.LONG_CLASS;
-import static it.academy.utils.Data.PERCENT_STRING;
-import static it.academy.utils.Data.STRING_FROM;
+import static it.academy.utils.DataAddress.ATTR_ADDRESS;
+import static it.academy.utils.DataAddress.ATTR_CITIES;
+import static it.academy.utils.DataAddress.ATTR_CITY;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.FLOAT_CLASS;
+import static it.academy.utils.DataGeneral.LONG_CLASS;
+import static it.academy.utils.DataGeneral.PERCENT_STRING;
+import static it.academy.utils.DataGeneral.STRING_ARRAY_CLASS;
+import static it.academy.utils.DataGeneral.STRING_CLASS;
+import static it.academy.utils.DataGeneral.STRING_FROM;
 
 public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
     private EntityManager entityManager;
@@ -104,6 +110,56 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
     }
 
     @Override
+    public List<Predicate> fillFilter(Pageable<TEntity> pageable, CriteriaBuilder criteriaBuilder, Root<TEntity> root) {
+        List<Predicate> predicates = new ArrayList<>();
+
+        HashMap<String, Object> filteredFields
+                = pageable.getSearchFields();
+        if (filteredFields != null) {
+            for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
+                String key = pair.getKey();
+                Object value = pair.getValue();
+
+                if (StringUtils.isNotBlank(key) && value != null) {
+                    if (value.getClass() == STRING_CLASS) {
+                        if (StringUtils.isNotBlank((String) value)) {
+                            predicates.add(criteriaBuilder
+                                    .like(root.get(key),
+                                            PERCENT_STRING + value +
+                                                    PERCENT_STRING));
+                        }
+                    } else if (value.getClass() == STRING_ARRAY_CLASS) {
+                        if (ATTR_CITIES.equalsIgnoreCase(key)) {
+                            root.join(ATTR_ADDRESS);
+                            predicates.add(criteriaBuilder.and(root.get(ATTR_ADDRESS).get(ATTR_CITY).in((Object[]) value)));
+                        }
+                    } else if (value.getClass() == FLOAT_CLASS) {
+                        if ((Float) value != 0) {
+                            predicates.add(criteriaBuilder
+                                    .ge(root.get(key), (Number) value));
+                        }
+                    } else {
+                        predicates.add(criteriaBuilder
+                                .equal(root.get(key), value));
+                    }
+                }
+            }
+        }
+
+        return predicates;
+    }
+
+    @Override
+    public void setSortedField(Pageable<TEntity> pageable, CriteriaBuilder criteriaBuilder, CriteriaQuery<TEntity> query, Root<TEntity> root) {
+        String sortField = pageable.getSortField();
+        if (StringUtils.isNotBlank(sortField)) {
+            query.orderBy(criteriaBuilder.asc(root.get(sortField)));
+        } else {
+            query.orderBy(criteriaBuilder.asc(root.get(ATTR_ID)));
+        }
+    }
+
+    @Override
     public Pageable<TEntity> getPageableRecords(Pageable<TEntity> pageable) {
         //count records
         Long countRecords = getCountRecords(pageable);
@@ -123,35 +179,9 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                     entityManager.getCriteriaBuilder();
             CriteriaQuery<TEntity> query = criteriaBuilder.createQuery(cls);
             Root<TEntity> root = query.from(cls);
-            List<Predicate> predicates = new ArrayList<>();
 
-            //filtered
-            HashMap<String, Object> filteredFields
-                    = pageable.getSearchFields();
-            for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
-                String key = pair.getKey();
-                Object value = pair.getValue();
-
-                if (StringUtils.isNotBlank(key) && value != null) {
-                    if (value.getClass() == String.class) {
-                        if (StringUtils.isNotBlank((String) value)) {
-                            predicates.add(criteriaBuilder
-                                    .like(root.get(key),
-                                            PERCENT_STRING + value +
-                                                    PERCENT_STRING));
-                        }
-                    } else if (value.getClass() == Float.class) {
-                        if ((Float) value != 0) {
-                            predicates.add(criteriaBuilder
-                                    .ge(root.get(key), (Number) value));
-                        }
-                    } else {
-                        predicates.add(criteriaBuilder
-                                .equal(root.get(key), value));
-                    }
-                }
-            }
-
+            //filter
+            List<Predicate> predicates = fillFilter(pageable, criteriaBuilder, root);
             Predicate[] predicatesArray = predicates.toArray(new Predicate[0]);
             if (predicatesArray.length > 0) {
                 Predicate predicate =
@@ -160,13 +190,9 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
             }
 
             //order by
-            String sortField = pageable.getSortField();
-            if (StringUtils.isBlank(sortField)) {
-                query.orderBy(criteriaBuilder.asc(root.get(sortField)));
-            } else {
-                query.orderBy(criteriaBuilder.asc(root.get(ATTR_ID)));
-            }
+            setSortedField(pageable, criteriaBuilder, query, root);
 
+            //pagination records
             int offset = (pageable.getPageNumber() - 1) *
                     pageable.getPageSize();
             TypedQuery<TEntity> resultQuery = entityManager.createQuery(query);
@@ -194,41 +220,14 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
 
-            List<Predicate> predicates = new ArrayList<>();
-
             CriteriaBuilder cbCount =
                     entityManager.getCriteriaBuilder();
             CriteriaQuery<Long> queryCount =
                     cbCount.createQuery(LONG_CLASS);
             Root<TEntity> rootCount = queryCount.from(cls);
 
-            //filtered
-            HashMap<String, Object> filteredFields
-                    = pageable.getSearchFields();
-            for (Map.Entry<String, Object> pair : filteredFields.entrySet()) {
-                String key = pair.getKey();
-                Object value = pair.getValue();
-
-                if (StringUtils.isNotBlank(key) && value != null) {
-                    if (value.getClass() == String.class) {
-                        if (StringUtils.isNotBlank((String) value)) {
-                            predicates
-                                    .add(cbCount
-                                            .like(rootCount.get(key),
-                                                    PERCENT_STRING + value +
-                                                            PERCENT_STRING));
-                        }
-                    } else if (value.getClass() == Float.class) {
-                        if ((Float) value != 0) {
-                            predicates.add(cbCount
-                                    .ge(rootCount.get(key), (Number) value));
-                        }
-                    } else {
-                        predicates.add(cbCount
-                                .equal(rootCount.get(key), value));
-                    }
-                }
-            }
+            //filter
+            List<Predicate> predicates = fillFilter(pageable, cbCount, rootCount);
 
             Predicate[] predicatesArray = predicates.toArray(new Predicate[0]);
             if (predicatesArray.length > 0) {

@@ -57,6 +57,8 @@
                 <th>Цена</th>
                 <th>Скидка</th>
                 <th>Сумма</th>
+                <th>Тип оплаты</th>
+                <th>Номер карты</th>
                 <th colspan="2">Действие</th>
             </tr>
 
@@ -77,7 +79,7 @@
                             ${purchase.customer.name},
                         </c:when>
                         <c:otherwise>
-                            -,
+                        -,
                         </c:otherwise>
                         </c:choose>
                         <c:choose>
@@ -85,18 +87,18 @@
                             ${purchase.customer.surname},
                         </c:when>
                         <c:otherwise>
-                            -,
+                        -,
                         </c:otherwise>
                         </c:choose>
                     <td>
-                    <c:choose>
-                        <c:when test="${purchase.machine ne null and not empty purchase.machine}">
-                            ${purchase.machine}
-                        </c:when>
-                        <c:otherwise>
-                            -
-                        </c:otherwise>
-                    </c:choose>
+                        <c:choose>
+                            <c:when test="${purchase.machine ne null and not empty purchase.machine}">
+                                ${purchase.machine}
+                            </c:when>
+                            <c:otherwise>
+                                -
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                     <td>
                         <c:choose>
@@ -115,10 +117,17 @@
                             ${purchase.discount}
                         </c:when>
                         <c:otherwise>
-                            -
+                        -
                         </c:otherwise>
-                    </c:choose>
+                        </c:choose>
                     <td>${purchase.sum}</td>
+                    <td>${purchase.typePayment.name}</td>
+                    <td>
+                            ${purchase.creditCard.number}
+                        <c:if test="${purchase.creditCard.customer ne null and not empty purchase.creditCard.customer}">
+                            (${purchase.creditCard.customer.name}, ${purchase.creditCard.customer.surname})
+                        </c:if>
+                    </td>
                     <td>
                         <form action="coffee-manage" method="get">
                             <input type="hidden" name="id" value="${purchase.id}">

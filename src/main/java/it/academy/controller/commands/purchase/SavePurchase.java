@@ -10,7 +10,7 @@ import it.academy.services.impl.PurchaseService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class SavePurchase implements Command {
     private final IPurchaseService service = new PurchaseService();

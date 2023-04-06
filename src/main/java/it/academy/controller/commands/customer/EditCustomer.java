@@ -9,10 +9,10 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_CUSTOMER;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.EDIT_CUSTOMER_JSP;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataCustomer.ATTR_CUSTOMER;
+import static it.academy.utils.DataCustomer.EDIT_CUSTOMER_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class EditCustomer implements Command {
     private final ICustomerService service = new CustomerService();
@@ -21,7 +21,7 @@ public class EditCustomer implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         CustomerDto customer;
         String id = request.getParameter(ATTR_ID);
-        if (StringUtils.isBlank(id)) {
+        if (StringUtils.isNotBlank(id)) {
             customer = service.findCustomerById(Integer.parseInt(id));
             request.setAttribute(ATTR_CUSTOMER, customer);
         }

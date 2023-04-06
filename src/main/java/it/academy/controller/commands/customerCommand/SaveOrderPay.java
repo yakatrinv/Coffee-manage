@@ -10,7 +10,7 @@ import it.academy.services.impl.PurchaseService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.MAIN_JSP;
 
 public class SaveOrderPay implements Command {
     private final IPurchaseService service = new PurchaseService();
@@ -22,6 +22,6 @@ public class SaveOrderPay implements Command {
         PurchaseDto purchase = converter.convertToDto(request);
         service.createPurchase(purchase);
 
-        return request.getParameter(PREV_URL);
+        return MAIN_JSP;
     }
 }

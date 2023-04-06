@@ -74,6 +74,29 @@
             </p>
 
             <p>
+                <select name="type_payment_id">
+                    <option value="">не выбрано</option>
+                    <c:forEach var="typePayment" items="${requestScope.typePayments}">
+                        <option value="${typePayment.id}">
+                                ${typePayment.name}
+                        </option>
+                    </c:forEach>
+                </select>
+            </p>
+
+            <div id='creditCard'>
+                <label for="creditCard">Карта</label>
+                <select name="credit_card_id">
+                    <option value="">не выбрано</option>
+                    <c:forEach var="creditCardItem" items="${requestScope.creditCards}">
+                        <option value="${creditCardItem.id}">
+                                ${creditCardItem.number} (${creditCardItem.customer.name}, ${creditCardItem.customer.surname})
+                        </option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <p>
                 <button type="submit" name="command" value="savePurchase" class="buttonClass" formmethod="post">
                     СОХРАНИТЬ
                 </button>

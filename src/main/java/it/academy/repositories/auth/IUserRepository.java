@@ -6,7 +6,7 @@ import it.academy.repositories.ICrudRepository;
 public interface IUserRepository extends ICrudRepository<User> {
     User findAuthUser(String login, String pass);
 
-    User findByLogin(String login);
+    User findUserByLogin(String login);
 
-    void updatePass(User user, String newPassword);
+    void updatePassUser(User user, String newPassword);
 }

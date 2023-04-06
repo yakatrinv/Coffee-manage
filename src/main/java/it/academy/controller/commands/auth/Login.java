@@ -16,25 +16,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static it.academy.utils.Data.ATTR_LOGGED_CUSTOMER;
-import static it.academy.utils.Data.ATTR_LOGGED_ROLE;
-import static it.academy.utils.Data.ATTR_LOGGED_USER;
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_MESSAGE;
-import static it.academy.utils.Data.ATTR_PASSWORD;
-import static it.academy.utils.Data.ATTR_USER_ROLES;
-import static it.academy.utils.Data.ERROR_AUTH;
-import static it.academy.utils.Data.ERROR_JSP;
-import static it.academy.utils.Data.ERROR_ROLE;
-import static it.academy.utils.Data.LOGIN_JSP;
-import static it.academy.utils.Data.MAIN_JSP;
-import static it.academy.utils.Data.ROLE_ADMINISTRATOR;
-import static it.academy.utils.Data.ROLE_MANAGER;
+import static it.academy.utils.DataAuth.ATTR_LOGGED_CUSTOMER;
+import static it.academy.utils.DataAuth.ATTR_LOGGED_ROLE;
+import static it.academy.utils.DataAuth.ATTR_LOGGED_USER;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_PASSWORD;
+import static it.academy.utils.DataAuth.ATTR_USER_ROLES;
+import static it.academy.utils.DataAuth.LOGIN_JSP;
+import static it.academy.utils.DataAuth.ROLE_ADMINISTRATOR;
+import static it.academy.utils.DataAuth.ROLE_MANAGER;
+import static it.academy.utils.DataGeneral.ATTR_MESSAGE;
+import static it.academy.utils.DataGeneral.ERROR_AUTH;
+import static it.academy.utils.DataGeneral.ERROR_JSP;
+import static it.academy.utils.DataGeneral.ERROR_ROLE;
+import static it.academy.utils.DataGeneral.MAIN_JSP;
 
 public class Login implements Command {
-    IUserService userService = new UserService();
+    private final IUserService userService = new UserService();
 
-    ICustomerService customerService = new CustomerService();
+    private final ICustomerService customerService = new CustomerService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -66,12 +66,12 @@ public class Login implements Command {
                     } else {
                         session.setAttribute(ATTR_USER_ROLES, authUser.getRoles());
 
-                        RoleDto roleAdmin= RoleDto
+                        RoleDto roleAdmin = RoleDto
                                 .builder()
                                 .roleName(ROLE_ADMINISTRATOR)
                                 .build();
 
-                        RoleDto roleManager= RoleDto
+                        RoleDto roleManager = RoleDto
                                 .builder()
                                 .roleName(ROLE_MANAGER)
                                 .build();

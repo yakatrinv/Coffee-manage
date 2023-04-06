@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static it.academy.utils.Data.ATTR_COMMAND;
+import static it.academy.utils.DataGeneral.ATTR_COMMAND;
 
 @WebServlet(urlPatterns = {"/coffee-manage"})
 public class CoffeeManage extends HttpServlet {

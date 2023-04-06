@@ -10,7 +10,7 @@ import it.academy.services.auth.RoleService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class UpdateRole implements Command {
     private final IRoleService service = new RoleService();

@@ -1,6 +1,5 @@
 package it.academy.dto;
 
-import it.academy.models.DataEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -18,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class TypePaymentDto extends DataEntity implements Serializable {
+public class TypePaymentDto implements Serializable {
     private Integer id;
 
     private String name;

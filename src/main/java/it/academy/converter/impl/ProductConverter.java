@@ -7,12 +7,13 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_NAME;
-import static it.academy.utils.Data.ATTR_PRICE;
-import static it.academy.utils.Data.ATTR_SEARCH_NAME;
-import static it.academy.utils.Data.ATTR_SEARCH_PRICE;
-import static it.academy.utils.DataCustomer.ATTR_SORT_FIELD;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.VALUE_ZERO;
+import static it.academy.utils.DataPageable.ATTR_SORT_FIELD;
+import static it.academy.utils.DataProduct.ATTR_NAME;
+import static it.academy.utils.DataProduct.ATTR_PRICE;
+import static it.academy.utils.DataProduct.ATTR_SEARCH_NAME;
+import static it.academy.utils.DataProduct.ATTR_SEARCH_PRICE;
 
 public class ProductConverter implements IProductConverter {
     @Override
@@ -24,7 +25,7 @@ public class ProductConverter implements IProductConverter {
         return ProductDto.builder()
                 .id(StringUtils.isBlank(id) ? null : Integer.parseInt(id))
                 .name(name)
-                .price(StringUtils.isBlank(price) ? 0 : Float.parseFloat(price))
+                .price(StringUtils.isBlank(price) ? VALUE_ZERO : Float.parseFloat(price))
                 .build();
     }
 
@@ -36,7 +37,7 @@ public class ProductConverter implements IProductConverter {
         String price = request.getParameter(ATTR_SEARCH_PRICE);
 
         searchFields.put(ATTR_NAME, name);
-        searchFields.put(ATTR_PRICE, StringUtils.isBlank(price) ? 0 : Float.parseFloat(price));
+        searchFields.put(ATTR_PRICE, StringUtils.isBlank(price) ? VALUE_ZERO : Float.parseFloat(price));
 
         return searchFields;
     }

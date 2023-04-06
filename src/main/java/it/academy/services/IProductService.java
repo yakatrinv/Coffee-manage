@@ -15,7 +15,9 @@ public interface IProductService {
 
     void deleteProductById(Serializable id);
 
-    Pageable<ProductDto> getPageableRecords(Pageable<ProductDto> pageable);
-
     List<ProductDto> findAllProducts();
+
+    Pageable<ProductDto> getProductsMachine(Serializable id, Pageable<ProductDto> pageableDto);
+
+    Pageable<ProductDto> getPageableRecords(Pageable<ProductDto> pageable);
 }

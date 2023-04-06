@@ -7,12 +7,12 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_PERCENT;
-import static it.academy.utils.Data.ATTR_SEARCH_PERCENT;
-import static it.academy.utils.Data.ATTR_SEARCH_SUM;
-import static it.academy.utils.Data.ATTR_SUM;
-import static it.academy.utils.Data.VALUE_ZERO;
+import static it.academy.utils.DataDiscount.ATTR_PERCENT;
+import static it.academy.utils.DataDiscount.ATTR_SEARCH_PERCENT;
+import static it.academy.utils.DataDiscount.ATTR_SEARCH_SUM;
+import static it.academy.utils.DataDiscount.ATTR_SUM;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.VALUE_ZERO;
 
 public class DiscountConverter implements IDiscountConverter {
     @Override

@@ -10,7 +10,7 @@ import it.academy.services.impl.MachineService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class SaveMachine implements Command {
     private final IMachineService service = new MachineService();

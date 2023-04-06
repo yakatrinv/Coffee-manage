@@ -10,7 +10,7 @@ import java.util.Set;
 public interface IUserService {
     UserDto findAuthUser(String login, String password);
 
-    UserDto findByLogin(String login);
+    UserDto findUserByLogin(String login);
 
     User createUser(String login, String password, Set<RoleDto> roles);
 

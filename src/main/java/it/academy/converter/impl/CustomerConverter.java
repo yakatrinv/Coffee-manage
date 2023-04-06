@@ -7,20 +7,20 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_EMAIL;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_NAME;
-import static it.academy.utils.Data.ATTR_PHONE;
-import static it.academy.utils.Data.ATTR_SEARCH_EMAIL;
-import static it.academy.utils.Data.ATTR_SEARCH_NAME;
-import static it.academy.utils.Data.ATTR_SEARCH_PHONE;
-import static it.academy.utils.Data.ATTR_SEARCH_SURNAME;
-import static it.academy.utils.Data.ATTR_SURNAME;
+import static it.academy.utils.DataCustomer.ATTR_CUSTOMER_ID;
+import static it.academy.utils.DataCustomer.ATTR_EMAIL;
+import static it.academy.utils.DataCustomer.ATTR_NAME;
+import static it.academy.utils.DataCustomer.ATTR_PHONE;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_EMAIL;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_NAME;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_PHONE;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_SURNAME;
+import static it.academy.utils.DataCustomer.ATTR_SURNAME;
 
 public class CustomerConverter implements ICustomerConverter {
     @Override
     public CustomerDto convertToDto(HttpServletRequest request) {
-        String id = request.getParameter(ATTR_ID);
+        String id = request.getParameter(ATTR_CUSTOMER_ID);
         String name = request.getParameter(ATTR_NAME);
         String surname = request.getParameter(ATTR_SURNAME);
         String phone = request.getParameter(ATTR_PHONE);

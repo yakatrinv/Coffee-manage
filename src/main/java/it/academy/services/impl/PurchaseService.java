@@ -23,15 +23,15 @@ public class PurchaseService implements IPurchaseService {
 
 
     @Override
-    public void createPurchase(PurchaseDto entityDto) {
-        Purchase purchase = mapper.dtoToEntity(entityDto);
+    public void createPurchase(PurchaseDto purchaseDto) {
+        Purchase purchase = mapper.dtoToEntity(purchaseDto);
         purchase = repository.save(purchase);
         mapper.entityToDto(purchase);
     }
 
     @Override
-    public void updatePurchase(PurchaseDto entityDto) {
-        Purchase purchase = mapper.dtoToEntity(entityDto);
+    public void updatePurchase(PurchaseDto purchaseDto) {
+        Purchase purchase = mapper.dtoToEntity(purchaseDto);
         purchase = repository.update(purchase);
         mapper.entityToDto(purchase);
     }
@@ -48,13 +48,13 @@ public class PurchaseService implements IPurchaseService {
     }
 
     @Override
-    public Pageable<PurchaseDto> getPageableRecords(Pageable<PurchaseDto> pageableDto) {
-        Pageable<Purchase> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
+    public float getSumPurchases(Serializable id) {
+        return repository.getSumPurchases(id);
     }
 
     @Override
-    public Float getSumPurchases(Serializable id) {
-        return repository.getSumPurchases(id);
+    public Pageable<PurchaseDto> getPageableRecords(Pageable<PurchaseDto> pageableDto) {
+        Pageable<Purchase> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

@@ -89,7 +89,6 @@
                 </div>
 
             </div>
-<%--            <br>--%>
 
             <div id='creditCard' style='display: none;'>
                 <label for="creditCard">Карта</label>
@@ -98,7 +97,6 @@
                     <option value="${creditCardItem.id}">${creditCardItem.number}</option>
                     </c:forEach>
                 </select>
-                <%--                <input type="text" name="creditCard">--%>
             </div>
 
             <div id='phoneNumber' style='display: none;'>

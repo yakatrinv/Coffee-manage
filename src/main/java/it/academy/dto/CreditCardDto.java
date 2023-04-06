@@ -1,6 +1,5 @@
 package it.academy.dto;
 
-import it.academy.models.DataEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -10,7 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Set;
 
 @Builder
 @Getter
@@ -19,8 +17,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class CreditCardDto extends DataEntity implements Serializable {
+public class CreditCardDto implements Serializable {
     private Integer id;
 
     private String number;
+
+    private CustomerDto customer;
 }

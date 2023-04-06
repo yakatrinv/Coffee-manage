@@ -15,21 +15,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_CUSTOMER_ID;
-import static it.academy.utils.Data.ATTR_USER_ID;
+import static it.academy.utils.DataAuth.ATTR_USER_ID;
 
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"user","creditCards"})
+@ToString(exclude = {"user"})
 @EqualsAndHashCode(of = {"name", "surname", "phone", "email"}, callSuper = false)
 @Entity
 @Table
@@ -53,8 +50,4 @@ public class Customer extends DataEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = ATTR_USER_ID)
     private User user;
-
-    @OneToMany
-    @JoinColumn(name = ATTR_CUSTOMER_ID)
-    private Set<CreditCard> creditCards;
 }

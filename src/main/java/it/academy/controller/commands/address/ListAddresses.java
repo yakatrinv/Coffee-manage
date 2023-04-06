@@ -13,26 +13,26 @@ import it.academy.services.impl.AddressService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ADDRESSES_JSP;
-import static it.academy.utils.Data.ATTR_CITY;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_SEARCH_CITY;
-import static it.academy.utils.Data.ATTR_SEARCH_STREET;
-import static it.academy.utils.Data.ATTR_STREET;
-import static it.academy.utils.Data.PAGEABLE;
+import static it.academy.utils.DataAddress.ADDRESSES_JSP;
+import static it.academy.utils.DataAddress.ATTR_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_STREET;
+import static it.academy.utils.DataAddress.ATTR_STREET;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.PAGEABLE;
 
 
 public class ListAddresses implements Command {
-    private final IConverter<Pageable<AddressDto>> converter = new PageableConverter<>();
+    private final IConverter<Pageable<AddressDto>> converterP = new PageableConverter<>();
 
-    private final IAddressConverter addressConverter = new AddressConverter();
+    private final IAddressConverter converter = new AddressConverter();
 
     private final IAddressService service = new AddressService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        Pageable<AddressDto> pageableDto = converter.convertToDto(request);
-        pageableDto.setSearchFields(addressConverter.convertSearchFields(request));
+        Pageable<AddressDto> pageableDto = converterP.convertToDto(request);
+        pageableDto.setSearchFields(converter.convertSearchFields(request));
 
         //заглушка
         //добавить возможность сортировки по полям

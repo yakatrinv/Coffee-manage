@@ -6,8 +6,8 @@ import it.academy.dto.auth.UserDto;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_SEARCH_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_SEARCH_LOGIN;
 
 public class UserConverter implements IUserConverter {
     @Override

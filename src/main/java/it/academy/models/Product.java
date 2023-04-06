@@ -21,14 +21,14 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.MACHINE_PRODUCT;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataMachine.MACHINE_PRODUCT;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
 
 @Builder
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"machines"})
 @EqualsAndHashCode(of = {"id", "name", "price"}, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -45,7 +45,7 @@ public class Product extends DataEntity implements Serializable {
     @Column
     private float price;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = MACHINE_PRODUCT,
             joinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)})

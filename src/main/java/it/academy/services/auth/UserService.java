@@ -32,14 +32,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDto findByLogin(String login) {
-        User user = repository.findByLogin(login);
+    public UserDto findUserByLogin(String login) {
+        User user = repository.findUserByLogin(login);
         return user == null ? null : userMapper.entityToDto(user);
     }
 
     @Override
     public User createUser(String login, String password, Set<RoleDto> roles) {
-        User findUser = repository.findByLogin(login);
+        User findUser = repository.findUserByLogin(login);
 
         if (findUser == null) {
             findUser = User.builder()
@@ -61,13 +61,13 @@ public class UserService implements IUserService {
         User user = repository.findAuthUser(login, oldPassword);
 
         if (user != null) {
-            repository.updatePass(user, password);
+            repository.updatePassUser(user, password);
         }
     }
 
     @Override
     public void updateRolesUser(String login, Set<RoleDto> roles) {
-        User user = repository.findByLogin(login);
+        User user = repository.findUserByLogin(login);
 
         if (user != null) {
             user.setRoles(

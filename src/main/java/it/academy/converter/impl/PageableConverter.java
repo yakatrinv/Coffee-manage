@@ -5,11 +5,12 @@ import it.academy.models.pageable.Pageable;
 import org.junit.platform.commons.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
-import static it.academy.utils.Data.DEFAULT_PAGE_SIZE;
-import static it.academy.utils.Data.FIRST_PAGE;
-import static it.academy.utils.Data.PAGE_NUMBER;
-import static it.academy.utils.Data.PAGE_SIZE;
+import static it.academy.utils.DataPageable.DEFAULT_PAGE_SIZE;
+import static it.academy.utils.DataPageable.FIRST_PAGE;
+import static it.academy.utils.DataPageable.PAGE_NUMBER;
+import static it.academy.utils.DataPageable.PAGE_SIZE;
 
 public class PageableConverter<TDto> implements IConverter<Pageable<TDto>> {
     @Override
@@ -20,5 +21,10 @@ public class PageableConverter<TDto> implements IConverter<Pageable<TDto>> {
                 .pageSize(StringUtils.isBlank(pageSize) ? DEFAULT_PAGE_SIZE : Integer.parseInt(pageSize))
                 .pageNumber(StringUtils.isBlank(pageNumber) ? FIRST_PAGE : Integer.parseInt(pageNumber))
                 .build();
+    }
+
+    @Override
+    public HashMap<String, Object> convertSearchFields(HttpServletRequest request) {
+        return null;
     }
 }

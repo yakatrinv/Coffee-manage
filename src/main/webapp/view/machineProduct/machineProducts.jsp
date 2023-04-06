@@ -22,7 +22,7 @@
 </header>
 
 <form action="coffee-manage">
-    <input type="hidden" name="prevURL" value="/coffee-manage?${pageContext.request.queryString}"/>
+<%--    <input type="hidden" name="prevURL" value="/coffee-manage?${pageContext.request.queryString}"/>--%>
     <input type="hidden" name="pageNumber" value="${pageNumber}">
     <input type="hidden" name="pageSize" value="${pageSize}">
 
@@ -30,13 +30,13 @@
         <select name="machine_id">
             <option value="">не выбрано</option>
             <c:forEach var="machineItem" items="${requestScope.machines}">
-                <c:if test="${machine ne null and machineItem.id eq machine.id}">
+                <c:if test="${requestScope.machine ne null and machineItem.id eq requestScope.machine.id}">
                     <option selected value="${machineItem.id}">
                             ${machineItem.serialNumber},${machineItem.model.brand}, ${machineItem.model.nameModel},
                             ${machineItem.address.city}, ${machineItem.address.street}
                     </option>
                 </c:if>
-                <c:if test="${machine eq null or machineItem.id ne machine.id}">
+                <c:if test="${requestScope.machine eq null or machineItem.id ne requestScope.machine.id}">
                     <option value="${machineItem.id}">
                             ${machineItem.serialNumber},${machineItem.model.brand}, ${machineItem.model.nameModel},
                             ${machineItem.address.city}, ${machineItem.address.street}

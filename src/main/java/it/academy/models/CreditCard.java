@@ -14,13 +14,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_CUSTOMER_ID;
-import static it.academy.utils.Data.CREDIT_CARD;
+import static it.academy.utils.DataCreditCard.CREDIT_CARD;
+import static it.academy.utils.DataCustomer.ATTR_CUSTOMER_ID;
 
 @Builder
 @Getter
@@ -38,4 +37,8 @@ public class CreditCard extends DataEntity implements Serializable {
 
     @Column
     private String number;
+
+    @ManyToOne
+    @JoinColumn(name = ATTR_CUSTOMER_ID)
+    private Customer customer;
 }

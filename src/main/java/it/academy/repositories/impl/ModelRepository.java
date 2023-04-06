@@ -3,7 +3,7 @@ package it.academy.repositories.impl;
 import it.academy.models.Model;
 import it.academy.repositories.IModelRepository;
 
-import static it.academy.utils.Data.MODEL_CLASS;
+import static it.academy.utils.DataGeneral.MODEL_CLASS;
 
 public class ModelRepository extends CrudRepository<Model>
         implements IModelRepository {

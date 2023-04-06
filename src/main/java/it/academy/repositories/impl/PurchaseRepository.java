@@ -12,10 +12,11 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
 
-import static it.academy.utils.Data.ATTR_CUSTOMER;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_SUM;
-import static it.academy.utils.Data.PURCHASE_CLASS;
+import static it.academy.utils.DataCustomer.ATTR_CUSTOMER;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.FLOAT_CLASS;
+import static it.academy.utils.DataGeneral.PURCHASE_CLASS;
+import static it.academy.utils.DataPurchase.ATTR_SUM;
 
 public class PurchaseRepository extends CrudRepository<Purchase>
         implements IPurchaseRepository {
@@ -26,8 +27,8 @@ public class PurchaseRepository extends CrudRepository<Purchase>
     }
 
     @Override
-    public Float getSumPurchases(Serializable id) {
-        Float sum = 0f;
+    public float getSumPurchases(Serializable id) {
+        float sum = 0f;
         try {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
@@ -35,11 +36,12 @@ public class PurchaseRepository extends CrudRepository<Purchase>
             CriteriaBuilder cbSum =
                     entityManager.getCriteriaBuilder();
             CriteriaQuery<Float> querySum =
-                    cbSum.createQuery(Float.class);
+                    cbSum.createQuery(FLOAT_CLASS);
 
             Root<Purchase> root = querySum.from(PURCHASE_CLASS);
             Join<Purchase, Customer> customerJoin = root.join(ATTR_CUSTOMER);
-            querySum.select(cbSum.sum(root.get(ATTR_SUM))).where(cbSum.equal(customerJoin.get(ATTR_ID), id));
+            querySum.select(cbSum.sum(root.get(ATTR_SUM)))
+                    .where(cbSum.equal(customerJoin.get(ATTR_ID), id));
 
             sum = entityManager
                     .createQuery(querySum)
