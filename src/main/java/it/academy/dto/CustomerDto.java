@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Builder
 @Getter
@@ -30,4 +31,6 @@ public class CustomerDto implements Serializable {
     private String email;
 
     private UserDto user;
+
+    private Set<CreditCardDto> creditCards;
 }

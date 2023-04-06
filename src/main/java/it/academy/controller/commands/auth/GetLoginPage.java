@@ -19,7 +19,7 @@ public class GetLoginPage implements Command {
 
         UserDto userDto = (UserDto) session.getAttribute(ATTR_LOGGED_USER);
         if (userDto != null) {
-            response.sendRedirect(MAIN_JSP);
+            return MAIN_JSP;
         } else {
             session.invalidate();
         }

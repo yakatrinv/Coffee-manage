@@ -61,4 +61,9 @@ public class DiscountService implements IDiscountService {
                 .map(mapper::entityToDto)
                 .toList();
     }
+
+    @Override
+    public Discount getPercentDiscount(Float sum) {
+        return repository.getPercentDiscount(sum);
+    }
 }

@@ -1,16 +1,20 @@
 package it.academy.mappers.impl;
 
+import it.academy.dto.CreditCardDto;
 import it.academy.dto.CustomerDto;
 import it.academy.dto.DiscountDto;
 import it.academy.dto.MachineDto;
 import it.academy.dto.ProductDto;
 import it.academy.dto.PurchaseDto;
+import it.academy.dto.TypePaymentDto;
 import it.academy.mappers.Mapper;
+import it.academy.models.CreditCard;
 import it.academy.models.Customer;
 import it.academy.models.Discount;
 import it.academy.models.Machine;
 import it.academy.models.Product;
 import it.academy.models.Purchase;
+import it.academy.models.TypePayment;
 
 public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
     private final Mapper<Customer, CustomerDto> customerMapper = new CustomerMapper();
@@ -20,6 +24,10 @@ public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
     private final Mapper<Product, ProductDto> productMapper = new ProductMapper();
 
     private final Mapper<Discount, DiscountDto> discountMapper = new DiscountMapper();
+
+    private final Mapper<TypePayment, TypePaymentDto> typePaymentMapper = new TypePaymentMapper();
+
+    private final Mapper<CreditCard, CreditCardDto> creditCardMapper = new CreditCardMapper();
 
     @Override
     public Purchase dtoToEntity(PurchaseDto purchaseDto) {
@@ -36,6 +44,12 @@ public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
         Discount discount = purchaseDto.getDiscount() == null ? null :
                 discountMapper.dtoToEntity(purchaseDto.getDiscount());
 
+        TypePayment typePayment = purchaseDto.getTypePayment() == null ? null :
+                typePaymentMapper.dtoToEntity(purchaseDto.getTypePayment());
+
+        CreditCard creditCard = purchaseDto.getCreditCard() == null ? null :
+                creditCardMapper.dtoToEntity(purchaseDto.getCreditCard());
+
         return Purchase.builder()
                 .id(purchaseDto.getId())
                 .customer(customer)
@@ -44,6 +58,8 @@ public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
                 .price(purchaseDto.getPrice())
                 .discount(discount)
                 .sum(purchaseDto.getSum())
+                .typePayment(typePayment)
+                .creditCard(creditCard)
                 .build();
     }
 
@@ -62,6 +78,12 @@ public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
         DiscountDto discount = purchase.getDiscount() == null ? null :
                 discountMapper.entityToDto(purchase.getDiscount());
 
+        TypePaymentDto typePayment = purchase.getTypePayment() == null ? null :
+                typePaymentMapper.entityToDto(purchase.getTypePayment());
+
+        CreditCardDto creditCard = purchase.getCreditCard() == null ? null :
+                creditCardMapper.entityToDto(purchase.getCreditCard());
+
         return PurchaseDto.builder()
                 .id(purchase.getId())
                 .customer(customer)
@@ -70,6 +92,8 @@ public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
                 .price(purchase.getPrice())
                 .discount(discount)
                 .sum(purchase.getSum())
+                .typePayment(typePayment)
+                .creditCard(creditCard)
                 .build();
     }
 }

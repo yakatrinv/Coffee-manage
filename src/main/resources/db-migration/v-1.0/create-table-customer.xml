@@ -17,6 +17,8 @@
                 <constraints foreignKeyName="customer_user_id_fk"
                 references="user (id)" nullable="false"/>
             </column>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

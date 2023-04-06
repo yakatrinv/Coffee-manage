@@ -10,6 +10,8 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="role_name" type="varchar(30)"/>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

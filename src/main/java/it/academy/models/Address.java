@@ -22,10 +22,10 @@ import java.io.Serializable;
 @ToString(of = {"city", "street"})
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table
-public class Address implements Serializable {
+public class Address extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

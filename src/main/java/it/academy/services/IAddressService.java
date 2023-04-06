@@ -18,4 +18,6 @@ public interface IAddressService {
     Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageable);
 
     List<AddressDto> findAllAddresses();
+
+    List<String> findAllCities();
 }

@@ -38,7 +38,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDto createUser(String login, String password, Set<RoleDto> roles) {
+    public User createUser(String login, String password, Set<RoleDto> roles) {
         User findUser = repository.findByLogin(login);
 
         if (findUser == null) {
@@ -53,7 +53,7 @@ public class UserService implements IUserService {
 
             repository.save(findUser);
         }
-        return userMapper.entityToDto(findUser);
+        return findUser;
     }
 
     @Override

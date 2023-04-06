@@ -27,7 +27,7 @@ public class EditRolesUser implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         UserDto user;
         String login = request.getParameter(ATTR_LOGIN);
-        if (!StringUtils.isBlank(login)) {
+        if (StringUtils.isNotBlank(login)) {
             user = userService.findByLogin(login);
             request.setAttribute(ATTR_USER, user);
         }

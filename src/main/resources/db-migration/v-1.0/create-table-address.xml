@@ -11,6 +11,8 @@
             </column>
             <column name="city" type="varchar(100)"/>
             <column name="street" type="varchar(100)"/>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

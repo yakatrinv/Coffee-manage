@@ -15,4 +15,6 @@ public interface IPurchaseService {
     void deletePurchaseById(Serializable id);
 
     Pageable<PurchaseDto> getPageableRecords(Pageable<PurchaseDto> pageable);
+
+    Float getSumPurchases(Serializable id);
 }

@@ -11,6 +11,8 @@
             </column>
             <column name="brand" type="varchar(255)"/>
             <column name="name_model" type="varchar(255)"/>
+            <column name="createDate" type="datetime"/>
+            <column name="updateDate" type="datetime"/>
         </createTable>
     </changeSet>
 

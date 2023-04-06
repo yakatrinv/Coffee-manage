@@ -19,7 +19,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import static it.academy.utils.Data.ATTR_MACHINE_ID;
@@ -30,12 +29,12 @@ import static it.academy.utils.Data.MACHINE_PRODUCT;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(of = {"id", "name", "price"})
+@EqualsAndHashCode(of = {"id", "name", "price"}, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
-public class Product implements Serializable {
+public class Product extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -50,5 +49,5 @@ public class Product implements Serializable {
     @JoinTable(name = MACHINE_PRODUCT,
             joinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)})
-    private Set<Machine> machines = new HashSet<>();
+    private Set<Machine> machines;
 }

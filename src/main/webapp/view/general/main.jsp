@@ -1,34 +1,32 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Coffee manage project</title>
 </head>
 <body>
-<jsp:include page="../general/head.jsp"/>
-<br>
 
-<h3>Coffee manage project</h3>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=users">Пользователи</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=roles">Роли</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=addresses">Адреса</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=customers">Покупатели</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=models">Модели</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=products">Продукция</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=machines">Аппараты</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=machineProducts">Продукция аппарата</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=discounts">Скидки</a>
-<br>
-<a href="${pageContext.request.contextPath}/coffee-manage?command=purchases">Покупки</a>
+<c:choose>
+    <c:when test="${sessionScope.loggedRole eq null}">
+        <jsp:forward page="../../auth/error.jsp"/>
+    </c:when>
+
+    <c:when test="${sessionScope.loggedRole.roleName eq 'Administrator'}">
+        <jsp:forward page="mainAdmin.jsp"/>
+    </c:when>
+
+    <c:when test="${sessionScope.loggedRole.roleName eq 'Manager'}">
+        <jsp:forward page="mainManager.jsp"/>
+    </c:when>
+
+    <c:when test="${sessionScope.loggedRole.roleName eq 'Customer'}">
+        <jsp:forward page="mainCustomer.jsp"/>
+    </c:when>
+
+    <c:otherwise>
+        <jsp:forward page="../../auth/error.jsp"/>
+    </c:otherwise>
+</c:choose>
 
 </body>
 </html>

@@ -5,12 +5,14 @@ import it.academy.mappers.Mapper;
 import it.academy.models.Address;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddressMapperTest {
     public static final String CITY = "Minsk";
     public static final String STREET = "Lenina";
     Mapper<Address, AddressDto> mapper = new AddressMapper();
+
     @Test
     void isShouldConvertAddressDtoToAddress() {
         Address address = Address.builder()
@@ -20,8 +22,8 @@ class AddressMapperTest {
         AddressDto addressDto = mapper.entityToDto(address);
 
         assertAll(
-                () -> assertEquals(CITY,addressDto.getCity()),
-                () -> assertEquals(STREET,addressDto.getStreet())
+                () -> assertEquals(CITY, addressDto.getCity()),
+                () -> assertEquals(STREET, addressDto.getStreet())
 
         );
     }
@@ -35,8 +37,8 @@ class AddressMapperTest {
         Address address = mapper.dtoToEntity(addressDto);
 
         assertAll(
-                () -> assertEquals(CITY,address.getCity()),
-                () -> assertEquals(STREET,address.getStreet())
+                () -> assertEquals(CITY, address.getCity()),
+                () -> assertEquals(STREET, address.getStreet())
 
         );
     }

@@ -61,4 +61,9 @@ public class AddressService implements IAddressService {
                 .map(mapper::entityToDto)
                 .toList();
     }
+
+    @Override
+    public List<String> findAllCities() {
+        return repository.getAllCity();
+    }
 }

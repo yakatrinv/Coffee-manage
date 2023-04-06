@@ -41,7 +41,7 @@ public class EditPurchase implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         PurchaseDto purchase;
         String id = request.getParameter(ATTR_ID);
-        if (StringUtils.isBlank(id)) {
+        if (StringUtils.isNotBlank(id)) {
             purchase = purchaseService.findPurchaseById(Integer.parseInt(id));
             request.setAttribute(ATTR_PURCHASE, purchase);
         }

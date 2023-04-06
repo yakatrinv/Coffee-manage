@@ -103,7 +103,6 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
         return resultList;
     }
 
-    //pageable test
     @Override
     public Pageable<TEntity> getPageableRecords(Pageable<TEntity> pageable) {
         //count records

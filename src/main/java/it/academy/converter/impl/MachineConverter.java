@@ -14,10 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 import static it.academy.utils.Data.ATTR_ADDRESS_ID;
+import static it.academy.utils.DataCustomer.ATTR_CITIES;
 import static it.academy.utils.Data.ATTR_ID;
 import static it.academy.utils.Data.ATTR_MODEL_ID;
 import static it.academy.utils.Data.ATTR_SEARCH_SERIAL_NUMBER;
 import static it.academy.utils.Data.ATTR_SERIAL_NUMBER;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_CITIES;
 
 public class MachineConverter implements IMachineConverter {
     private final IAddressService addressService = new AddressService();
@@ -34,12 +36,12 @@ public class MachineConverter implements IMachineConverter {
         AddressDto addressDto = null;
         ModelDto modelDto = null;
 
-        if (!StringUtils.isBlank(addressId)) {
+        if (StringUtils.isNotBlank(addressId)) {
             addressDto = addressService.findAddressById(Integer.parseInt(addressId));
         }
 
 
-        if (!StringUtils.isBlank(modelId)) {
+        if (StringUtils.isNotBlank(modelId)) {
             modelDto = modelService.findModelById(Integer.parseInt(modelId));
         }
 
@@ -57,6 +59,9 @@ public class MachineConverter implements IMachineConverter {
 
         String serialNumber = request.getParameter(ATTR_SEARCH_SERIAL_NUMBER);
         searchFields.put(ATTR_SERIAL_NUMBER, serialNumber);
+
+        String[] cities = request.getParameterValues(ATTR_SEARCH_CITIES);
+        searchFields.put(ATTR_CITIES, cities);
 
         return searchFields;
     }

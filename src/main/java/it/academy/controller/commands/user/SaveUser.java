@@ -31,7 +31,7 @@ public class SaveUser implements Command {
         String[] checkRoles = request.getParameterValues(ATTR_CHECK_ROLES);
 
         Set<RoleDto> roles = Arrays.stream(checkRoles)
-                .filter(roleId -> !StringUtils.isBlank(roleId))
+                .filter(StringUtils::isNotBlank)
                 .map(Integer::parseInt)
                 .map(roleService::findRoleById)
                 .collect(Collectors.toSet());

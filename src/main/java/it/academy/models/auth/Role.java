@@ -1,5 +1,6 @@
 package it.academy.models.auth;
 
+import it.academy.models.DataEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -22,12 +23,12 @@ import static it.academy.utils.Data.COL_ROLE_NAME;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(of = "roleName")
+@EqualsAndHashCode(of = "roleName", callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
-public class Role implements Serializable {
+public class Role extends DataEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,6 +6,7 @@ import it.academy.controller.commands.address.EditAddress;
 import it.academy.controller.commands.address.ListAddresses;
 import it.academy.controller.commands.address.SaveAddress;
 import it.academy.controller.commands.address.UpdateAddress;
+import it.academy.controller.commands.auth.ChangeRole;
 import it.academy.controller.commands.auth.GetLoginPage;
 import it.academy.controller.commands.auth.GetRegPage;
 import it.academy.controller.commands.auth.Login;
@@ -17,6 +18,10 @@ import it.academy.controller.commands.customer.EditCustomer;
 import it.academy.controller.commands.customer.ListCustomers;
 import it.academy.controller.commands.customer.SaveCustomer;
 import it.academy.controller.commands.customer.UpdateCustomer;
+import it.academy.controller.commands.customerCommand.ChooseMachine;
+import it.academy.controller.commands.customerCommand.ChooseProduct;
+import it.academy.controller.commands.customerCommand.CreateOrderPay;
+import it.academy.controller.commands.customerCommand.SaveOrderPay;
 import it.academy.controller.commands.discount.CreateDiscount;
 import it.academy.controller.commands.discount.DeleteDiscount;
 import it.academy.controller.commands.discount.EditDiscount;
@@ -77,6 +82,7 @@ import static it.academy.utils.Data.ADD_PRODUCT;
 import static it.academy.utils.Data.ADD_PURCHASE;
 import static it.academy.utils.Data.ADD_ROLE;
 import static it.academy.utils.Data.ADD_USERS;
+import static it.academy.utils.Data.CHANGE_ROLE;
 import static it.academy.utils.Data.COMMAND_ADDRESSES;
 import static it.academy.utils.Data.COMMAND_CUSTOMERS;
 import static it.academy.utils.Data.COMMAND_DISCOUNTS;
@@ -131,6 +137,10 @@ import static it.academy.utils.Data.UPDATE_PRODUCT;
 import static it.academy.utils.Data.UPDATE_PURCHASE;
 import static it.academy.utils.Data.UPDATE_ROLE;
 import static it.academy.utils.Data.UPDATE_ROLES_USER;
+import static it.academy.utils.DataCustomer.CHOOSE_MACHINE;
+import static it.academy.utils.DataCustomer.CHOOSE_PRODUCT;
+import static it.academy.utils.DataCustomer.CREATE_ORDER_PAY;
+import static it.academy.utils.DataCustomer.SAVE_ORDER_PAY;
 
 public final class CommandFactory {
     private static CommandFactory instance;
@@ -144,6 +154,7 @@ public final class CommandFactory {
         commands.put(LOGIN_COMMAND, new Login());
         commands.put(LOGOUT_COMMAND, new Logout());
         commands.put(REGISTRATION, new Registration());
+        commands.put(CHANGE_ROLE, new ChangeRole());
 
         //user
         commands.put(COMMAND_USERS, new ListUsers());
@@ -223,6 +234,12 @@ public final class CommandFactory {
         commands.put(EDIT_PURCHASE, new EditPurchase());
         commands.put(UPDATE_PURCHASE, new UpdatePurchase());
         commands.put(DELETE_PURCHASE, new DeletePurchase());
+
+        //view customer
+        commands.put(CHOOSE_MACHINE, new ChooseMachine());
+        commands.put(CHOOSE_PRODUCT, new ChooseProduct());
+        commands.put(CREATE_ORDER_PAY, new CreateOrderPay());
+        commands.put(SAVE_ORDER_PAY, new SaveOrderPay());
     }
 
     public static CommandFactory getInstance() {

@@ -11,7 +11,7 @@
 
 <nav>
     <c:choose>
-    <c:when test="${nameCommand eq 'machineProducts'}">
+    <c:when test="${nameCommand eq 'machineProducts' or nameCommand eq 'chooseProduct'}">
         <c:set var="paramMachine" value="&machine_id=${requestScope.machine.id}"/>
     </c:when>
         <c:otherwise>

@@ -25,7 +25,7 @@ import static it.academy.utils.Data.COL_NAME_MODEL;
 @AllArgsConstructor
 @Entity
 @Table
-public class Model implements Serializable {
+public class Model extends DataEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
