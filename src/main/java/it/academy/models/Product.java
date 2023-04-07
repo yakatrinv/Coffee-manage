@@ -45,9 +45,9 @@ public class Product extends DataEntity implements Serializable {
     @Column
     private float price;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = MACHINE_PRODUCT,
-            joinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)},
-            inverseJoinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)})
-    private Set<Machine> machines;
+//    @ManyToMany//(fetch = FetchType.EAGER)
+//    @JoinTable(name = MACHINE_PRODUCT,
+//            joinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)},
+//            inverseJoinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)})
+//    private Set<Machine> machines;
 }

@@ -54,7 +54,7 @@ public class Machine extends DataEntity implements Serializable {
     @JoinColumn(name = ATTR_MODEL_ID)
     private Model model;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany//(mappedBy = "machines")//(fetch = FetchType.EAGER)
     @JoinTable(name = MACHINE_PRODUCT,
             joinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)})
