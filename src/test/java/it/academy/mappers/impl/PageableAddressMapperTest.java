@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PageableAddressMapperTest {
-    public static final int PAGE_NUMBER = 2;
+    public static final int PAGE_NUMBER = 1;
     public static final int PAGE_SIZE = 5;
     public static final int LAST_PAGE_NUMBER = 4;
     public static final String SORT_FIELD = "city";
@@ -24,14 +24,16 @@ class PageableAddressMapperTest {
     public static final String CITY_VALUE = "Minsk";
     public static final String ATTR_STREET = "street";
     public static final String STREET_VALUE = "Lenina";
+    public static final int COUNT_SEARCH_FILELDS = 2;
+    public static final int COUNT_RECORDS = 1;
     Mapper<Address, AddressDto> addressMapper = new AddressMapper();
     Mapper<Pageable<Address>, Pageable<AddressDto>> mapper =
             new PageableMapper<>(addressMapper);
 
     @Test
     void isShouldConvertPageableDtoToPageable() {
-        HashMap<String,Object> searchFields = new HashMap<>();
-        searchFields.put(ATTR_CITY,CITY_VALUE);
+        HashMap<String, Object> searchFields = new HashMap<>();
+        searchFields.put(ATTR_CITY, CITY_VALUE);
         searchFields.put(ATTR_STREET, STREET_VALUE);
         List<AddressDto> addressesDto;
 
@@ -54,17 +56,17 @@ class PageableAddressMapperTest {
         Pageable<Address> pageable = mapper.dtoToEntity(pageableDto);
 
         assertAll(
-                () -> assertEquals(PAGE_NUMBER,pageable.getPageNumber()),
-                () -> assertEquals(PAGE_SIZE,pageable.getPageSize()),
-                () -> assertEquals(LAST_PAGE_NUMBER,pageable.getLastPageNumber()),
-                () -> assertEquals(SORT_FIELD,pageable.getSortField()),
-                () -> assertEquals(2,pageable.getSearchFields().size()),
-                () -> assertEquals(CITY_VALUE,pageable.getSearchFields().get(ATTR_CITY)),
-                () -> assertEquals(STREET_VALUE,pageable.getSearchFields().get(ATTR_STREET)),
+                () -> assertEquals(PAGE_NUMBER, pageable.getPageNumber()),
+                () -> assertEquals(PAGE_SIZE, pageable.getPageSize()),
+                () -> assertEquals(LAST_PAGE_NUMBER, pageable.getLastPageNumber()),
+                () -> assertEquals(SORT_FIELD, pageable.getSortField()),
+                () -> assertEquals(COUNT_SEARCH_FILELDS, pageable.getSearchFields().size()),
+                () -> assertEquals(CITY_VALUE, pageable.getSearchFields().get(ATTR_CITY)),
+                () -> assertEquals(STREET_VALUE, pageable.getSearchFields().get(ATTR_STREET)),
                 () -> assertNotNull(pageable.getRecords()),
-                () -> assertEquals(1,pageable.getRecords().size()),
-                () -> assertEquals(CITY_VALUE,pageable.getRecords().get(0).getCity()),
-                () -> assertEquals(STREET_VALUE,pageable.getRecords().get(0).getStreet())
+                () -> assertEquals(COUNT_RECORDS, pageable.getRecords().size()),
+                () -> assertEquals(CITY_VALUE, pageable.getRecords().get(0).getCity()),
+                () -> assertEquals(STREET_VALUE, pageable.getRecords().get(0).getStreet())
 
         );
     }
@@ -72,8 +74,8 @@ class PageableAddressMapperTest {
 
     @Test
     void isShouldConvertPageableDtoToPageableWithNullRecords() {
-        HashMap<String,Object> searchFields = new HashMap<>();
-        searchFields.put(ATTR_CITY,CITY_VALUE);
+        HashMap<String, Object> searchFields = new HashMap<>();
+        searchFields.put(ATTR_CITY, CITY_VALUE);
         searchFields.put(ATTR_STREET, STREET_VALUE);
         List<AddressDto> addressesDto = null;
 
@@ -90,13 +92,13 @@ class PageableAddressMapperTest {
         Pageable<Address> pageable = mapper.dtoToEntity(pageableDto);
 
         assertAll(
-                () -> assertEquals(PAGE_NUMBER,pageable.getPageNumber()),
-                () -> assertEquals(PAGE_SIZE,pageable.getPageSize()),
-                () -> assertEquals(LAST_PAGE_NUMBER,pageable.getLastPageNumber()),
-                () -> assertEquals(SORT_FIELD,pageable.getSortField()),
-                () -> assertEquals(2,pageable.getSearchFields().size()),
-                () -> assertEquals(CITY_VALUE,pageable.getSearchFields().get(ATTR_CITY)),
-                () -> assertEquals(STREET_VALUE,pageable.getSearchFields().get(ATTR_STREET)),
+                () -> assertEquals(PAGE_NUMBER, pageable.getPageNumber()),
+                () -> assertEquals(PAGE_SIZE, pageable.getPageSize()),
+                () -> assertEquals(LAST_PAGE_NUMBER, pageable.getLastPageNumber()),
+                () -> assertEquals(SORT_FIELD, pageable.getSortField()),
+                () -> assertEquals(COUNT_SEARCH_FILELDS, pageable.getSearchFields().size()),
+                () -> assertEquals(CITY_VALUE, pageable.getSearchFields().get(ATTR_CITY)),
+                () -> assertEquals(STREET_VALUE, pageable.getSearchFields().get(ATTR_STREET)),
                 () -> assertNull(pageable.getRecords())
 
         );
@@ -104,8 +106,8 @@ class PageableAddressMapperTest {
 
     @Test
     void isShouldConvertPageableToPageableDto() {
-        HashMap<String,Object> searchFields = new HashMap<>();
-        searchFields.put(ATTR_CITY,CITY_VALUE);
+        HashMap<String, Object> searchFields = new HashMap<>();
+        searchFields.put(ATTR_CITY, CITY_VALUE);
         searchFields.put(ATTR_STREET, STREET_VALUE);
         List<Address> addresses;
 
@@ -128,25 +130,25 @@ class PageableAddressMapperTest {
         Pageable<AddressDto> pageableDto = mapper.entityToDto(pageable);
 
         assertAll(
-                () -> assertEquals(PAGE_NUMBER,pageableDto.getPageNumber()),
-                () -> assertEquals(PAGE_SIZE,pageableDto.getPageSize()),
-                () -> assertEquals(LAST_PAGE_NUMBER,pageableDto.getLastPageNumber()),
-                () -> assertEquals(SORT_FIELD,pageableDto.getSortField()),
-                () -> assertEquals(2,pageableDto.getSearchFields().size()),
-                () -> assertEquals(CITY_VALUE,pageableDto.getSearchFields().get(ATTR_CITY)),
-                () -> assertEquals(STREET_VALUE,pageableDto.getSearchFields().get(ATTR_STREET)),
+                () -> assertEquals(PAGE_NUMBER, pageableDto.getPageNumber()),
+                () -> assertEquals(PAGE_SIZE, pageableDto.getPageSize()),
+                () -> assertEquals(LAST_PAGE_NUMBER, pageableDto.getLastPageNumber()),
+                () -> assertEquals(SORT_FIELD, pageableDto.getSortField()),
+                () -> assertEquals(COUNT_SEARCH_FILELDS, pageableDto.getSearchFields().size()),
+                () -> assertEquals(CITY_VALUE, pageableDto.getSearchFields().get(ATTR_CITY)),
+                () -> assertEquals(STREET_VALUE, pageableDto.getSearchFields().get(ATTR_STREET)),
                 () -> assertNotNull(pageableDto.getRecords()),
-                () -> assertEquals(1,pageableDto.getRecords().size()),
-                () -> assertEquals(CITY_VALUE,pageableDto.getRecords().get(0).getCity()),
-                () -> assertEquals(STREET_VALUE,pageableDto.getRecords().get(0).getStreet())
+                () -> assertEquals(COUNT_RECORDS, pageableDto.getRecords().size()),
+                () -> assertEquals(CITY_VALUE, pageableDto.getRecords().get(0).getCity()),
+                () -> assertEquals(STREET_VALUE, pageableDto.getRecords().get(0).getStreet())
 
         );
     }
 
     @Test
     void isShouldConvertPageableToPageableDtoWithNullRecords() {
-        HashMap<String,Object> searchFields = new HashMap<>();
-        searchFields.put(ATTR_CITY,CITY_VALUE);
+        HashMap<String, Object> searchFields = new HashMap<>();
+        searchFields.put(ATTR_CITY, CITY_VALUE);
         searchFields.put(ATTR_STREET, STREET_VALUE);
         List<Address> addresses = null;
 
@@ -163,13 +165,13 @@ class PageableAddressMapperTest {
         Pageable<AddressDto> pageableDto = mapper.entityToDto(pageable);
 
         assertAll(
-                () -> assertEquals(PAGE_NUMBER,pageableDto.getPageNumber()),
-                () -> assertEquals(PAGE_SIZE,pageableDto.getPageSize()),
-                () -> assertEquals(LAST_PAGE_NUMBER,pageableDto.getLastPageNumber()),
-                () -> assertEquals(SORT_FIELD,pageableDto.getSortField()),
-                () -> assertEquals(2,pageableDto.getSearchFields().size()),
-                () -> assertEquals(CITY_VALUE,pageableDto.getSearchFields().get(ATTR_CITY)),
-                () -> assertEquals(STREET_VALUE,pageableDto.getSearchFields().get(ATTR_STREET)),
+                () -> assertEquals(PAGE_NUMBER, pageableDto.getPageNumber()),
+                () -> assertEquals(PAGE_SIZE, pageableDto.getPageSize()),
+                () -> assertEquals(LAST_PAGE_NUMBER, pageableDto.getLastPageNumber()),
+                () -> assertEquals(SORT_FIELD, pageableDto.getSortField()),
+                () -> assertEquals(COUNT_SEARCH_FILELDS, pageableDto.getSearchFields().size()),
+                () -> assertEquals(CITY_VALUE, pageableDto.getSearchFields().get(ATTR_CITY)),
+                () -> assertEquals(STREET_VALUE, pageableDto.getSearchFields().get(ATTR_STREET)),
                 () -> assertNull(pageableDto.getRecords())
 
         );
