@@ -36,7 +36,6 @@ public class ChooseProduct implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         Pageable<ProductDto> pageableDto = converterP.convertToDto(request);
-
         pageableDto.setSortField(converter.convertSortFields(request));
 
         String machineId = request.getParameter(ATTR_MACHINE_ID);

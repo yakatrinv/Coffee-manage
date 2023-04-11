@@ -19,4 +19,6 @@ public interface IUserService {
     void updateRolesUser(String login, Set<RoleDto> roles);
 
     Pageable<UserDto> getPageableRecords(Pageable<UserDto> pageableDto);
+
+    void deleteUserByLogin(String login);
 }

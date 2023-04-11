@@ -1,13 +1,10 @@
 package it.academy.services.impl;
 
 import it.academy.dto.MachineDto;
-import it.academy.dto.ProductDto;
 import it.academy.mappers.Mapper;
 import it.academy.mappers.impl.MachineMapper;
 import it.academy.mappers.impl.PageableMapper;
-import it.academy.mappers.impl.ProductMapper;
 import it.academy.models.Machine;
-import it.academy.models.Product;
 import it.academy.models.pageable.Pageable;
 import it.academy.repositories.IMachineRepository;
 import it.academy.repositories.impl.MachineRepository;
@@ -21,8 +18,6 @@ public class MachineService implements IMachineService {
             = new MachineRepository();
 
     private final Mapper<Machine, MachineDto> machineMapper = new MachineMapper();
-
-    private final Mapper<Product, ProductDto> productMapper = new ProductMapper();
 
     private final Mapper<Pageable<Machine>, Pageable<MachineDto>> mapperMachineP =
             new PageableMapper<>(machineMapper);

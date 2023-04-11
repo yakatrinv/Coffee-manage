@@ -10,7 +10,6 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,7 +53,7 @@ public class Machine extends DataEntity implements Serializable {
     @JoinColumn(name = ATTR_MODEL_ID)
     private Model model;
 
-    @ManyToMany//(mappedBy = "machines")//(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = MACHINE_PRODUCT,
             joinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)},
             inverseJoinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)})

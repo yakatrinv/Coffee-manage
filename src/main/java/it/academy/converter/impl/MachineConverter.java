@@ -16,11 +16,19 @@ import java.util.HashMap;
 
 import static it.academy.utils.DataAddress.ATTR_ADDRESS_ID;
 import static it.academy.utils.DataAddress.ATTR_CITIES;
+import static it.academy.utils.DataAddress.ATTR_CITY;
 import static it.academy.utils.DataAddress.ATTR_SEARCH_CITIES;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_STREET;
+import static it.academy.utils.DataAddress.ATTR_STREET;
 import static it.academy.utils.DataGeneral.ATTR_ID;
 import static it.academy.utils.DataMachine.ATTR_MODEL_ID;
 import static it.academy.utils.DataMachine.ATTR_SEARCH_SERIAL_NUMBER;
 import static it.academy.utils.DataMachine.ATTR_SERIAL_NUMBER;
+import static it.academy.utils.DataModel.ATTR_BRAND;
+import static it.academy.utils.DataModel.ATTR_NAME_MODEL;
+import static it.academy.utils.DataModel.ATTR_SEARCH_BRAND;
+import static it.academy.utils.DataModel.ATTR_SEARCH_NAME_MODEL;
 
 public class MachineConverter implements IMachineConverter {
     private final IAddressService addressService = new AddressService();
@@ -59,7 +67,16 @@ public class MachineConverter implements IMachineConverter {
         HashMap<String, Object> searchFields = new HashMap<>();
 
         String serialNumber = request.getParameter(ATTR_SEARCH_SERIAL_NUMBER);
+        String brand = request.getParameter(ATTR_SEARCH_BRAND);
+        String nameModel = request.getParameter(ATTR_SEARCH_NAME_MODEL);
+        String city = request.getParameter(ATTR_SEARCH_CITY);
+        String street = request.getParameter(ATTR_SEARCH_STREET);
+
         searchFields.put(ATTR_SERIAL_NUMBER, serialNumber);
+        searchFields.put(ATTR_BRAND, brand);
+        searchFields.put(ATTR_NAME_MODEL, nameModel);
+        searchFields.put(ATTR_CITY, city);
+        searchFields.put(ATTR_STREET, street);
 
         String[] cities = request.getParameterValues(ATTR_SEARCH_CITIES);
         if (cities != null) {

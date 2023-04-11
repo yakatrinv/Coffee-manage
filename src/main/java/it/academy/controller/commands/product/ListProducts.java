@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.ATTR_SORT_FIELD;
 import static it.academy.utils.DataPageable.PAGEABLE;
 import static it.academy.utils.DataProduct.ATTR_NAME;
 import static it.academy.utils.DataProduct.ATTR_PRICE;
@@ -33,10 +34,7 @@ public class ListProducts implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         Pageable<ProductDto> pageableDto = converterP.convertToDto(request);
         pageableDto.setSearchFields(converter.convertSearchFields(request));
-
-        //заглушка
-        //добавить возможность сортировки по полям
-        pageableDto.setSortField(ATTR_ID);
+        pageableDto.setSortField(converter.convertSortFields(request));
 
         pageableDto = service.getPageableRecords(pageableDto);
         request.setAttribute(PAGEABLE, pageableDto);
@@ -50,6 +48,9 @@ public class ListProducts implements Command {
             request.setAttribute(ATTR_SEARCH_PRICE,
                     pageableDto.getSearchFields().get(ATTR_PRICE));
         }
+
+        request.setAttribute(ATTR_SORT_FIELD, pageableDto.getSortField());
+
         return PRODUCTS_JSP;
     }
 }

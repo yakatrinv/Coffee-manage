@@ -44,7 +44,6 @@
                         ${requestScope.machine.address.city}, ${requestScope.machine.address.street}
                 </p>
             </c:if>
-<%--            <br>--%>
 
             <c:if test="${requestScope.product ne null}">
                 <p>
@@ -54,7 +53,6 @@
                         Цена: ${requestScope.product.price}
                 </p>
             </c:if>
-<%--            <br>--%>
 
             <div>
                 <script>

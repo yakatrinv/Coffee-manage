@@ -99,6 +99,8 @@ public class DataAuth {
 
     public static final String UPDATE_ROLES_USER = "updateRolesUser";
 
+    public static final String DELETE_USER = "deleteUser";
+
     //commands roles
     public static final String COMMAND_ROLES = "roles";
 

@@ -71,6 +71,7 @@ import it.academy.controller.commands.role.ListRoles;
 import it.academy.controller.commands.role.SaveRole;
 import it.academy.controller.commands.role.UpdateRole;
 import it.academy.controller.commands.user.CreateUser;
+import it.academy.controller.commands.user.DeleteUser;
 import it.academy.controller.commands.user.EditPassUser;
 import it.academy.controller.commands.user.EditRolesUser;
 import it.academy.controller.commands.user.ListUsers;
@@ -80,10 +81,6 @@ import it.academy.controller.commands.user.UpdateRolesUser;
 
 import java.util.HashMap;
 
-import static it.academy.utils.DataMachineProduct.ADD_MACHINE_PRODUCT;
-import static it.academy.utils.DataMachineProduct.COMMAND_MACHINE_PRODUCTS;
-import static it.academy.utils.DataMachineProduct.DELETE_MACHINE_PRODUCT;
-import static it.academy.utils.DataMachineProduct.SAVE_MACHINE_PRODUCT;
 import static it.academy.utils.DataAddress.ADD_ADDRESS;
 import static it.academy.utils.DataAddress.COMMAND_ADDRESSES;
 import static it.academy.utils.DataAddress.DELETE_ADDRESS;
@@ -96,6 +93,7 @@ import static it.academy.utils.DataAuth.CHANGE_ROLE;
 import static it.academy.utils.DataAuth.COMMAND_ROLES;
 import static it.academy.utils.DataAuth.COMMAND_USERS;
 import static it.academy.utils.DataAuth.DELETE_ROLE;
+import static it.academy.utils.DataAuth.DELETE_USER;
 import static it.academy.utils.DataAuth.EDIT_PASS_CURRENT_USER;
 import static it.academy.utils.DataAuth.EDIT_PASS_USER;
 import static it.academy.utils.DataAuth.EDIT_ROLE;
@@ -139,6 +137,10 @@ import static it.academy.utils.DataMachine.DELETE_MACHINE;
 import static it.academy.utils.DataMachine.EDIT_MACHINE;
 import static it.academy.utils.DataMachine.SAVE_MACHINE;
 import static it.academy.utils.DataMachine.UPDATE_MACHINE;
+import static it.academy.utils.DataMachineProduct.ADD_MACHINE_PRODUCT;
+import static it.academy.utils.DataMachineProduct.COMMAND_MACHINE_PRODUCTS;
+import static it.academy.utils.DataMachineProduct.DELETE_MACHINE_PRODUCT;
+import static it.academy.utils.DataMachineProduct.SAVE_MACHINE_PRODUCT;
 import static it.academy.utils.DataModel.ADD_MODEL;
 import static it.academy.utils.DataModel.COMMAND_MODELS;
 import static it.academy.utils.DataModel.DELETE_MODEL;
@@ -190,6 +192,7 @@ public final class CommandFactory {
         commands.put(UPDATE_PASS_USER, new UpdatePassUser());
         commands.put(EDIT_ROLES_USER, new EditRolesUser());
         commands.put(UPDATE_ROLES_USER, new UpdateRolesUser());
+        commands.put(DELETE_USER, new DeleteUser());
 
         //role
         commands.put(COMMAND_ROLES, new ListRoles());

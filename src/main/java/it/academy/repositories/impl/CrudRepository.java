@@ -18,14 +18,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static it.academy.utils.DataAddress.ATTR_ADDRESS;
-import static it.academy.utils.DataAddress.ATTR_CITIES;
-import static it.academy.utils.DataAddress.ATTR_CITY;
 import static it.academy.utils.DataGeneral.ATTR_ID;
 import static it.academy.utils.DataGeneral.FLOAT_CLASS;
 import static it.academy.utils.DataGeneral.LONG_CLASS;
 import static it.academy.utils.DataGeneral.PERCENT_STRING;
-import static it.academy.utils.DataGeneral.STRING_ARRAY_CLASS;
 import static it.academy.utils.DataGeneral.STRING_CLASS;
 import static it.academy.utils.DataGeneral.STRING_FROM;
 
@@ -128,15 +124,10 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
                                             PERCENT_STRING + value +
                                                     PERCENT_STRING));
                         }
-                    } else if (value.getClass() == STRING_ARRAY_CLASS) {
-                        if (ATTR_CITIES.equalsIgnoreCase(key)) {
-                            root.join(ATTR_ADDRESS);
-                            predicates.add(criteriaBuilder.and(root.get(ATTR_ADDRESS).get(ATTR_CITY).in((Object[]) value)));
-                        }
                     } else if (value.getClass() == FLOAT_CLASS) {
                         if ((Float) value != 0) {
                             predicates.add(criteriaBuilder
-                                    .ge(root.get(key), (Number) value));
+                                    .equal(root.get(key), value));
                         }
                     } else {
                         predicates.add(criteriaBuilder
@@ -256,6 +247,10 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
 
     private int getPages(Long countRecords, int pageSize) {
         long pages = countRecords / pageSize;
-        return (int) ((countRecords % pageSize == 0) ? pages : pages + 1);
+        if (countRecords == 0) {
+            return (int) (pages + 1);
+        } else {
+            return (int) ((countRecords % pageSize == 0) ? pages : pages + 1);
+        }
     }
 }

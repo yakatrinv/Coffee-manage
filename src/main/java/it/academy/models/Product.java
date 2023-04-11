@@ -28,7 +28,7 @@ import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
 @Builder
 @Getter
 @Setter
-@ToString(exclude = {"machines"})
+@ToString
 @EqualsAndHashCode(of = {"id", "name", "price"}, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -45,9 +45,9 @@ public class Product extends DataEntity implements Serializable {
     @Column
     private float price;
 
-//    @ManyToMany//(fetch = FetchType.EAGER)
-//    @JoinTable(name = MACHINE_PRODUCT,
-//            joinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)},
-//            inverseJoinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)})
-//    private Set<Machine> machines;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = MACHINE_PRODUCT,
+            joinColumns = {@JoinColumn(name = ATTR_PRODUCT_ID)},
+            inverseJoinColumns = {@JoinColumn(name = ATTR_MACHINE_ID)})
+    private Set<Machine> machines;
 }

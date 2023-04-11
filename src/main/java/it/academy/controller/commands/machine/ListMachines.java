@@ -13,10 +13,18 @@ import it.academy.services.impl.MachineService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static it.academy.utils.DataAddress.ATTR_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_CITY;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_STREET;
+import static it.academy.utils.DataAddress.ATTR_STREET;
 import static it.academy.utils.DataGeneral.ATTR_ID;
 import static it.academy.utils.DataMachine.ATTR_SEARCH_SERIAL_NUMBER;
 import static it.academy.utils.DataMachine.ATTR_SERIAL_NUMBER;
 import static it.academy.utils.DataMachine.MACHINES_JSP;
+import static it.academy.utils.DataModel.ATTR_BRAND;
+import static it.academy.utils.DataModel.ATTR_NAME_MODEL;
+import static it.academy.utils.DataModel.ATTR_SEARCH_BRAND;
+import static it.academy.utils.DataModel.ATTR_SEARCH_NAME_MODEL;
 import static it.academy.utils.DataPageable.PAGEABLE;
 
 
@@ -43,6 +51,27 @@ public class ListMachines implements Command {
             request.setAttribute(ATTR_SEARCH_SERIAL_NUMBER,
                     pageableDto.getSearchFields().get(ATTR_SERIAL_NUMBER));
         }
+
+        if (pageableDto.getSearchFields().containsKey(ATTR_BRAND)) {
+            request.setAttribute(ATTR_SEARCH_BRAND,
+                    pageableDto.getSearchFields().get(ATTR_BRAND));
+        }
+
+        if (pageableDto.getSearchFields().containsKey(ATTR_NAME_MODEL)) {
+            request.setAttribute(ATTR_SEARCH_NAME_MODEL,
+                    pageableDto.getSearchFields().get(ATTR_NAME_MODEL));
+        }
+
+        if (pageableDto.getSearchFields().containsKey(ATTR_CITY)) {
+            request.setAttribute(ATTR_SEARCH_CITY,
+                    pageableDto.getSearchFields().get(ATTR_CITY));
+        }
+
+        if (pageableDto.getSearchFields().containsKey(ATTR_STREET)) {
+            request.setAttribute(ATTR_SEARCH_STREET,
+                    pageableDto.getSearchFields().get(ATTR_STREET));
+        }
+
         return MACHINES_JSP;
     }
 }

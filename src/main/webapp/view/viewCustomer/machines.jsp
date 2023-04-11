@@ -31,7 +31,7 @@
                 <h2>Список пуст</h2>
             </c:when>
 
-            <c:when test="${machine ne null and machines.size() eq 0}">
+            <c:when test="${requestScope.machine ne null and machines.size() eq 0}">
                 <h2>Список пуст</h2>
             </c:when>
 

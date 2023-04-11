@@ -84,4 +84,12 @@ public class UserService implements IUserService {
         Pageable<User> pageable = mapperP.dtoToEntity(pageableDto);
         return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
+
+    @Override
+    public void deleteUserByLogin(String login) {
+        User user = repository.findUserByLogin(login);
+        if (user != null) {
+            repository.delete(user.getId());
+        }
+    }
 }
