@@ -26,17 +26,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.List;
 
-import static it.academy.utils.Data.ATTR_CREDIT_CARDS;
-import static it.academy.utils.Data.ATTR_DISCOUNT;
-import static it.academy.utils.Data.ATTR_LOGGED_CUSTOMER;
-import static it.academy.utils.Data.ATTR_MACHINE;
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRODUCT;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.ATTR_SUM;
-import static it.academy.utils.Data.ATTR_TYPE_PAYMENT;
-import static it.academy.utils.Data.PREV_URL;
-import static it.academy.utils.DataCustomer.CUSTOMER_ORDER_PAY_JSP;
+import static it.academy.utils.DataAuth.ATTR_LOGGED_CUSTOMER;
+import static it.academy.utils.DataCreditCard.ATTR_CREDIT_CARDS;
+import static it.academy.utils.DataDiscount.ATTR_DISCOUNT;
+import static it.academy.utils.DataGeneral.PREV_URL;
+import static it.academy.utils.DataMachine.ATTR_MACHINE;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
+import static it.academy.utils.DataPurchase.ATTR_SUM;
+import static it.academy.utils.DataPurchase.CUSTOMER_ORDER_PAY_JSP;
+import static it.academy.utils.DataTypePayment.ATTR_TYPE_PAYMENTS;
 
 public class CreateOrderPay implements Command {
     private final IMachineService machineService = new MachineService();
@@ -71,25 +71,23 @@ public class CreateOrderPay implements Command {
 
 
         List<TypePaymentDto> allTypePayments = typePaymentService.findAllTypePayments();
-        List<CreditCardDto> allCreditCards = creditCardService.findAllCreditCards();
 
-        //рассчитать возможность предоставления скидки
         Serializable id = ((CustomerDto) request.getSession().getAttribute(ATTR_LOGGED_CUSTOMER)).getId();
-        Float sumAllPurchases = purchaseService.getSumPurchases(id);
+        List<CreditCardDto> customerCreditCards = creditCardService.getCustomerCreditCards(id);
+        float sumAllPurchases = purchaseService.getSumPurchases(id);
 
         Discount discount = discountService.getPercentDiscount(sumAllPurchases);
 
-        float sumPurchase = 0f;
+        float sumPurchase = 0;
         if (product != null) {
-            float percent = (float) (discount == null ? 0 : discount.getPercent());
+            float percent = discount == null ? 0 : discount.getPercent();
             sumPurchase = getSumPurchase(product.getPrice(), percent);
         }
 
-
         request.setAttribute(ATTR_MACHINE, machine);
         request.setAttribute(ATTR_PRODUCT, product);
-        request.setAttribute(ATTR_TYPE_PAYMENT, allTypePayments);
-        request.setAttribute(ATTR_CREDIT_CARDS, allCreditCards);
+        request.setAttribute(ATTR_TYPE_PAYMENTS, allTypePayments);
+        request.setAttribute(ATTR_CREDIT_CARDS, customerCreditCards);
         request.setAttribute(ATTR_DISCOUNT, discount);
         request.setAttribute(ATTR_SUM, sumPurchase);
 

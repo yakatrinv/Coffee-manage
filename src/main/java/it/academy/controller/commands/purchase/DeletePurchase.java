@@ -8,8 +8,8 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class DeletePurchase implements Command {
     private final IPurchaseService service = new PurchaseService();
@@ -17,7 +17,7 @@ public class DeletePurchase implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter(ATTR_ID);
-        if (StringUtils.isBlank(id)) {
+        if (StringUtils.isNotBlank(id)) {
             service.deletePurchaseById(Integer.parseInt(id));
         }
         return request.getParameter(PREV_URL);

@@ -15,7 +15,7 @@ public interface IModelService {
 
     void deleteModelById(Serializable id);
 
-    Pageable<ModelDto> getPageableRecords(Pageable<ModelDto> pageable);
-
     List<ModelDto> findAllModels();
+
+    Pageable<ModelDto> getPageableRecords(Pageable<ModelDto> pageable);
 }

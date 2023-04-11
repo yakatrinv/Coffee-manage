@@ -50,7 +50,7 @@
                 <th>№</th>
                 <th>Логин</th>
                 <th>Роли</th>
-                <th colspan="2">Действие</th>
+                <th colspan="3">Действие</th>
             </tr>
 
             <c:choose>
@@ -88,6 +88,16 @@
                                    value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber}"/>
                             <button type="submit" name="command" value="editRolesUser" class="buttonClass">
                                 КОРРЕКТИРОВАТЬ СПИСОК РОЛЕЙ
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="coffee-manage" method="get">
+                            <input type="hidden" name="login" value="${user.login}">
+                            <input type="hidden" name="prevURL"
+                                   value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber}"/>
+                            <button type="submit" name="command" value="deleteUser" class="buttonClass">
+                                УДАЛИТЬ
                             </button>
                         </form>
                     </td>

@@ -20,6 +20,7 @@ public class PageableMapper<TEntity, TDto> implements Mapper<Pageable<TEntity>, 
                         .stream()
                         .map(mapper::dtoToEntity)
                         .collect(Collectors.toList());
+
         return Pageable.<TEntity>builder()
                 .pageSize(dto.getPageSize())
                 .lastPageNumber(dto.getLastPageNumber())
@@ -37,6 +38,7 @@ public class PageableMapper<TEntity, TDto> implements Mapper<Pageable<TEntity>, 
                         .stream()
                         .map(mapper::entityToDto)
                         .collect(Collectors.toList());
+
         return Pageable.<TDto>builder()
                 .pageSize(entity.getPageSize())
                 .lastPageNumber(entity.getLastPageNumber())

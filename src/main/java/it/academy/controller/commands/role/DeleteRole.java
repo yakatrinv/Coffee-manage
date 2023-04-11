@@ -8,8 +8,8 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class DeleteRole implements Command {
     private final IRoleService service = new RoleService();
@@ -17,8 +17,8 @@ public class DeleteRole implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter(ATTR_ID);
-        if (StringUtils.isBlank(id)) {
-            service.deleteAddressById(Integer.parseInt(id));
+        if (StringUtils.isNotBlank(id)) {
+            service.deleteRoleById(Integer.parseInt(id));
         }
         return request.getParameter(PREV_URL);
     }

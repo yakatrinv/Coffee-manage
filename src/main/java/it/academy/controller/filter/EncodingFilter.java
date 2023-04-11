@@ -8,7 +8,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-import static it.academy.utils.Data.UTF_8;
+import static it.academy.utils.DataGeneral.UTF_8;
 
 @WebFilter(urlPatterns = {"/*"})
 public class EncodingFilter implements Filter {

@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_ROLES;
-import static it.academy.utils.Data.ATTR_USER;
-import static it.academy.utils.Data.EDIT_ROLES_USER_JSP;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_ROLES;
+import static it.academy.utils.DataAuth.ATTR_USER;
+import static it.academy.utils.DataAuth.EDIT_ROLES_USER_JSP;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class EditRolesUser implements Command {
     private final IUserService userService = new UserService();
@@ -28,7 +28,7 @@ public class EditRolesUser implements Command {
         UserDto user;
         String login = request.getParameter(ATTR_LOGIN);
         if (StringUtils.isNotBlank(login)) {
-            user = userService.findByLogin(login);
+            user = userService.findUserByLogin(login);
             request.setAttribute(ATTR_USER, user);
         }
 

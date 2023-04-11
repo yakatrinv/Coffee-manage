@@ -14,7 +14,7 @@
 
         <form class="validate-form" action="coffee-manage">
             <input type="hidden" name="prevURL" value="${requestScope.prevURL}"/>
-            <input type="hidden" name="id" value="${requestScope.customer.id}">
+            <input type="hidden" name="customer_id" value="${requestScope.customer.id}">
             <p>
                 <label for="name">Введите имя:</label>
                 <input name="name" id="name" placeholder="имя" value="${requestScope.customer.name}">

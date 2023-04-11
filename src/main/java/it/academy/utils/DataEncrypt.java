@@ -1,7 +1,6 @@
 package it.academy.utils;
 
 public class DataEncrypt {
-    //auth
     public static final String SECURE_ALG = "SHA1PRNG";
 
     public static final String ALGORITHM = "PBKDF2WithHmacSHA1";

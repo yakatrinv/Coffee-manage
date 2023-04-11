@@ -21,9 +21,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.MACHINE_PRODUCT;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataMachine.MACHINE_PRODUCT;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
 
 @Builder
 @Getter

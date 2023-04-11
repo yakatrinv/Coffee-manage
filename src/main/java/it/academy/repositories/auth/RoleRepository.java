@@ -8,11 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 
-import static it.academy.utils.Data.ATTR_ROLE_NAME;
-import static it.academy.utils.Data.FIRST_INDEX;
-import static it.academy.utils.Data.ROLE_CLASS;
+import static it.academy.utils.DataAuth.ATTR_ROLE_NAME;
+import static it.academy.utils.DataGeneral.ROLE_CLASS;
 
 public class RoleRepository extends CrudRepository<Role>
         implements IRoleRepository {
@@ -36,10 +34,7 @@ public class RoleRepository extends CrudRepository<Role>
             criteria.select(roleRoot)
                     .where(builder.equal(roleRoot.get(ATTR_ROLE_NAME), roleName));
 
-            List<Role> resultList = entityManager.createQuery(criteria).getResultList();
-            if (!resultList.isEmpty()) {
-                findRole = resultList.get(FIRST_INDEX);
-            }
+            findRole = entityManager.createQuery(criteria).getSingleResult();
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {

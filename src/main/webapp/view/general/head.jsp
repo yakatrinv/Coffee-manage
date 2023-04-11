@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
     <span>
-        <a href="${pageContext.request.contextPath}/coffee-manage?command=getLoginPage">Главная страница</a>
+        <a href="${pageContext.request.contextPath}/coffee-manage?command=getHomePage">Главная страница</a>
     </span>
 
     <c:if test="${not empty sessionScope.loggedUser}">
@@ -27,6 +27,15 @@
             </select>
         </c:if>
         <span></span>
+
+        <p>
+            <a href="${pageContext.request.contextPath}/coffee-manage?command=editProfileCustomer">Профиль</a>
+        </p>
+
+        <p>
+            <a href="${pageContext.request.contextPath}/coffee-manage?command=editPassCurrentUser">Сменить пароль</a>
+        </p>
+
         <a href="${pageContext.request.contextPath}/coffee-manage?command=logout">Выйти</a>
     </c:if>
 </div>

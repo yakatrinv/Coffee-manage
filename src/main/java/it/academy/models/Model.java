@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-import static it.academy.utils.Data.COL_NAME_MODEL;
+import static it.academy.utils.DataModel.ATTR_DB_NAME_MODEL;
 
 @Builder
 @Getter
@@ -33,6 +33,6 @@ public class Model extends DataEntity implements Serializable {
     @Column
     private String brand;
 
-    @Column(name = COL_NAME_MODEL)
+    @Column(name = ATTR_DB_NAME_MODEL)
     private String nameModel;
 }

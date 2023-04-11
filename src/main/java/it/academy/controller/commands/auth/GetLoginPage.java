@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static it.academy.utils.Data.ATTR_LOGGED_USER;
-import static it.academy.utils.Data.LOGIN_JSP;
-import static it.academy.utils.Data.MAIN_JSP;
+import static it.academy.utils.DataAuth.ATTR_LOGGED_USER;
+import static it.academy.utils.DataAuth.LOGIN_JSP;
+import static it.academy.utils.DataGeneral.MAIN_JSP;
 
 public class GetLoginPage implements Command {
     @Override
@@ -23,7 +23,6 @@ public class GetLoginPage implements Command {
         } else {
             session.invalidate();
         }
-
         return LOGIN_JSP;
     }
 }

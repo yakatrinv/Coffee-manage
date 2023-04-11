@@ -17,7 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-import static it.academy.utils.Data.COL_ROLE_NAME;
+import static it.academy.utils.DataAuth.ATTR_DB_ROLE_NAME;
 
 @Builder
 @Getter
@@ -29,11 +29,10 @@ import static it.academy.utils.Data.COL_ROLE_NAME;
 @Entity
 @Table
 public class Role extends DataEntity implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = COL_ROLE_NAME)
+    @Column(name = ATTR_DB_ROLE_NAME)
     private String roleName;
 }

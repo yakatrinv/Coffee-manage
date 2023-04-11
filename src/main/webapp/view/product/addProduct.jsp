@@ -20,7 +20,7 @@
             </p>
             <p>
                 <label for="price">Введите цену:</label>
-                <input type="number" step="0.1" name="price" id="price" placeholder="цена">
+                <input type="number" step="0.01" name="price" id="price" placeholder="цена">
             </p>
 
             <p>

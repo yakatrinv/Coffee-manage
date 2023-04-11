@@ -23,15 +23,15 @@ public class AddressService implements IAddressService {
             new PageableMapper<>(mapper);
 
     @Override
-    public void createAddress(AddressDto entityDto) {
-        Address address = mapper.dtoToEntity(entityDto);
+    public void createAddress(AddressDto addressDto) {
+        Address address = mapper.dtoToEntity(addressDto);
         address = repository.save(address);
         mapper.entityToDto(address);
     }
 
     @Override
-    public void updateAddress(AddressDto entityDto) {
-        Address address = mapper.dtoToEntity(entityDto);
+    public void updateAddress(AddressDto addressDto) {
+        Address address = mapper.dtoToEntity(addressDto);
         address = repository.update(address);
         mapper.entityToDto(address);
     }
@@ -48,12 +48,6 @@ public class AddressService implements IAddressService {
     }
 
     @Override
-    public Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageableDto) {
-        Pageable<Address> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
-    }
-
-    @Override
     public List<AddressDto> findAllAddresses() {
         List<Address> addresses = repository.getAll();
         return addresses
@@ -65,5 +59,11 @@ public class AddressService implements IAddressService {
     @Override
     public List<String> findAllCities() {
         return repository.getAllCity();
+    }
+
+    @Override
+    public Pageable<AddressDto> getPageableRecords(Pageable<AddressDto> pageableDto) {
+        Pageable<Address> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

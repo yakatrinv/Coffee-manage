@@ -5,7 +5,7 @@
 
 <c:set var="nameCommand" value="chooseMachine" scope="request"/>
 <c:set var="sortParam" value="&sortField=id" scope="request"/>
-<c:set var="filterParam" value="&searchCities=${requestScope.searchCities}"
+<c:set var="filterParam" value="${requestScope.searchCities}"
        scope="request"/>
 <c:set var="pageNumber" value="${requestScope.pageable.pageNumber}" scope="request"/>
 <c:set var="pageSize" value="${requestScope.pageable.pageSize}" scope="request"/>
@@ -31,7 +31,7 @@
                 <h2>Список пуст</h2>
             </c:when>
 
-            <c:when test="${machine ne null and machines.size() eq 0}">
+            <c:when test="${requestScope.machine ne null and machines.size() eq 0}">
                 <h2>Список пуст</h2>
             </c:when>
 

@@ -14,10 +14,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static it.academy.utils.Data.ATTR_CHECK_ROLES;
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_PASSWORD;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAuth.ATTR_CHECK_ROLES;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_PASSWORD;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class SaveUser implements Command {
     private final IUserService userService = new UserService();
@@ -35,7 +35,7 @@ public class SaveUser implements Command {
                 .map(Integer::parseInt)
                 .map(roleService::findRoleById)
                 .collect(Collectors.toSet());
-                userService.createUser(login, password,roles);
+        userService.createUser(login, password, roles);
 
         return request.getParameter(PREV_URL);
     }

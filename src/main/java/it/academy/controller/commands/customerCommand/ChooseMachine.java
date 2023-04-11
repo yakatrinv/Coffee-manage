@@ -18,17 +18,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.PAGEABLE;
-import static it.academy.utils.DataCustomer.ATTR_CITIES;
-import static it.academy.utils.DataCustomer.ATTR_SEARCH_CITIES;
-import static it.academy.utils.DataCustomer.ATTR_SET_SEARCH_CITIES;
-import static it.academy.utils.DataCustomer.CUSTOMER_MACHINES_JSP;
-import static it.academy.utils.DataCustomer.STRING_SEARCH_CITIES;
+import static it.academy.utils.DataAddress.ATTR_CITIES;
+import static it.academy.utils.DataAddress.ATTR_SEARCH_CITIES;
+import static it.academy.utils.DataAddress.ATTR_SET_SEARCH_CITIES;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataMachine.CUSTOMER_MACHINES_JSP;
+import static it.academy.utils.DataPageable.PAGEABLE;
+import static it.academy.utils.DataPageable.STRING_SEARCH_CITIES;
 
 
 public class ChooseMachine implements Command {
-
     private final IConverter<Pageable<MachineDto>> converterP = new PageableConverter<>();
 
     private final IMachineConverter converter = new MachineConverter();
@@ -50,8 +49,7 @@ public class ChooseMachine implements Command {
         request.setAttribute(PAGEABLE, pageableDto);
 
         String[] arrSearchCities = (String[]) pageableDto.getSearchFields().get(ATTR_CITIES);
-        List<String> stringSet = arrSearchCities == null ? null : Arrays.stream(arrSearchCities).collect(Collectors.toList());
-
+        List<String> stringSet = arrSearchCities == null ? null : Arrays.stream(arrSearchCities).toList();
         String searchCities = stringSet == null ? null : stringSet.stream()
                 .map(str -> STRING_SEARCH_CITIES + str)
                 .collect(Collectors.joining());

@@ -48,17 +48,26 @@ public class CreditCardService implements ICreditCardService {
     }
 
     @Override
-    public Pageable<CreditCardDto> getPageableRecords(Pageable<CreditCardDto> pageableDto) {
-        Pageable<CreditCard> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
-    }
-
-    @Override
     public List<CreditCardDto> findAllCreditCards() {
         List<CreditCard> creditCards = repository.getAll();
-        return creditCards
+        return creditCards == null ? null : creditCards
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();
+    }
+
+    @Override
+    public List<CreditCardDto> getCustomerCreditCards(Serializable id) {
+        List<CreditCard> creditCards = repository.getCreditCards(id);
+        return creditCards == null ? null : creditCards
+                .stream()
+                .map(mapper::entityToDto)
+                .toList();
+    }
+
+    @Override
+    public Pageable<CreditCardDto> getPageableRecords(Pageable<CreditCardDto> pageableDto) {
+        Pageable<CreditCard> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

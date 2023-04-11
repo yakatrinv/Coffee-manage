@@ -22,9 +22,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Set;
 
-import static it.academy.utils.Data.ATTR_ROLE_ID;
-import static it.academy.utils.Data.ATTR_USER_ID;
-import static it.academy.utils.Data.USER_ROLE;
+import static it.academy.utils.DataAuth.ATTR_ROLE_ID;
+import static it.academy.utils.DataAuth.ATTR_USER_ID;
+import static it.academy.utils.DataAuth.USER_ROLE;
 
 @Builder
 @AllArgsConstructor

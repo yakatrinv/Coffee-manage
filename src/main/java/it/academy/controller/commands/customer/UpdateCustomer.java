@@ -10,7 +10,7 @@ import it.academy.services.impl.CustomerService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class UpdateCustomer implements Command {
     private final ICustomerService service = new CustomerService();

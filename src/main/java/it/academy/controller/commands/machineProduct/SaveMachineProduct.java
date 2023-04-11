@@ -8,9 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
 
 public class SaveMachineProduct implements Command {
     private final IMachineService service = new MachineService();

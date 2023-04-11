@@ -10,9 +10,9 @@ import it.academy.services.impl.CustomerService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_PASSWORD;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_PASSWORD;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class SaveCustomer implements Command {
     private final ICustomerService service = new CustomerService();

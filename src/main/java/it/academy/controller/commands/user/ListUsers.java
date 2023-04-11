@@ -13,11 +13,11 @@ import it.academy.services.auth.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_LOGIN;
-import static it.academy.utils.Data.ATTR_SEARCH_LOGIN;
-import static it.academy.utils.Data.PAGEABLE;
-import static it.academy.utils.Data.USERS_JSP;
+import static it.academy.utils.DataAuth.ATTR_LOGIN;
+import static it.academy.utils.DataAuth.ATTR_SEARCH_LOGIN;
+import static it.academy.utils.DataAuth.USERS_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.PAGEABLE;
 
 
 public class ListUsers implements Command {

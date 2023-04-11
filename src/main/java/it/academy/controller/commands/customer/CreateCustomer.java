@@ -5,8 +5,8 @@ import it.academy.controller.commands.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ADD_CUSTOMER_JSP;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataCustomer.ADD_CUSTOMER_JSP;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class CreateCustomer implements Command {
     @Override

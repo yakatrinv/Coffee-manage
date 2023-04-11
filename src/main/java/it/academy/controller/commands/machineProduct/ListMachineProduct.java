@@ -9,19 +9,21 @@ import it.academy.dto.MachineDto;
 import it.academy.dto.ProductDto;
 import it.academy.models.pageable.Pageable;
 import it.academy.services.IMachineService;
+import it.academy.services.IProductService;
 import it.academy.services.impl.MachineService;
+import it.academy.services.impl.ProductService;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_MACHINE;
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.LIST_MACHINES;
-import static it.academy.utils.Data.MACHINE_PRODUCTS_JSP;
-import static it.academy.utils.Data.PAGEABLE;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataMachine.ATTR_MACHINE;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataMachine.LIST_ALL_MACHINES;
+import static it.academy.utils.DataPageable.PAGEABLE;
+import static it.academy.utils.DataProduct.MACHINE_PRODUCTS_JSP;
 
 
 public class ListMachineProduct implements Command {
@@ -29,7 +31,9 @@ public class ListMachineProduct implements Command {
 
     private final IProductConverter converter = new ProductConverter();
 
-    private final IMachineService service = new MachineService();
+    private final IMachineService machineService = new MachineService();
+
+    private final IProductService productService = new ProductService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -44,14 +48,14 @@ public class ListMachineProduct implements Command {
         Integer id = (StringUtils.isBlank(machineId)) ?
                 null : Integer.parseInt(machineId);
 
-        pageableDto = service.getProducts(id, pageableDto);
+        pageableDto = productService.getProductsMachine(id, pageableDto);
         request.setAttribute(PAGEABLE, pageableDto);
 
-        List<MachineDto> machines = service.findAllMachines();
+        List<MachineDto> machines = machineService.findAllMachines();
         MachineDto machine = id == null ? null :
-                service.findMachineById(id);
+                machineService.findMachineById(id);
 
-        request.setAttribute(LIST_MACHINES, machines);
+        request.setAttribute(LIST_ALL_MACHINES, machines);
         request.setAttribute(ATTR_MACHINE, machine);
         request.setAttribute(ATTR_MACHINE_ID, machineId);
 

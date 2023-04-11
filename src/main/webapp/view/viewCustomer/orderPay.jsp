@@ -44,7 +44,6 @@
                         ${requestScope.machine.address.city}, ${requestScope.machine.address.street}
                 </p>
             </c:if>
-<%--            <br>--%>
 
             <c:if test="${requestScope.product ne null}">
                 <p>
@@ -54,7 +53,6 @@
                         Цена: ${requestScope.product.price}
                 </p>
             </c:if>
-<%--            <br>--%>
 
             <div>
                 <script>
@@ -89,7 +87,6 @@
                 </div>
 
             </div>
-<%--            <br>--%>
 
             <div id='creditCard' style='display: none;'>
                 <label for="creditCard">Карта</label>
@@ -98,7 +95,6 @@
                     <option value="${creditCardItem.id}">${creditCardItem.number}</option>
                     </c:forEach>
                 </select>
-                <%--                <input type="text" name="creditCard">--%>
             </div>
 
             <div id='phoneNumber' style='display: none;'>

@@ -25,33 +25,31 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_CREDIT_CARDS;
-import static it.academy.utils.Data.ATTR_CREDIT_CARD_ID;
-import static it.academy.utils.Data.ATTR_CUSTOMER_ID;
-import static it.academy.utils.Data.ATTR_DISCOUNT_ID;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_MACHINE_ID;
-import static it.academy.utils.Data.ATTR_PRICE;
-import static it.academy.utils.Data.ATTR_PRODUCT_ID;
-import static it.academy.utils.Data.ATTR_SEARCH_PRICE;
-import static it.academy.utils.Data.ATTR_SEARCH_SUM;
-import static it.academy.utils.Data.ATTR_SUM;
-import static it.academy.utils.Data.ATTR_TYPE_PAYMENT;
-import static it.academy.utils.Data.ATTR_TYPE_PAYMENT_ID;
-import static it.academy.utils.Data.VALUE_ZERO;
+import static it.academy.utils.DataCreditCard.ATTR_CREDIT_CARD_ID;
+import static it.academy.utils.DataCustomer.ATTR_CUSTOMER_ID;
+import static it.academy.utils.DataDiscount.ATTR_DISCOUNT_ID;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.VALUE_ZERO;
+import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
+import static it.academy.utils.DataProduct.ATTR_PRODUCT_ID;
+import static it.academy.utils.DataPurchase.ATTR_PRICE;
+import static it.academy.utils.DataPurchase.ATTR_SEARCH_PRICE;
+import static it.academy.utils.DataPurchase.ATTR_SEARCH_SUM;
+import static it.academy.utils.DataPurchase.ATTR_SUM;
+import static it.academy.utils.DataTypePayment.ATTR_TYPE_PAYMENT_ID;
 
 public class PurchaseConverter implements IPurchaseConverter {
-    ICustomerService customerService = new CustomerService();
+    private final ICustomerService customerService = new CustomerService();
 
-    IMachineService machineService = new MachineService();
+    private final IMachineService machineService = new MachineService();
 
-    IProductService productService = new ProductService();
+    private final IProductService productService = new ProductService();
 
-    IDiscountService discountService = new DiscountService();
+    private final IDiscountService discountService = new DiscountService();
 
-    ITypePaymentService typePaymentService = new TypePaymentService();
+    private final ITypePaymentService typePaymentService = new TypePaymentService();
 
-    ICreditCardService creditCardService = new CreditCardService();
+    private final ICreditCardService creditCardService = new CreditCardService();
 
     @Override
     public PurchaseDto convertToDto(HttpServletRequest request) {
@@ -64,7 +62,6 @@ public class PurchaseConverter implements IPurchaseConverter {
         String sum = request.getParameter(ATTR_SUM);
         String creditCardId = request.getParameter(ATTR_CREDIT_CARD_ID);
         String typePaymentId = request.getParameter(ATTR_TYPE_PAYMENT_ID);
-
 
         CustomerDto customer = null;
         if (StringUtils.isNotBlank(customerId)) {
@@ -91,7 +88,9 @@ public class PurchaseConverter implements IPurchaseConverter {
         if (StringUtils.isNotBlank(typePaymentId)) {
             typePayment = typePaymentService.findTypePaymentById(Integer.parseInt(typePaymentId));
 
-            if (typePayment!=null && typePayment.getUseCreditCard()) {
+            if (typePayment != null &&
+                    typePayment.getUseCreditCard() != null &&
+                    typePayment.getUseCreditCard()) {
                 if (StringUtils.isNotBlank(creditCardId)) {
                     creditCard = creditCardService.findCreditCardById(Integer.parseInt(creditCardId));
                 }

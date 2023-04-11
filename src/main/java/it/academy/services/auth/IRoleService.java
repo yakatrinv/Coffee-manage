@@ -13,11 +13,11 @@ public interface IRoleService {
 
     RoleDto findRoleById(Serializable id);
 
-    void deleteAddressById(Serializable id);
+    void deleteRoleById(Serializable id);
 
-    RoleDto findByRoleName(String roleName);
-
-    Pageable<RoleDto> getPageableRecords(Pageable<RoleDto> pageableDto);
+    RoleDto findRoleByName(String roleName);
 
     List<RoleDto> findAllRoles();
+
+    Pageable<RoleDto> getPageableRecords(Pageable<RoleDto> pageableDto);
 }

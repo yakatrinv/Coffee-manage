@@ -4,7 +4,7 @@
 
 <c:set var="nameCommand" value="machines" scope="request"/>
 <c:set var="sortParam" value="&sortField=id" scope="request"/>
-<c:set var="filterParam" value="&searchSerialNumber=${requestScope.searchSerialNumber}"
+<c:set var="filterParam" value="&searchSerialNumber=${requestScope.searchSerialNumber}&searchBrand=${requestScope.searchBrand}&searchNameModel=${requestScope.searchNameModel}&searchCity=${requestScope.searchCity}&searchStreet=${requestScope.searchStreet}"
        scope="request"/>
 <c:set var="pageNumber" value="${requestScope.pageable.pageNumber}" scope="request"/>
 <c:set var="pageSize" value="${requestScope.pageable.pageSize}" scope="request"/>
@@ -30,6 +30,10 @@
 
 <form action="coffee-manage">
     <label> <input name="searchSerialNumber" placeholder="серийный номер" value="${requestScope.searchSerialNumber}"> </label>
+    <label> <input name="searchBrand" placeholder="брэнд" value="${requestScope.searchBrand}"> </label>
+    <label> <input name="searchNameModel" placeholder="модель" value="${requestScope.searchNameModel}"> </label>
+    <label> <input name="searchCity" placeholder="город" value="${requestScope.searchCity}"> </label>
+    <label> <input name="searchStreet" placeholder="улица" value="${requestScope.searchStreet}"> </label>
     <input type="hidden" name="pageNumber" value="${pageNumber}">
     <input type="hidden" name="pageSize" value="${pageSize}">
     <button type="submit" name="command" value="machines" formmethod="get" class="buttonClass">ПОИСК</button>
@@ -40,7 +44,7 @@
         <h2>Список пуст</h2>
     </c:when>
 
-    <c:when test="${machine ne null and machines.size() eq 0}">
+    <c:when test="${requestScope.machine ne null and machines.size() eq 0}">
         <h2>Список пуст</h2>
     </c:when>
 
@@ -49,9 +53,9 @@
             <tr>
                 <th>№</th>
                 <th>Серийный номер</th>
-                <th>Модель</th>
                 <th>Адрес</th>
-                <th colspan="2">Действие</th>
+                <th>Модель</th>
+                <th colspan="3">Действие</th>
             </tr>
 
             <c:choose>
@@ -68,15 +72,9 @@
                     <td>${machine.serialNumber}</td>
                     <td>
                         <c:choose>
-                            <c:when test="${machine.address.city ne null and not empty machine.address.city}">
-                                ${machine.address.city},
-                            </c:when>
-                            <c:otherwise>
-                                -,
-                            </c:otherwise>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${machine.address.street ne null and not empty machine.address.street}">
+                            <c:when test="${machine.address ne null}">
+                                ${machine.address.city}
+                                <br>
                                 ${machine.address.street}
                             </c:when>
                             <c:otherwise>
@@ -86,19 +84,13 @@
                     </td>
                     <td>
                         <c:choose>
-                            <c:when test="${machine.model.nameModel ne null and not empty machine.model.nameModel}">
+                            <c:when test="${machine.model ne null}">
+                                ${machine.model.brand}
+                                <br>
                                 ${machine.model.nameModel}
                             </c:when>
                             <c:otherwise>
                                 -
-                            </c:otherwise>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${machine.model.brand ne null and not empty machine.model.brand}">
-                                ${machine.model.brand},
-                            </c:when>
-                            <c:otherwise>
-                                -,
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -109,6 +101,16 @@
                                    value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber}"/>
                             <button type="submit" name="command" value="editMachine" class="buttonClass">
                                 РЕДАКТИРОВАТЬ
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="coffee-manage" method="get">
+                            <input type="hidden" name="machine_id" value="${machine.id}">
+                            <input type="hidden" name="prevURL"
+                                   value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber}"/>
+                            <button type="submit" name="command" value="machineProducts" class="buttonClass">
+                                КОРРЕКТИРОВАТЬ СПИСОК ПРОДУКЦИИ
                             </button>
                         </form>
                     </td>

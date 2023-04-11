@@ -9,10 +9,10 @@ import it.academy.services.impl.ModelService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ADD_MACHINE_JSP;
-import static it.academy.utils.Data.ATTR_ADDRESSES;
-import static it.academy.utils.Data.ATTR_MODELS;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAddress.ATTR_ADDRESSES;
+import static it.academy.utils.DataGeneral.PREV_URL;
+import static it.academy.utils.DataMachine.ADD_MACHINE_JSP;
+import static it.academy.utils.DataModel.ATTR_MODELS;
 
 public class CreateMachine implements Command {
     private final IAddressService addressService = new AddressService();

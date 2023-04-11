@@ -13,17 +13,17 @@ import it.academy.services.impl.CustomerService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_EMAIL;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_NAME;
-import static it.academy.utils.Data.ATTR_PHONE;
-import static it.academy.utils.Data.ATTR_SEARCH_EMAIL;
-import static it.academy.utils.Data.ATTR_SEARCH_NAME;
-import static it.academy.utils.Data.ATTR_SEARCH_PHONE;
-import static it.academy.utils.Data.ATTR_SEARCH_SURNAME;
-import static it.academy.utils.Data.ATTR_SURNAME;
-import static it.academy.utils.Data.CUSTOMERS_JSP;
-import static it.academy.utils.Data.PAGEABLE;
+import static it.academy.utils.DataCustomer.ATTR_EMAIL;
+import static it.academy.utils.DataCustomer.ATTR_NAME;
+import static it.academy.utils.DataCustomer.ATTR_PHONE;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_EMAIL;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_NAME;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_PHONE;
+import static it.academy.utils.DataCustomer.ATTR_SEARCH_SURNAME;
+import static it.academy.utils.DataCustomer.ATTR_SURNAME;
+import static it.academy.utils.DataCustomer.CUSTOMERS_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.PAGEABLE;
 
 
 public class ListCustomers implements Command {

@@ -23,15 +23,15 @@ public class DiscountService implements IDiscountService {
             new PageableMapper<>(mapper);
 
     @Override
-    public void createDiscount(DiscountDto entityDto) {
-        Discount discount = mapper.dtoToEntity(entityDto);
+    public void createDiscount(DiscountDto discountDto) {
+        Discount discount = mapper.dtoToEntity(discountDto);
         discount = repository.save(discount);
         mapper.entityToDto(discount);
     }
 
     @Override
-    public void updateDiscount(DiscountDto entityDto) {
-        Discount discount = mapper.dtoToEntity(entityDto);
+    public void updateDiscount(DiscountDto discountDto) {
+        Discount discount = mapper.dtoToEntity(discountDto);
         discount = repository.update(discount);
         mapper.entityToDto(discount);
     }
@@ -48,12 +48,6 @@ public class DiscountService implements IDiscountService {
     }
 
     @Override
-    public Pageable<DiscountDto> getPageableRecords(Pageable<DiscountDto> pageableDto) {
-        Pageable<Discount> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
-    }
-
-    @Override
     public List<DiscountDto> findAllDiscounts() {
         List<Discount> discounts = repository.getAll();
         return discounts
@@ -63,7 +57,13 @@ public class DiscountService implements IDiscountService {
     }
 
     @Override
-    public Discount getPercentDiscount(Float sum) {
+    public Discount getPercentDiscount(float sum) {
         return repository.getPercentDiscount(sum);
+    }
+
+    @Override
+    public Pageable<DiscountDto> getPageableRecords(Pageable<DiscountDto> pageableDto) {
+        Pageable<Discount> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

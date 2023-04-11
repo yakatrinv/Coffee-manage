@@ -10,7 +10,7 @@ import it.academy.services.impl.ModelService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class UpdateModel implements Command {
     private final IModelService service = new ModelService();

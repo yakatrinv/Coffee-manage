@@ -48,17 +48,17 @@ public class TypePaymentService implements ITypePaymentService {
     }
 
     @Override
-    public Pageable<TypePaymentDto> getPageableRecords(Pageable<TypePaymentDto> pageableDto) {
-        Pageable<TypePayment> pageable = mapperP.dtoToEntity(pageableDto);
-        return mapperP.entityToDto(repository.getPageableRecords(pageable));
-    }
-
-    @Override
     public List<TypePaymentDto> findAllTypePayments() {
         List<TypePayment> typePayments = repository.getAll();
         return typePayments
                 .stream()
                 .map(mapper::entityToDto)
                 .toList();
+    }
+
+    @Override
+    public Pageable<TypePaymentDto> getPageableRecords(Pageable<TypePaymentDto> pageableDto) {
+        Pageable<TypePayment> pageable = mapperP.dtoToEntity(pageableDto);
+        return mapperP.entityToDto(repository.getPageableRecords(pageable));
     }
 }

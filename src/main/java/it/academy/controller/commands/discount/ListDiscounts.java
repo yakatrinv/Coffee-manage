@@ -13,13 +13,13 @@ import it.academy.services.impl.DiscountService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_PERCENT;
-import static it.academy.utils.Data.ATTR_SEARCH_PERCENT;
-import static it.academy.utils.Data.ATTR_SEARCH_SUM;
-import static it.academy.utils.Data.ATTR_SUM;
-import static it.academy.utils.Data.DISCOUNTS_JSP;
-import static it.academy.utils.Data.PAGEABLE;
+import static it.academy.utils.DataDiscount.ATTR_PERCENT;
+import static it.academy.utils.DataDiscount.ATTR_SEARCH_PERCENT;
+import static it.academy.utils.DataDiscount.ATTR_SEARCH_SUM;
+import static it.academy.utils.DataDiscount.ATTR_SUM;
+import static it.academy.utils.DataDiscount.DISCOUNTS_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.PAGEABLE;
 
 
 public class ListDiscounts implements Command {

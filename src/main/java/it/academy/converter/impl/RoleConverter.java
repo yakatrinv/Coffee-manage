@@ -7,9 +7,9 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_ROLE_NAME;
-import static it.academy.utils.Data.ATTR_SEARCH_ROLE_NAME;
+import static it.academy.utils.DataAuth.ATTR_ROLE_NAME;
+import static it.academy.utils.DataAuth.ATTR_SEARCH_ROLE_NAME;
+import static it.academy.utils.DataGeneral.ATTR_ID;
 
 public class RoleConverter implements IRoleConverter {
     @Override

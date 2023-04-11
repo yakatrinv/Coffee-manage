@@ -15,7 +15,9 @@ public interface ICreditCardService {
 
     void deleteCreditCardById(Serializable id);
 
-    Pageable<CreditCardDto> getPageableRecords(Pageable<CreditCardDto> pageable);
-
     List<CreditCardDto> findAllCreditCards();
+
+    List<CreditCardDto> getCustomerCreditCards(Serializable id);
+
+    Pageable<CreditCardDto> getPageableRecords(Pageable<CreditCardDto> pageable);
 }

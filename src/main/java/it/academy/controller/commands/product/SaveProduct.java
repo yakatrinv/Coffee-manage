@@ -10,7 +10,7 @@ import it.academy.services.impl.ProductService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class SaveProduct implements Command {
     private final IProductService service = new ProductService();

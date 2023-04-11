@@ -13,11 +13,11 @@ import it.academy.services.auth.RoleService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_ROLE_NAME;
-import static it.academy.utils.Data.ATTR_SEARCH_ROLE_NAME;
-import static it.academy.utils.Data.PAGEABLE;
-import static it.academy.utils.Data.ROLES_JSP;
+import static it.academy.utils.DataAuth.ATTR_ROLE_NAME;
+import static it.academy.utils.DataAuth.ATTR_SEARCH_ROLE_NAME;
+import static it.academy.utils.DataAuth.ROLES_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataPageable.PAGEABLE;
 
 
 public class ListRoles implements Command {
@@ -43,8 +43,6 @@ public class ListRoles implements Command {
             request.setAttribute(ATTR_SEARCH_ROLE_NAME,
                     pageableDto.getSearchFields().get(ATTR_ROLE_NAME));
         }
-
-
         return ROLES_JSP;
     }
 }

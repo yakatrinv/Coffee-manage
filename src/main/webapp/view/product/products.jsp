@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/table-style.css">
 
 <c:set var="nameCommand" value="products" scope="request"/>
-<c:set var="sortParam" value="&sortField=id" scope="request"/>
+<c:set var="sortParam" value="&sortField=${requestScope.sortField}" scope="request"/>
 <c:set var="filterParam" value="&searchName=${requestScope.searchName}&searchPrice=${requestScope.searchPrice}"
        scope="request"/>
 <c:set var="pageNumber" value="${requestScope.pageable.pageNumber}" scope="request"/>
@@ -29,11 +29,46 @@
 <br>
 
 <form action="coffee-manage">
+    <label for="sortField">Сортровать по: </label>
+    <select id="sortField" name="sortField">
+        <option value="id">не выбрано</option>
+        <c:choose>
+            <c:when test="${requestScope.sortField eq 'price'}">
+                <option
+                        value="name">
+                    по имени
+                </option>
+                <option selected
+                        value="price">
+                    по цене
+                </option>
+            </c:when>
+            <c:when test="${requestScope.sortField eq 'name'}">
+                <option selected
+                        value="name">
+                    по имени
+                </option>
+                <option value="price">
+                    по цене
+                </option>
+            </c:when>
+            <c:otherwise>
+                <option
+                        value="name">
+                    по имени
+                </option>
+                <option value="price">
+                    по цене
+                </option>
+            </c:otherwise>
+        </c:choose>
+    </select>
+
     <label><input name="searchName" placeholder="название" value="${requestScope.searchName}"> </label>
-    <label><input type="number" step="0.1" name="searchPrice" placeholder="цена" value="${requestScope.searchPrice}"></label>
+    <label><input type="number" step="0.01" name="searchPrice" placeholder="цена" value="${requestScope.searchPrice}"></label>
     <input type="hidden" name="pageNumber" value="${pageNumber}">
     <input type="hidden" name="pageSize" value="${pageSize}">
-    <button type="submit" name="command" value="products" formmethod="get" class="buttonClass">ПОИСК</button>
+    <button type="submit" name="command" value="products" formmethod="get" class="buttonClass">ПОИСК И СОРТИРОВКА</button>
 </form>
 
 <c:choose>

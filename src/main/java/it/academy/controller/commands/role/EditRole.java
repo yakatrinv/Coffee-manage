@@ -9,10 +9,10 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_ROLE;
-import static it.academy.utils.Data.EDIT_ROLE_JSP;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAuth.ATTR_ROLE;
+import static it.academy.utils.DataAuth.EDIT_ROLE_JSP;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.PREV_URL;
 
 public class EditRole implements Command {
     private final IRoleService service = new RoleService();
@@ -21,7 +21,7 @@ public class EditRole implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         RoleDto roleDto;
         String id = request.getParameter(ATTR_ID);
-        if (StringUtils.isBlank(id)) {
+        if (StringUtils.isNotBlank(id)) {
             roleDto = service.findRoleById(Integer.parseInt(id));
             request.setAttribute(ATTR_ROLE, roleDto);
         }

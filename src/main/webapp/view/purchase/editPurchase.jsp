@@ -119,6 +119,47 @@
             </p>
 
             <p>
+                <select name="type_payment_id">
+                    <option value="">не выбрано</option>
+                    <c:forEach var="typePayment" items="${requestScope.typePayments}">
+                        <c:choose>
+                            <c:when test="${typePayment.id eq requestScope.purchase.typePayment.id}">
+                                <option selected value="${typePayment.id}">
+                                        ${typePayment.name}
+                                </option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${typePayment.id}">
+                                        ${typePayment.name}
+                                </option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+            </p>
+
+            <div id='creditCard'>
+                <label for="creditCard">Карта</label>
+                <select name="credit_card_id">
+                    <option value="">не выбрано</option>
+                    <c:forEach var="creditCardItem" items="${requestScope.creditCards}">
+                        <c:choose>
+                            <c:when test="${creditCardItem.id eq requestScope.purchase.creditCard.id}">
+                                <option selected value="${creditCardItem.id}">
+                                        ${creditCardItem.number} (${creditCardItem.customer.name}, ${creditCardItem.customer.surname})
+                                </option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${creditCardItem.id}">
+                                        ${creditCardItem.number} (${creditCardItem.customer.name}, ${creditCardItem.customer.surname})
+                                </option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <p>
                 <button type="submit" name="command" value="updatePurchase" class="buttonClass" formmethod="post">
                     ОБНОВИТЬ
                 </button>

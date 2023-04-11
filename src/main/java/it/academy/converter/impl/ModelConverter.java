@@ -7,11 +7,11 @@ import org.junit.platform.commons.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
-import static it.academy.utils.Data.ATTR_BRAND;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_NAME_MODEL;
-import static it.academy.utils.Data.ATTR_SEARCH_BRAND;
-import static it.academy.utils.Data.ATTR_SEARCH_NAME_MODEL;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataModel.ATTR_BRAND;
+import static it.academy.utils.DataModel.ATTR_NAME_MODEL;
+import static it.academy.utils.DataModel.ATTR_SEARCH_BRAND;
+import static it.academy.utils.DataModel.ATTR_SEARCH_NAME_MODEL;
 
 public class ModelConverter implements IModelConverter {
     @Override

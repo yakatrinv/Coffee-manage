@@ -1,6 +1,5 @@
 package it.academy.services;
 
-import it.academy.dto.CreditCardDto;
 import it.academy.dto.CustomerDto;
 import it.academy.models.pageable.Pageable;
 
@@ -8,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface ICustomerService {
-    CustomerDto createCustomer(String login, String password, CustomerDto customerDto);
+    void createCustomer(String login, String password, CustomerDto customerDto);
 
     void updateCustomer(CustomerDto customerDto);
 
@@ -18,9 +17,7 @@ public interface ICustomerService {
 
     List<CustomerDto> findAllCustomers();
 
-    Pageable<CustomerDto> getPageableRecords(Pageable<CustomerDto> pageable);
-
     CustomerDto getCustomerByLoginUser(String login);
 
-    List<CreditCardDto> getCreditCards(Serializable id);
+    Pageable<CustomerDto> getPageableRecords(Pageable<CustomerDto> pageable);
 }

@@ -13,12 +13,12 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static it.academy.utils.Data.ATTR_ADDRESSES;
-import static it.academy.utils.Data.ATTR_ID;
-import static it.academy.utils.Data.ATTR_MACHINE;
-import static it.academy.utils.Data.ATTR_MODELS;
-import static it.academy.utils.Data.EDIT_MACHINE_JSP;
-import static it.academy.utils.Data.PREV_URL;
+import static it.academy.utils.DataAddress.ATTR_ADDRESSES;
+import static it.academy.utils.DataGeneral.ATTR_ID;
+import static it.academy.utils.DataGeneral.PREV_URL;
+import static it.academy.utils.DataMachine.ATTR_MACHINE;
+import static it.academy.utils.DataMachine.EDIT_MACHINE_JSP;
+import static it.academy.utils.DataModel.ATTR_MODELS;
 
 public class EditMachine implements Command {
     private final IMachineService service = new MachineService();
@@ -31,7 +31,7 @@ public class EditMachine implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         MachineDto machine;
         String id = request.getParameter(ATTR_ID);
-        if (StringUtils.isBlank(id)) {
+        if (StringUtils.isNotBlank(id)) {
             machine = service.findMachineById(Integer.parseInt(id));
             request.setAttribute(ATTR_MACHINE, machine);
         }
