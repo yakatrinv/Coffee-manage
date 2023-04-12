@@ -1,4 +1,4 @@
-package it.academy.controller.commands.machineProduct;
+package it.academy.controller.commands.machine.machineProduct;
 
 import it.academy.controller.commands.Command;
 import it.academy.converter.IConverter;
@@ -22,8 +22,8 @@ import static it.academy.utils.DataGeneral.ATTR_ID;
 import static it.academy.utils.DataMachine.ATTR_MACHINE;
 import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
 import static it.academy.utils.DataMachine.LIST_ALL_MACHINES;
+import static it.academy.utils.DataMachineProduct.MACHINE_PRODUCTS_JSP;
 import static it.academy.utils.DataPageable.PAGEABLE;
-import static it.academy.utils.DataProduct.MACHINE_PRODUCTS_JSP;
 
 
 public class ListMachineProduct implements Command {
@@ -51,13 +51,10 @@ public class ListMachineProduct implements Command {
         pageableDto = productService.getProductsMachine(id, pageableDto);
         request.setAttribute(PAGEABLE, pageableDto);
 
-        List<MachineDto> machines = machineService.findAllMachines();
         MachineDto machine = id == null ? null :
                 machineService.findMachineById(id);
 
-        request.setAttribute(LIST_ALL_MACHINES, machines);
         request.setAttribute(ATTR_MACHINE, machine);
-        request.setAttribute(ATTR_MACHINE_ID, machineId);
 
         return MACHINE_PRODUCTS_JSP;
     }

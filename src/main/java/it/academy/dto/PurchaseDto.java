@@ -1,5 +1,6 @@
 package it.academy.dto;
 
+import it.academy.models.DataEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Builder
 @Getter
@@ -33,4 +35,6 @@ public class PurchaseDto implements Serializable {
     private CreditCardDto creditCard;
 
     private TypePaymentDto typePayment;
+
+    private LocalDateTime createDate;
 }

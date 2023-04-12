@@ -60,13 +60,15 @@
                         document.getElementById("creditCard").style.display = 'none';
                         document.getElementById("phoneNumber").style.display = 'none';
 
-                        if (creditCard.valueOf()) {
+
+                        if (creditCard.valueOf()=='true') {
+                            alert(creditCard.valueOf());
                             document.getElementById("creditCard").style.display = 'block';
                         } else {
                             document.getElementById("creditCard").style.display = 'none';
                         }
 
-                        if (phoneNumber.valueOf()) {
+                        if (phoneNumber.valueOf()=='true') {
                             document.getElementById("phoneNumber").style.display = 'block';
                         } else {
                             document.getElementById("phoneNumber").style.display = 'none';
@@ -91,6 +93,7 @@
             <div id='creditCard' style='display: none;'>
                 <label for="creditCard">Карта</label>
                 <select name="credit_card_id">
+                    <option value="">не выбрано</option>
                     <c:forEach var="creditCardItem" items="${requestScope.creditCards}">
                     <option value="${creditCardItem.id}">${creditCardItem.number}</option>
                     </c:forEach>

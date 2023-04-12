@@ -94,6 +94,7 @@ public class PurchaseMapper implements Mapper<Purchase, PurchaseDto> {
                 .sum(purchase.getSum())
                 .typePayment(typePayment)
                 .creditCard(creditCard)
+                .createDate(purchase.getCreateDate())
                 .build();
     }
 }

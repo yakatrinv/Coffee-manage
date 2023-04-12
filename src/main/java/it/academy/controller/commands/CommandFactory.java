@@ -21,6 +21,7 @@ import it.academy.controller.commands.customer.UpdateCustomer;
 import it.academy.controller.commands.customerCommand.ChooseMachine;
 import it.academy.controller.commands.customerCommand.ChooseProduct;
 import it.academy.controller.commands.customerCommand.CreateOrderPay;
+import it.academy.controller.commands.customerCommand.CustomerPurchases;
 import it.academy.controller.commands.customerCommand.SaveOrderPay;
 import it.academy.controller.commands.discount.CreateDiscount;
 import it.academy.controller.commands.discount.DeleteDiscount;
@@ -42,10 +43,10 @@ import it.academy.controller.commands.machine.EditMachine;
 import it.academy.controller.commands.machine.ListMachines;
 import it.academy.controller.commands.machine.SaveMachine;
 import it.academy.controller.commands.machine.UpdateMachine;
-import it.academy.controller.commands.machineProduct.CreateMachineProduct;
-import it.academy.controller.commands.machineProduct.DeleteMachineProduct;
-import it.academy.controller.commands.machineProduct.ListMachineProduct;
-import it.academy.controller.commands.machineProduct.SaveMachineProduct;
+import it.academy.controller.commands.machine.machineProduct.CreateMachineProduct;
+import it.academy.controller.commands.machine.machineProduct.DeleteMachineProduct;
+import it.academy.controller.commands.machine.machineProduct.ListMachineProduct;
+import it.academy.controller.commands.machine.machineProduct.SaveMachineProduct;
 import it.academy.controller.commands.model.CreateModel;
 import it.academy.controller.commands.model.DeleteModel;
 import it.academy.controller.commands.model.EditModel;
@@ -70,6 +71,12 @@ import it.academy.controller.commands.role.EditRole;
 import it.academy.controller.commands.role.ListRoles;
 import it.academy.controller.commands.role.SaveRole;
 import it.academy.controller.commands.role.UpdateRole;
+import it.academy.controller.commands.typePayment.CreateTypePayment;
+import it.academy.controller.commands.typePayment.DeleteTypePayment;
+import it.academy.controller.commands.typePayment.EditTypePayment;
+import it.academy.controller.commands.typePayment.ListTypePayments;
+import it.academy.controller.commands.typePayment.SaveTypePayment;
+import it.academy.controller.commands.typePayment.UpdateTypePayment;
 import it.academy.controller.commands.user.CreateUser;
 import it.academy.controller.commands.user.DeleteUser;
 import it.academy.controller.commands.user.EditPassUser;
@@ -155,10 +162,17 @@ import static it.academy.utils.DataProduct.SAVE_PRODUCT;
 import static it.academy.utils.DataProduct.UPDATE_PRODUCT;
 import static it.academy.utils.DataPurchase.ADD_PURCHASE;
 import static it.academy.utils.DataPurchase.COMMAND_PURCHASES;
+import static it.academy.utils.DataPurchase.CUSTOMER_PURCHASES;
 import static it.academy.utils.DataPurchase.DELETE_PURCHASE;
 import static it.academy.utils.DataPurchase.EDIT_PURCHASE;
 import static it.academy.utils.DataPurchase.SAVE_PURCHASE;
 import static it.academy.utils.DataPurchase.UPDATE_PURCHASE;
+import static it.academy.utils.DataTypePayment.ADD_TYPE_PAYMENT;
+import static it.academy.utils.DataTypePayment.COMMAND_TYPE_PAYMENTS;
+import static it.academy.utils.DataTypePayment.DELETE_TYPE_PAYMENT;
+import static it.academy.utils.DataTypePayment.EDIT_TYPE_PAYMENT;
+import static it.academy.utils.DataTypePayment.SAVE_TYPE_PAYMENT;
+import static it.academy.utils.DataTypePayment.UPDATE_TYPE_PAYMENT;
 
 public final class CommandFactory {
     private static CommandFactory instance;
@@ -256,6 +270,14 @@ public final class CommandFactory {
         commands.put(UPDATE_DISCOUNT, new UpdateDiscount());
         commands.put(DELETE_DISCOUNT, new DeleteDiscount());
 
+        //type payment
+        commands.put(COMMAND_TYPE_PAYMENTS, new ListTypePayments());
+        commands.put(ADD_TYPE_PAYMENT, new CreateTypePayment());
+        commands.put(SAVE_TYPE_PAYMENT, new SaveTypePayment());
+        commands.put(EDIT_TYPE_PAYMENT, new EditTypePayment());
+        commands.put(UPDATE_TYPE_PAYMENT, new UpdateTypePayment());
+        commands.put(DELETE_TYPE_PAYMENT, new DeleteTypePayment());
+
         //purchase
         commands.put(COMMAND_PURCHASES, new ListPurchase());
         commands.put(ADD_PURCHASE, new CreatePurchase());
@@ -269,6 +291,7 @@ public final class CommandFactory {
         commands.put(CHOOSE_PRODUCT, new ChooseProduct());
         commands.put(CREATE_ORDER_PAY, new CreateOrderPay());
         commands.put(SAVE_ORDER_PAY, new SaveOrderPay());
+        commands.put(CUSTOMER_PURCHASES, new CustomerPurchases());
     }
 
     public static CommandFactory getInstance() {

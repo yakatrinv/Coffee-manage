@@ -7,7 +7,7 @@ import it.academy.models.Customer;
 public class CustomerMapper implements Mapper<Customer, CustomerDto> {
     @Override
     public Customer dtoToEntity(CustomerDto customerDto) {
-        return Customer.builder()
+        return customerDto == null ? null : Customer.builder()
                 .id(customerDto.getId())
                 .name(customerDto.getName())
                 .surname(customerDto.getSurname())
@@ -18,7 +18,7 @@ public class CustomerMapper implements Mapper<Customer, CustomerDto> {
 
     @Override
     public CustomerDto entityToDto(Customer customer) {
-        return CustomerDto.builder()
+        return customer == null ? null : CustomerDto.builder()
                 .id(customer.getId())
                 .name(customer.getName())
                 .surname(customer.getSurname())

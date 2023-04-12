@@ -129,8 +129,9 @@ public class ProductRepository extends CrudRepository<Product>
     }
 
     private int getPages(Long countRecords, int pageSize) {
-        long pages = countRecords / pageSize == 0 ? 1 : countRecords / pageSize;
-        return (int) ((countRecords % pageSize == 0) ? pages : pages + 1);
+        long pages = countRecords / pageSize;
+        pages = (countRecords % pageSize == 0) ? pages : pages + 1;
+        return (int) (pages == 0 ? 1 : pages);
     }
 
 }

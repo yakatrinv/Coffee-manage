@@ -23,19 +23,7 @@ public class DataCustomer {
 
     public static final String ATTR_SEARCH_EMAIL = "searchEmail";
 
-    public static final String ATTR_SEARCH_CITIES = "searchCities";
-
-    public static final String ATTR_SET_SEARCH_CITIES = "setSearchCities";
-
     public static final String ATTR_CUSTOMERS = "customers";
-
-
-    //------
-    public static final String ATTR_CITIES = "cities";
-
-    public static final String ATTR_SORT_FIELD = "sortField";
-
-    public static final String STRING_SEARCH_CITIES = "&searchCities=";
 
     //jsp
     public static final String ADD_CUSTOMER_JSP = "view/customer/addCustomer.jsp";
@@ -43,13 +31,6 @@ public class DataCustomer {
     public static final String EDIT_CUSTOMER_JSP = "view/customer/editCustomer.jsp";
 
     public static final String CUSTOMERS_JSP = "view/customer/customers.jsp";
-
-    //jsp customer
-    public static final String CUSTOMER_MACHINES_JSP = "view/viewCustomer/machines.jsp";
-
-    public static final String CUSTOMER_PRODUCTS_JSP = "view/viewCustomer/products.jsp";
-
-    public static final String CUSTOMER_ORDER_PAY_JSP = "view/viewCustomer/orderPay.jsp";
 
     //commands
     public static final String COMMAND_CUSTOMERS = "customers";
@@ -74,4 +55,5 @@ public class DataCustomer {
     public static final String CREATE_ORDER_PAY = "createOrderPay";
 
     public static final String SAVE_ORDER_PAY = "saveOrderPay";
+
 }

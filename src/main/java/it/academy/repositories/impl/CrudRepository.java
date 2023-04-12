@@ -247,10 +247,7 @@ public class CrudRepository<TEntity> implements ICrudRepository<TEntity> {
 
     private int getPages(Long countRecords, int pageSize) {
         long pages = countRecords / pageSize;
-        if (countRecords == 0) {
-            return (int) (pages + 1);
-        } else {
-            return (int) ((countRecords % pageSize == 0) ? pages : pages + 1);
-        }
+        pages = (countRecords % pageSize == 0) ? pages : pages + 1;
+        return (int) (pages == 0 ? 1 : pages);
     }
 }

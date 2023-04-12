@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/table-style.css">
 
-<c:set var="nameCommand" value="purchases" scope="request"/>
+<c:set var="nameCommand" value="customerPurchases" scope="request"/>
 <c:set var="sortParam" value="&sortField=${requestScope.sortField}" scope="request"/>
 <c:set var="filterParam"
        value="&searchStartDate=${requestScope.searchStartDate}&searchFinishDate=${requestScope.searchFinishDate}
-&searchCustomer=${requestScope.searchCustomer.id}&searchMachine=${requestScope.searchMachine.id}
-&searchTypePayment=${requestScope.searchTypePayment.id}
+&searchMachine=${requestScope.searchMachine.id}&searchTypePayment=${requestScope.searchTypePayment.id}
+&searchCustomer=${sessionScope.loggedCustomer.id}
 &searchMinSum=${requestScope.searchMinSum}&searchMaxSum=${requestScope.searchMaxSum}"
        scope="request"/>
 <c:set var="pageNumber" value="${requestScope.pageable.pageNumber}" scope="request"/>
@@ -24,14 +24,8 @@
 <jsp:include page="../general/head.jsp"/>
 <br>
 <header>
-    <h3 class="h1">Список покупок</h3>
+    <h3 class="h1">История покупок</h3>
 </header>
-
-<form action="coffee-manage">
-    <input type="hidden" name="prevURL" value="/coffee-manage?${pageContext.request.queryString}"/>
-    <button type="submit" name="command" value="createPurchase" class="buttonClass">ДОБАВИТЬ ПОКУПКУ</button>
-</form>
-<br>
 
 <form action="coffee-manage">
     <label for="sortField">Сортировать по: </label>
@@ -46,19 +40,6 @@
             <c:otherwise>
                 <option value="createDate">
                     по дате
-                </option>
-            </c:otherwise>
-        </c:choose>
-
-        <c:choose>
-            <c:when test="${requestScope.sortField eq 'customer'}">
-                <option value="customer" selected>
-                    по покупателю
-                </option>
-            </c:when>
-            <c:otherwise>
-                <option value="customer">
-                    по покупателю
                 </option>
             </c:otherwise>
         </c:choose>
@@ -126,26 +107,6 @@
     </label>
 
     <p>
-        <label>Покупатель <select name="searchCustomer">
-            <option value="">не выбрано</option>
-            <c:forEach var="customer" items="${requestScope.customers}">
-                <c:choose>
-                    <c:when test="${customer.id eq searchCustomer.id}">
-                        <option value="${customer.id}" selected>
-                                ${customer.name} ${customer.surname}
-                        </option>
-                    </c:when>
-                    <c:otherwise>
-                        <option value="${customer.id}">
-                                ${customer.name} ${customer.surname}
-                        </option>
-                    </c:otherwise>
-                </c:choose>
-
-            </c:forEach>
-        </select>
-        </label>
-
         </label>Аппарат
         <select name="searchMachine">
             <option value="">не выбрано</option>
@@ -204,7 +165,8 @@
 
     <input type="hidden" name="pageNumber" value="${pageNumber}">
     <input type="hidden" name="pageSize" value="${pageSize}">
-    <button type="submit" name="command" value="purchases" formmethod="get" class="buttonClass">ПОИСК И СОРТИРОВКА
+    <input type="hidden" name="searchCustomer" value="${sessionScope.loggedCustomer.id}">
+    <button type="submit" name="command" value="customerPurchases" class="buttonClass">ПОИСК И СОРТИРОВКА
     </button>
 </form>
 
@@ -222,7 +184,6 @@
             <tr>
                 <th>№</th>
                 <th>Дата покупки</th>
-                <th>Покупатель</th>
                 <th colspan="2">Аппарат</th>
                 <th>Продукция</th>
                 <th>Цена</th>
@@ -230,7 +191,6 @@
                 <th>Сумма</th>
                 <th>Тип оплаты</th>
                 <th>Номер карты</th>
-                <th colspan="2">Действие</th>
             </tr>
 
             <c:choose>
@@ -247,13 +207,7 @@
                     <td>
                             ${purchase.createDate}
                     </td>
-                    <td>
-                        <c:if test="${purchase.customer ne null}">
-                            ${purchase.customer.name}
-                            <br>
-                            ${purchase.customer.surname}
-                        </c:if>
-                    </td>
+
                     <td>
                         <c:if test="${purchase.machine ne null}">
                             <c:if test="${purchase.machine.model ne null}">
@@ -291,34 +245,6 @@
                             ${purchase.creditCard.number.charAt(purchase.creditCard.number.length()-1)}
                         </c:if>
 
-                    </td>
-                    <td>
-                        <form action="coffee-manage" method="get">
-                            <input type="hidden" name="id" value="${purchase.id}">
-                            <input type="hidden" name="prevURL"
-                                   value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber}"/>
-                            <button type="submit" name="command" value="editPurchase" class="buttonClass">
-                                РЕДАКТИРОВАТЬ
-                            </button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="coffee-manage">
-                            <c:choose>
-                                <c:when test="${purchases.size() eq 1}">
-                                    <input type="hidden" name="prevURL"
-                                           value="/coffee-manage?command=${nameCommand}${filterParam}${sortParam}&pageSize=${pageSize}&pageNumber=${pageNumber-1}"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <input type="hidden" name="prevURL"
-                                           value="/coffee-manage?${pageContext.request.queryString}"/>
-                                </c:otherwise>
-                            </c:choose>
-                            <input type="hidden" name="id" value="${purchase.id}">
-                            <button type="submit" name="command" value="deletePurchase" class="buttonClass">
-                                УДАЛИТЬ
-                            </button>
-                        </form>
                     </td>
                 </tr>
             </c:forEach>

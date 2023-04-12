@@ -12,6 +12,11 @@ import it.academy.models.TypePayment;
 import it.academy.models.auth.Role;
 import it.academy.models.auth.User;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
+
 public class DataGeneral {
     public static final String PERSISTENCE_NAME = "property";
 
@@ -23,6 +28,10 @@ public class DataGeneral {
     public static final Class<String> STRING_CLASS = String.class;
 
     public static final Class<String[]> STRING_ARRAY_CLASS = String[].class;
+
+    public static final Class<LocalDateTime[]> DATE_ARRAY_CLASS = LocalDateTime[].class;
+
+    public static final Class<Float[]> FLOAT_ARRAY_CLASS = Float[].class;
 
     public static final Class<Role> ROLE_CLASS = Role.class;
 
@@ -56,6 +65,10 @@ public class DataGeneral {
     public static final String STRING_FROM = "FROM ";
 
     public static final String PERCENT_STRING = "%";
+
+    public static final String ON = "on";
+
+    public static final LocalDateTime START_DATE = LocalDateTime.of(LocalDate.ofYearDay(2023,1), LocalTime.MIN);
 
     //for work with jsp
     public static final String ATTR_COMMAND = "command";
