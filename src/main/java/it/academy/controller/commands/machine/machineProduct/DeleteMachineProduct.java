@@ -1,4 +1,4 @@
-package it.academy.controller.commands.machineProduct;
+package it.academy.controller.commands.machine.machineProduct;
 
 import it.academy.controller.commands.Command;
 import it.academy.services.IMachineService;

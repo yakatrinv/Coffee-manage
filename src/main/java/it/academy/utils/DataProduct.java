@@ -19,11 +19,6 @@ public class DataProduct {
     //jsp customers
     public static final String CUSTOMER_PRODUCTS_JSP = "view/viewCustomer/products.jsp";
 
-    //jsp machine product
-    public static final String MACHINE_PRODUCTS_JSP = "view/machineProduct/machineProducts.jsp";
-
-    public static final String ADD_MACHINE_PRODUCTS_JSP = "view/machineProduct/addMachineProduct.jsp";
-
     //jsp
     public static final String PRODUCTS_JSP = "view/product/products.jsp";
 

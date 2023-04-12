@@ -1,4 +1,4 @@
-package it.academy.controller.commands.machineProduct;
+package it.academy.controller.commands.machine.machineProduct;
 
 import it.academy.controller.commands.Command;
 import it.academy.services.IProductService;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import static it.academy.utils.DataGeneral.PREV_URL;
 import static it.academy.utils.DataMachine.ATTR_MACHINE_ID;
-import static it.academy.utils.DataProduct.ADD_MACHINE_PRODUCTS_JSP;
+import static it.academy.utils.DataMachineProduct.ADD_MACHINE_PRODUCTS_JSP;
 import static it.academy.utils.DataProduct.ATTR_PRODUCTS;
 
 public class CreateMachineProduct implements Command {

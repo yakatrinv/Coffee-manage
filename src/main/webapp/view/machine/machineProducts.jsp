@@ -22,35 +22,23 @@
 </header>
 
 <form action="coffee-manage">
-<%--    <input type="hidden" name="prevURL" value="/coffee-manage?${pageContext.request.queryString}"/>--%>
     <input type="hidden" name="pageNumber" value="${pageNumber}">
     <input type="hidden" name="pageSize" value="${pageSize}">
 
-    <p>
-        <select name="machine_id">
-            <option value="">не выбрано</option>
-            <c:forEach var="machineItem" items="${requestScope.machines}">
-                <c:if test="${requestScope.machine ne null and machineItem.id eq requestScope.machine.id}">
-                    <option selected value="${machineItem.id}">
-                            ${machineItem.serialNumber},${machineItem.model.brand}, ${machineItem.model.nameModel},
-                            ${machineItem.address.city}, ${machineItem.address.street}
-                    </option>
-                </c:if>
-                <c:if test="${requestScope.machine eq null or machineItem.id ne requestScope.machine.id}">
-                    <option value="${machineItem.id}">
-                            ${machineItem.serialNumber},${machineItem.model.brand}, ${machineItem.model.nameModel},
-                            ${machineItem.address.city}, ${machineItem.address.street}
-                    </option>
-                </c:if>
-            </c:forEach>
-        </select>
+    <c:if test="${requestScope.machine ne null}">
+        <p>
+                ${requestScope.machine.serialNumber}
+        </p>
+        <p>
+                ${requestScope.machine.model.brand}, ${requestScope.machine.model.nameModel}
+        </p>
 
-        <button type="submit" name="command" value="machineProducts" formmethod="get" class="buttonClass">ОБНОВИТЬ
-            СПИСОК
-        </button>
-    </p>
+        <p>
+                ${requestScope.machine.address.city}, ${requestScope.machine.address.street}
+        </p>
+    </c:if>
 
-    <c:if test="${machine ne null}">
+    <c:if test="${requestScope.machine ne null}">
         <button type="submit" name="command" value="createMachineProduct" class="buttonClass">
             ДОБАВИТЬ ПРОДУКЦИЮ
         </button>

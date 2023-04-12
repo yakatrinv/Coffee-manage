@@ -23,16 +23,11 @@ public class EditProfileCustomer implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        CustomerDto customer = null;
         CustomerDto loggedCustomer = (CustomerDto) request.getSession().getAttribute(ATTR_LOGGED_CUSTOMER);
-        Integer id = loggedCustomer != null ? loggedCustomer.getId() : null;
-        if (id != null) {
-            customer = service.findCustomerById(id);
-            request.setAttribute(ATTR_CUSTOMER, customer);
-        }
+        request.setAttribute(ATTR_CUSTOMER, loggedCustomer);
 
-        if (customer != null) {
-            request.setAttribute(ATTR_CREDIT_CARDS, creditCardService.getCustomerCreditCards(id));
+        if (loggedCustomer != null) {
+            request.setAttribute(ATTR_CREDIT_CARDS, creditCardService.getCustomerCreditCards(loggedCustomer.getId()));
         }
 
         request.setAttribute(PREV_URL, request.getParameter(PREV_URL));

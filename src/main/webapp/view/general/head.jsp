@@ -36,6 +36,12 @@
             <a href="${pageContext.request.contextPath}/coffee-manage?command=editPassCurrentUser">Сменить пароль</a>
         </p>
 
+        <c:if test="${sessionScope.loggedRole.roleName eq 'Customer'}">
+            <p>
+                <a href="${pageContext.request.contextPath}/coffee-manage?command=customerPurchases&searchCustomer=${sessionScope.loggedCustomer.id}">История покупок</a>
+            </p>
+        </c:if>
+
         <a href="${pageContext.request.contextPath}/coffee-manage?command=logout">Выйти</a>
     </c:if>
 </div>
